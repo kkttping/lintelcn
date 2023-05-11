@@ -1,0 +1,56 @@
+.com_footer {
+    border-top: 1px solid #eeeeee;
+    padding-top: 30px;
+
+    .top {
+        display: flex;
+        justify-content: space-between;
+
+        .content {
+            width: 50%;
+
+            .items {
+
+                margin-top: 10px;
+                margin-left: 50px;
+                display: flex;
+                flex-direction: column;
+
+                .title {
+                    font-weight: 700;
+                    margin-bottom: 5px;
+                    font-size: 16px;
+                }
+
+                .item {
+                    cursor: pointer;
+
+                }
+
+                span {
+                    margin-top: 10px;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .link {
+            cursor: pointer;
+            margin-top: 10px;
+
+            width: 12%;
+            padding-right: 5%;
+        }
+    }
+
+    .bottom {
+        display: flex;
+        justify-content: space-between;
+        padding: 40px;
+
+        .item {
+            display: inline-block;
+            padding-top: 10px;
+        }
+    }
+}
