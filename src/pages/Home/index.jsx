@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
 import './index.scss'
-import { Menu, Row, Col } from 'antd'
-import CardProducts from '@/components/CardProducts'
+import { Menu, } from 'antd'
+import { Outlet } from 'react-router-dom';
+import Footer from '@/components/Footer'
+import NavBottom from '@/pages/Home/NavBottom'
+
+
 export default function Home() {
     const [current, setCurrent] = useState('Products');
+    const [currentIndex, setCurrentIndex] = useState(0);
+
     const items = [
         {
             label: 'Products',
@@ -26,49 +32,26 @@ export default function Home() {
     }
     return (
         <div className='page_home'>
-            <div className="nav">
+            <div className="nav_home">
                 <div className="tag">
                 </div>
                 <div className="menu">
-                    <Menu onClick={menuonClick} selectedKeys={[current]} mode="horizontal" items={items} />
+                    <Menu onClick={menuonClick} mode="horizontal"  >
+                        {items.map((item, index) => {
+                            return <Menu.Item key={item.key}>
+                                <div  onMouseOver={() => { setCurrentIndex(index) }}><span >{item.label}</span></div>
+                            </Menu.Item>
+                        })}
+                    </Menu>
                 </div>
                 <div className="seach_icon">
                 </div>
+                <div ><div  style={(currentIndex === 0 || currentIndex === 2) ? { display: 'block' } : {}} className='nav_bottom_page'>< NavBottom type={currentIndex}/></div></div>
             </div>
-            <div className="content">
-                <Row>
-                    <Col span={24}><div className="img_main">
-                        <span className='titel'>
-                        Products
-                        </span>
-                        <span>
-                        A Solution and Service 
-                        </span>
-                        <span>
-                        Provider of High Speed Optical I/O Connectivity
-                        </span>
-                        <div className='bottom_direction'></div>
-                        </div></Col>
-                        
-                </Row>
-                <Row justify={"center"}>
-                    <Col   >
-                        <div className='card_item'>
-                        <CardProducts></CardProducts>
-                        </div>
-                    </Col>
-                    <Col  >
-                        <div className='card_item'>
-                        <CardProducts></CardProducts>
-                        </div>
-                    </Col>
-                    <Col >
-                        <div className='card_item'>
-                        <CardProducts></CardProducts>
-                        </div>
-                    </Col>
-                </Row>
+            <div className="content" onMouseOver={() => { setCurrentIndex(-1) }}>
+                <Outlet />
             </div>
+            <Footer />
         </div>
     )
 }

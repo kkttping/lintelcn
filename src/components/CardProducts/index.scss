@@ -10,7 +10,12 @@
         width: 586px;
         height: 321px;
         background-size: contain;
-        background-image: url('../../static/img/item1.png');
+        // background-image: url('../../static/img/item1.png');
+        img{
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .name {
@@ -25,7 +30,7 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        background-image: linear-gradient(180.00deg, rgba(215, 215, 215, 0.377), rgba(236, 241, 249, 0.00) 100%);
+        // background-image: linear-gradient(180.00deg, rgba(215, 215, 215, 0.377), rgba(236, 241, 249, 0.00) 100%);
         z-index: -1;
     }
 

@@ -57,13 +57,10 @@ export default function Footer() {
                 </div>
             </div>
             <div className="bottom">
-                <Row>
-                    <Col xs={24} sm={12}><span className='item'>Shenzhen Stock Exchange code:301205</span></Col>
-                    <Col xs={24} sm={12}><span className='item'>Copyright 2023 Linktel Technologise Co.,Ltd. All rights reserved</span></Col>
+                <Row justify={'space-between'}>
+                    <Col xs={24} sm={6}><span className='item'>Shenzhen Stock Exchange code:301205</span></Col>
+                    <Col xs={24} sm={6}><span className='item'>Copyright 2023 Linktel Technologise Co.,Ltd. All rights reserved</span></Col>
                 </Row>
-
-
-
             </div>
         </div>
     )

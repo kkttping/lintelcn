@@ -1,12 +1,15 @@
 .page_home {
+    font-family: Barlow;
 
-
-    .nav {
+    .nav_home {
         display: flex;
-        justify-content: space-between;
+        align-items: end;
         position: sticky;
         top: 0;
         z-index: 99;
+        background-color: #fff;
+        border-bottom: 1px solid #ccc;
+        flex-direction: column;
 
         .tag {
             position: absolute;
@@ -15,19 +18,15 @@
             height: 54px;
             left: 29px;
             top: 9px;
-
-
         }
 
         .menu {
             font-size: 14px;
-
-            width: 100%;
+            width: 30%;
 
             .ant-menu-overflow {
                 justify-content: flex-end;
                 padding-right: 104px;
-
             }
 
             .ant-menu-horizontal {
@@ -40,6 +39,12 @@
                 }
             }
 
+
+
+            
+
+            
+
         }
 
         .seach_icon {
@@ -50,62 +55,19 @@
             height: 22px;
             right: 37.96px;
             top: 25px;
-
-
-
         }
-    }
+        .nav_bottom_page {
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
 
-    .content {
-
-        .ant-col,
-        .ant-col-md-24 {
-            overflow: hidden;
-
-        }
-
-        .card_item {
-            margin: 0 auto;
-            height: 560px;
-            width: 640px;
-
-        }
-
-        .img_main {
-
+            display: none;
+            position: absolute;
             width: 100%;
-            height: 36vw;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-image: url("../../static/img/bg_1.png");
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            position: relative;
-
-            .titel {
-                display: inline-block;
-                color: #ffffff;
-                font-size: 100px;
-                font-weight: 700;
-
-            }
-
-            .bottom_direction {
-                background-image: url("../../static/svg/bottom_dir.svg");
-                background-repeat: no-repeat;
-                width: 48px;
-                height: 45px;
-                position: absolute;
-                bottom: 10px;
-            }
-
-            span {
-                color: #ffffff;
-                font-size: 24px;
-            }
+            left: 0;
+            background-color: #ffffff;
         }
 
     }
+
+    .content {}
 }

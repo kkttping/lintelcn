@@ -1,0 +1,56 @@
+.nav_bottom {
+    .products_nav {
+        display: flex;
+        justify-content: center;
+
+        .item {
+            padding: 15px;
+
+            img {
+                width: 350px;
+                height: 120px;
+                object-fit: contain;
+                background-color: rgb(235, 235, 235);
+            }
+
+            .title {
+                font-size: 14px;
+                font-weight: 700;
+                margin: 12px 0;
+            }
+
+            p {
+                cursor: pointer;
+                font-size: 14px;
+                color: rgb(142, 142, 142);
+                margin: 10px 0;
+            }
+
+            P:hover {
+                color: rgb(0, 61, 166);
+            }
+        }
+
+        .item:hover {
+            background-color: rgb(227, 229, 239, 0.3);
+        }
+    }
+
+    .about_nav {
+        display: flex;
+        justify-content: center;
+        div {
+            cursor: pointer;
+            width: 110px;
+            height: 72px;
+            line-height: 72px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        div:hover{
+            background-color: rgb(227, 229, 239);
+            color: rgb(0, 61, 166);
+        }
+    }
+}

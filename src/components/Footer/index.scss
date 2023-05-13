@@ -44,9 +44,9 @@
     }
 
     .bottom {
-        display: flex;
-        justify-content: space-between;
         padding: 40px;
+        width: 100%;
+        box-sizing: border-box;
 
         .item {
             display: inline-block;
