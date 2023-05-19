@@ -1,0 +1,33 @@
+.about_quality {
+    .card_item {
+        margin: 40px;
+        width: 684.36px;
+        height: 400px;
+    }
+    .content{
+        .img_top{
+            height: 688px;
+            display: flex;
+            justify-content: center;
+            img{
+                height: 100%;
+            }
+
+        }
+        .imgList{
+            .img_box{
+                width: 320px;
+                height: 360px;
+                background-color: rgb(196, 196, 196,0.1);
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                margin: 40px;
+                img{
+                    height: 203px;
+                }
+            }
+        }
+    }
+}

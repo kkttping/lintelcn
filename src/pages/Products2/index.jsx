@@ -1,44 +1,22 @@
 import React from 'react'
 import { Menu, Row, Col } from 'antd'
 import { useNavigate } from "react-router-dom";
+import imgBg from '@/static/img/bg_2.png'
+import TopInfo from '@/components/TopInfo'
+import NavLink from '@/components/NavLink'
 
 import './index.scss'
 export default function Products2() {
     const navigate = useNavigate()
 
     const toProducts3 = () => {
-        navigate('/home/products3', { state: {} })
+        navigate('/home/products3', { state: {routerName:'products'} })
     }
     return (
         <div className='products2'>
-            <Row>
-                <Col span={24}><div className="img_main">
-                    <span className='titel'>
-                        Pluggable Transceiver
-                    </span>
-
-                    <div className='bottom_direction'></div>
-                </div></Col>
-
-            </Row>
-            <div className='nav'>
-                <div className='left'>
-                    <div className='home'></div>
-                    <div className="link">
-                        <span>Products</span>
-                        <span>·</span>
-                        <span>Pluggable Transceiver</span>
-
-                    </div>
-
-                </div>
-                <div className='right'>
-                    <div className='return'></div>
-                    <div className="link">
-                        <span>Previous</span>
-                    </div>
-                </div>
-            </div>
+            <TopInfo imgBg={imgBg} title={'Pluggable Transceiver'} styleSelf={{bgColor:'#000',height:'400px'}} info1={''} info2={''}/>
+            <NavLink/>
+            
             <div className="info">
                 <div className='title'>
                     Linktel’s family of 800G transceivers accelerate data connectivity for data center Interconnection and Metro Networks. Our complete product line includes OSFP 2xFR4，OSFP 2xLR4，QSFP-DD DR8，QSFP-DD DR8+

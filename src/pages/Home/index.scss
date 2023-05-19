@@ -1,6 +1,13 @@
 .page_home {
     font-family: Barlow;
 
+    :where(.css-dev-only-do-not-override-ed5zg0)[class^="ant-row"],
+    :where(.css-dev-only-do-not-override-ed5zg0)[class*=" ant-row"],
+    :where(.css-dev-only-do-not-override-ed5zg0)[class^="ant-col"],
+    :where(.css-dev-only-do-not-override-ed5zg0)[class*=" ant-col"] {
+        font-family: Barlow;
+    }
+
     .nav_home {
         display: flex;
         align-items: end;
@@ -41,9 +48,9 @@
 
 
 
-            
 
-            
+
+
 
         }
 
@@ -56,6 +63,7 @@
             right: 37.96px;
             top: 25px;
         }
+
         .nav_bottom_page {
             border-top: 1px solid #ccc;
             border-bottom: 1px solid #ccc;
@@ -69,5 +77,8 @@
 
     }
 
-    .content {}
+    .content_home {
+        overflow: hidden;
+
+    }
 }

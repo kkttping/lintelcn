@@ -1,0 +1,97 @@
+.card_news {
+    width: 100%;
+    padding: 20px 0;
+
+    .infomation {
+        max-width: 700px;
+        height: 481px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        .title {
+            width: 510px;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            margin-top: 131px;
+            line-height: 29px;
+            letter-spacing: 0px;
+            text-align: left;
+        }
+
+        .info {
+            width: 700px;
+            margin-bottom: 32px;
+
+            font-size: 16px;
+            color: rgb(142, 142, 142);
+        }
+
+        &>span {
+            font-size: 14px;
+            position: relative;
+            cursor: pointer;
+            color: rgb(142, 142, 142);
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+                width: 96px;
+                height: 2px;
+                background-color: rgb(142, 142, 142);
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 90px;
+                bottom: 5px;
+                width: 7px;
+                height: 7px;
+                border-right: 2px solid rgb(142, 142, 142);
+                border-bottom: 2px solid rgb(142, 142, 142);
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    .img {
+        display: flex;
+        justify-content: center;
+        max-width: 700px;
+        height: 481px;
+        position: relative;
+        overflow: hidden;
+
+        img {
+            height: 100%;
+        }
+
+        .news_card {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 350px;
+            height: 140px;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+}
+
+.card_news:hover {
+    background: linear-gradient(270.00deg, rgba(160, 182, 222, 0.00), rgba(160, 182, 222, 0.2) 49.792%, rgba(160, 182, 222, 0.00) 100%);
+
+    .infomation {
+        .title {
+            color: rgb(0, 61, 166);
+        }
+    }
+
+}

@@ -2,10 +2,12 @@ import React, { useState, useRef } from 'react'
 import './index.scss'
 import img_bg from '@/static/img/bg_3.png'
 import { Carousel, Row, Col, Table } from 'antd'
+import NavLink from '@/components/NavLink'
 
 export default function Products3() {
     const [activtyKey, setActivtyKey] = useState(0);
     const carRfe = useRef();
+
     const selectArr = [{
         src: img_bg
     }, {
@@ -117,24 +119,8 @@ export default function Products3() {
     }
     return (
         <div className='products3'>
-            <div className='nav'>
-                <div className='left'>
-                    <div className='home'></div>
-                    <div className="link">
-                        <span>Products</span>
-                        <span>·</span>
-                        <span>Pluggable Transceiver</span>
+            <NavLink />
 
-                    </div>
-
-                </div>
-                <div className='right'>
-                    <div className='return'></div>
-                    <div className="link">
-                        <span>Previous</span>
-                    </div>
-                </div>
-            </div>
             <div className='top_bg'>
                 <div className='bg'><Carousel ref={carRfe} style={{ height: '100%' }} dots={false}  >
                     <div>
