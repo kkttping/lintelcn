@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import 'rc-texty/assets/index.css';
 import App from '@/router/MainRouter';
-
 import reportWebVitals from './reportWebVitals';
 import en_GB from 'antd/locale/en_GB';
-import {ConfigProvider} from 'antd'
+import { ConfigProvider } from 'antd'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <ConfigProvider locale={en_GB}>
+  <ConfigProvider locale={en_GB}>
     <App />
   </ConfigProvider>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

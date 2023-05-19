@@ -5,7 +5,7 @@ import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
 import CardPersonInfo from '@/components/CardPersonInfo'
 import { Button, Checkbox, Form, Input } from 'antd';
-import BMap  from 'BMap';
+// import BMap  from 'BMap';
 import './index.scss'
 export default function AboutContact() {
     const onFinish = (values) => {
@@ -15,12 +15,12 @@ export default function AboutContact() {
         console.log('Failed:', errorInfo);
     };
     useEffect(()=>{
-        var map = new BMap.Map("mapCurrent"); // 创建Map实例
-        map.centerAndZoom(new BMap.Point(116.404, 39.915), 11); // 初始化地图,设置中心点坐标和地图级别
-        map.addControl(new BMap.MapTypeControl()); //添加地图类型控件
-        map.setCurrentCity("北京"); // 设置地图显示的城市 此项是必须设置的
-        map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
-        console.log(map);
+        // var map = new BMap.Map("mapCurrent"); // 创建Map实例
+        // map.centerAndZoom(new BMap.Point(116.404, 39.915), 11); // 初始化地图,设置中心点坐标和地图级别
+        // map.addControl(new BMap.MapTypeControl()); //添加地图类型控件
+        // map.setCurrentCity("北京"); // 设置地图显示的城市 此项是必须设置的
+        // map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+        // console.log(map);
     },[])
     return (
         <div className='about_contact'>
