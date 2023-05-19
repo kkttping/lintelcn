@@ -43,9 +43,9 @@
             width: calc(45px / 2);
             height: calc(45px / 2);
             position: absolute;
-            bottom: 10px;
+            bottom: 20px;
             z-index: 2;
-
+            animation: mouse 1s ease-in-out 0.1s alternate none infinite running;
         }
 
         span {
@@ -54,5 +54,23 @@
             z-index: 2;
 
         }
+    }
+}
+
+@keyframes mouse {
+    from {
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+        opacity: 1;
+    }
+
+    55% {
+        opacity: 0.6;
+    }
+
+    to {
+        transform: translateY(10px);
+        -webkit-transform: translateY(10px);
+        opacity: 0;
     }
 }
