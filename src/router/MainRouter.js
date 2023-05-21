@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Http from "@/utils/http";
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from '@/pages/Home'
 import Products from '@/pages/Products'
@@ -20,6 +21,16 @@ import AboutContact from '@/pages/AboutContact'
 import Career from '@/pages/Career'
 
 export default function () {
+
+    useEffect(() => {
+        getInfo();
+    }, []);
+
+    const getInfo = async () => {
+        let res = await Http.to.transport.get("/items/Basic_information");
+        debugger
+    }
+
     return (
         <div>
             <Router>
