@@ -22,42 +22,51 @@ import Career from '@/pages/Career'
 
 export default function () {
 
-    useEffect(() => {
-        getInfo();
-    }, []);
+	useEffect(() => {
+		getInfo();
+	}, []);
 
-    const getInfo = async () => {
-        let res = await Http.to.transport.get("/items/Basic_information");
-        debugger
-    }
+	const getInfo = async () => {
+		let res = await Http.to.items("Basic_information").readByQuery({
+			sort: ['id'],
+			fields: [
+				"id",
+				"Project_Name",
+				"description",
+				"Copyright"
+			]
+		});
+		console.log(res.data)
+		debugger
+	}
 
-    return (
-        <div>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Navigate replace to="/home/products" />} />
-                    <Route path='home/*' element={<Home />}>
-                        <Route path='products' element={<Products />}></Route>
-                        <Route path='products2' element={<Products2 />}></Route>
-                        <Route path='products3' element={<Products3 />}></Route>
-                        <Route path='markets' element={<Markets />}></Route>
-                        <Route path='markets2' element={<Markets2 />}></Route>
-                        <Route path='markets3' element={<Markets3 />}></Route>
-                        <Route path='about' element={<AboutHome />}></Route>
-                        <Route path='company' element={<AboutCompany />}></Route>
-                        <Route path='culture' element={<AboutCulture />}></Route>
-                        <Route path='leadership' element={<AboutLeadership />}></Route>
-                        <Route path='exhibition' element={<AboutNewsExhibition />}></Route>
-                        <Route path='events' element={<AboutNewsEvents />}></Route>
-                        <Route path='newsInfo' element={<AboutNewsInfo />}></Route>
-                        <Route path='quality' element={<AboutQuality />}></Route>
-                        <Route path='responsibility' element={<AboutResponsibility />}></Route>
-                        <Route path='contact' element={<AboutContact />}></Route>
-                        <Route path='career' element={<Career />}></Route>
-                    </Route>
-                </Routes>
-            </Router>
-        </div>
+	return (
+		<div>
+			<Router>
+				<Routes>
+					<Route path="/" element={<Navigate replace to="/home/products" />} />
+					<Route path='home/*' element={<Home />}>
+						<Route path='products' element={<Products />}></Route>
+						<Route path='products2' element={<Products2 />}></Route>
+						<Route path='products3' element={<Products3 />}></Route>
+						<Route path='markets' element={<Markets />}></Route>
+						<Route path='markets2' element={<Markets2 />}></Route>
+						<Route path='markets3' element={<Markets3 />}></Route>
+						<Route path='about' element={<AboutHome />}></Route>
+						<Route path='company' element={<AboutCompany />}></Route>
+						<Route path='culture' element={<AboutCulture />}></Route>
+						<Route path='leadership' element={<AboutLeadership />}></Route>
+						<Route path='exhibition' element={<AboutNewsExhibition />}></Route>
+						<Route path='events' element={<AboutNewsEvents />}></Route>
+						<Route path='newsInfo' element={<AboutNewsInfo />}></Route>
+						<Route path='quality' element={<AboutQuality />}></Route>
+						<Route path='responsibility' element={<AboutResponsibility />}></Route>
+						<Route path='contact' element={<AboutContact />}></Route>
+						<Route path='career' element={<Career />}></Route>
+					</Route>
+				</Routes>
+			</Router>
+		</div>
 
-    )
+	)
 }
