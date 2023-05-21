@@ -43,7 +43,6 @@ export default function () {
                         <Route path='responsibility' element={<AboutResponsibility />}></Route>
                         <Route path='contact' element={<AboutContact />}></Route>
                         <Route path='career' element={<Career />}></Route>
-
                     </Route>
                 </Routes>
             </Router>

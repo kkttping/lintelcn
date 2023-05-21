@@ -16,7 +16,6 @@ export default function CardNews2(props) {
                     </div>
                 </Col>)
                 }
-
                 <Col>
                     <div className='infomation' style={{maxWidth:time?'700px':'1000px'}}>
                         <div className='title' style={{maxWidth:time?'700px':'850px'}}>{title}</div>

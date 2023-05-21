@@ -13,9 +13,7 @@ export default function CardProducts(props) {
         <span>{titleIn}</span>
         {info?.map(item=><span>{item}</span>)}
         <span onClick={link}>READ MORE</span>
-
       </div>
-
     </div>
   )
 }
