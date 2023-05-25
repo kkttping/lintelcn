@@ -12,7 +12,7 @@ export default function AboutNewsEvents() {
 
 
     const toPage = (address, info) => {
-        navigate('/home/' + address+'/about/'+info);
+        navigate('/home/' + address+'/'+info);
     }
     return (
         <div className='about_news_events'>
