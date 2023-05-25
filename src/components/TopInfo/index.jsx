@@ -11,10 +11,10 @@ export default function TopInfo(props) {
 					<div className="img_main"
 						style={{
 							backgroundColor: styleSelf?.bgColor ?? '',
+							backgroundImage:`url(${imgBg})`,
 							height: styleSelf?.height ?? 'calc(100vh - 70px)'
 						}}
 					>
-						<img src={imgBg} alt="" />
 						<span className='titel'>
 							<Texty interval={150} delay={500}>{title}</Texty>
 						</span>
