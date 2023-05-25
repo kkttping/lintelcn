@@ -17,7 +17,7 @@ export default function CareerNav() {
     }
 
     const toPage = (address) => {
-        navigate('/home/' + address+'/career');
+        navigate('/home/' + address);
     }
     return (
 

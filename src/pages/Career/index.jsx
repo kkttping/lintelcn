@@ -15,7 +15,7 @@ export default function Career() {
 
 
     const toPage = (address, routerName) => {
-        navigate('/home/' + address+'/'+routerName);
+        navigate('/home/' +routerName);
     }
     return (
         <div className='career'>

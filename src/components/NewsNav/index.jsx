@@ -17,7 +17,7 @@ export default function NewsNav() {
     }
 
     const toPage = (address) => {
-        navigate('/home/' + address+'/about');
+        navigate('/home/' + address);
     }
     return (
 

@@ -17,7 +17,7 @@ export default function AboutNav() {
     }
 
     const toPage = (address) => {
-        navigate('/home/' + address+'/about');
+        navigate('/home/' + address);
     }
     return (
 
