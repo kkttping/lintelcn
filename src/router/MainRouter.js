@@ -47,7 +47,7 @@ export default function () {
 		<div>
 			<Router>
 				<Routes>
-					<Route path="/" element={<Navigate replace to="/home/products" />} />
+					<Route path="/" element={<Navigate replace to="/home/home/home" />} />
 					<Route path='home/*' element={<Home />}>
 						<Route path='products/:address' element={<Products />}></Route>
 						<Route path='products2/:address' element={<Products2 />}></Route>
