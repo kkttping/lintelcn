@@ -1,7 +1,6 @@
 import React from 'react'
 import Texty from 'rc-texty';
 import { Row, Col } from 'antd'
-import { LinkedinOutlined, MediumOutlined, EnvironmentOutlined, PhoneOutlined } from '@ant-design/icons';
 import './index.scss'
 export default function TopInfo(props) {
 	const { imgBg, title, info1, info2, styleSelf } = props;
@@ -12,7 +11,7 @@ export default function TopInfo(props) {
 					<div className="img_main"
 						style={{
 							backgroundColor: styleSelf?.bgColor ?? '',
-							height: styleSelf?.height ?? '720px'
+							height: styleSelf?.height ?? 'calc(100vh - 70px)'
 						}}
 					>
 						<img src={imgBg} alt="" />

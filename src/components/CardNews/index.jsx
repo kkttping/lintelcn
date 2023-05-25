@@ -13,7 +13,7 @@ export default function CardNews(props) {
                         <div className='title'>{title}</div>
                         <div className='info'>
                             {infoList?.map(item=>{
-                                return (<span>{item} <br/></span>)
+                                return (<span key={item}>{item} <br/></span>)
                             })}
                             </div>
                         <span onClick={link}>READ MORE</span>

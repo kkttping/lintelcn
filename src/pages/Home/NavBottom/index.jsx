@@ -50,7 +50,7 @@ export default function NavBottom(porps) {
     const selectItem = () => {
         switch (porps.type) {
             case 0: return productsPage;
-            case 2: return aboutPage;
+            case 3: return aboutPage;
 
         }
     }

@@ -1,12 +1,12 @@
 import React from 'react'
 import NavLink from '@/components/NavLink'
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import imgitem from '@/static/img/an_item3.png'
 
 
 import './index.scss'
 export default function AboutNewsInfo() {
-    const location = useLocation()
+    const getParams = useParams();
 
     return (
         <div className='about_news_info'>
@@ -17,7 +17,7 @@ export default function AboutNewsInfo() {
                         <span>03-04<br /></span>
                         <span>2023</span>
                     </div>
-                    <div className='title_info'>{location.state?.title}</div>
+                    <div className='title_info'>{getParams?.title}</div>
 
                     <div className='title_ps'>
                         EXHIBITION: 07 – 09 March 2023<br />

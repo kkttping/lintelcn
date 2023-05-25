@@ -19,6 +19,10 @@ import AboutQuality from '@/pages/AboutQuality'
 import AboutResponsibility from '@/pages/AboutResponsibility'
 import AboutContact from '@/pages/AboutContact'
 import Career from '@/pages/Career'
+import CareerMessage from '@/pages/CareerMessage'
+import CareerWorkAtLinktel from '@/pages/CareerWorkAtLinktel'
+import CareerOpportunities from '@/pages/CareerOpportunities'
+import HomePage from '@/pages/HomePage'
 
 export default function () {
 
@@ -37,7 +41,6 @@ export default function () {
 			]
 		});
 		console.log(res.data)
-		debugger
 	}
 
 	return (
@@ -46,23 +49,28 @@ export default function () {
 				<Routes>
 					<Route path="/" element={<Navigate replace to="/home/products" />} />
 					<Route path='home/*' element={<Home />}>
-						<Route path='products' element={<Products />}></Route>
-						<Route path='products2' element={<Products2 />}></Route>
-						<Route path='products3' element={<Products3 />}></Route>
-						<Route path='markets' element={<Markets />}></Route>
-						<Route path='markets2' element={<Markets2 />}></Route>
-						<Route path='markets3' element={<Markets3 />}></Route>
-						<Route path='about' element={<AboutHome />}></Route>
-						<Route path='company' element={<AboutCompany />}></Route>
-						<Route path='culture' element={<AboutCulture />}></Route>
-						<Route path='leadership' element={<AboutLeadership />}></Route>
-						<Route path='exhibition' element={<AboutNewsExhibition />}></Route>
-						<Route path='events' element={<AboutNewsEvents />}></Route>
-						<Route path='newsInfo' element={<AboutNewsInfo />}></Route>
-						<Route path='quality' element={<AboutQuality />}></Route>
-						<Route path='responsibility' element={<AboutResponsibility />}></Route>
-						<Route path='contact' element={<AboutContact />}></Route>
-						<Route path='career' element={<Career />}></Route>
+						<Route path='products/:address' element={<Products />}></Route>
+						<Route path='products2/:address' element={<Products2 />}></Route>
+						<Route path='products3/:address' element={<Products3 />}></Route>
+						<Route path='markets/:address' element={<Markets />}></Route>
+						<Route path='markets2/:address' element={<Markets2 />}></Route>
+						<Route path='markets3/:address/:title' element={<Markets3 />}></Route>
+						<Route path='about/:address' element={<AboutHome />}></Route>
+						<Route path='company/:address' element={<AboutCompany />}></Route>
+						<Route path='culture/:address' element={<AboutCulture />}></Route>
+						<Route path='leadership/:address' element={<AboutLeadership />}></Route>
+						<Route path='exhibition/:address' element={<AboutNewsExhibition />}></Route>
+						<Route path='events/:address' element={<AboutNewsEvents />}></Route>
+						<Route path='newsInfo/:address/:title' element={<AboutNewsInfo />}></Route>
+						<Route path='quality/:address' element={<AboutQuality />}></Route>
+						<Route path='responsibility/:address' element={<AboutResponsibility />}></Route>
+						<Route path='contact/:address' element={<AboutContact />}></Route>
+						<Route path='career/:address' element={<Career />}></Route>
+						<Route path='message/:address' element={<CareerMessage />}></Route>
+						<Route path='workAtLinktel/:address' element={<CareerWorkAtLinktel />}></Route>
+						<Route path='opportunities/:address' element={<CareerOpportunities />}></Route>
+						<Route path='home/:address' element={<HomePage />}></Route>
+
 					</Route>
 				</Routes>
 			</Router>

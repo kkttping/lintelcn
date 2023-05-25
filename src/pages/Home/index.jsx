@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import './index.scss'
 import { Menu, } from 'antd'
-import { Outlet, useNavigate,useLocation } from 'react-router-dom';
+import { Outlet, useNavigate,useParams } from 'react-router-dom';
 import Footer from '@/components/Footer'
 import NavBottom from '@/pages/Home/NavBottom'
 
@@ -10,9 +10,13 @@ export default function Home() {
     const [current, setCurrent] = useState('products');
     const [currentIndex, setCurrentIndex] = useState(-1);
     const navigate = useNavigate()
-    const location = useLocation()
+    const getParams = useParams();
 
     const items = [
+        {
+            label: 'Home',
+            key: 'home',
+        },
         {
             label: 'Products',
             key: 'products',
@@ -34,13 +38,12 @@ export default function Home() {
         setCurrent(index.key)
     }
     const toPage = (address) => {
-        navigate('/home/' + address, { state: {routerName:address} })
+        navigate('/home/' + address+'/'+address);
     }
     useEffect(()=>{
-        if(location.state===null)return
-        setCurrent(location.state.routerName);
-        console.log(location.state.routerName);
-    },[location])
+        if(getParams.address===null)return
+        setCurrent(getParams.address);
+    },[getParams])
     return (
         <div className='page_home'>
             <div className="nav_home">
@@ -57,7 +60,7 @@ export default function Home() {
                 </div>
                 <div className="seach_icon">
                 </div>
-                <div ><div style={(currentIndex === 0 || currentIndex === 2) ? { display: 'block' } : {}} className='nav_bottom_page'>< NavBottom type={currentIndex} /></div></div>
+                <div ><div style={(currentIndex === 0 || currentIndex ===3) ? { display: 'block' } : {}} className='nav_bottom_page'>< NavBottom type={currentIndex} /></div></div>
             </div>
             <div className="content_home" onMouseOver={() => { setCurrentIndex(-1) }}>
                 <Outlet />

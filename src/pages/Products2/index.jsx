@@ -10,7 +10,7 @@ export default function Products2() {
     const navigate = useNavigate()
 
     const toProducts3 = () => {
-        navigate('/home/products3', { state: {routerName:'products'} })
+        navigate('/home/products3/products')
     }
     return (
         <div className='products2'>

@@ -20,8 +20,9 @@ export default function AboutHome() {
     const [imgSelect, setImgSelect] = useState(0);
     const navigate = useNavigate()
 
+
     const toPage = (address, routerName) => {
-        navigate('/home/' + address, { state: { routerName } })
+        navigate('/home/' + address+'/'+routerName);
     }
     const link = () => {
 

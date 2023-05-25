@@ -13,7 +13,7 @@ export default function Markets2() {
     const navigate = useNavigate()
 
     const toM3Link=(title)=>{
-        navigate('/home/markets3', { state: {routerName:'markets',title}  })
+        navigate('/home/markets3/markets/'+title)
     }
 
     return (

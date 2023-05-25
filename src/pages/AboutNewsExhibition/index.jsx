@@ -12,8 +12,9 @@ import './index.scss'
 export default function AboutNewsExhibition() {
     const navigate = useNavigate()
 
+
     const toPage = (address, info) => {
-        navigate('/home/' + address, { state: { routerName: 'about', title: info } })
+        navigate('/home/' + address+'/about/'+info);
     }
     return (
         <div className='about_news_exhibition'>

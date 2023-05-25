@@ -11,8 +11,9 @@ import './index.scss'
 export default function Markets() {
     const navigate = useNavigate()
 
-    const toPage = (address,routerName) => {
-        navigate('/home/' +address, { state: {routerName} })
+
+    const toPage = (address, routerName) => {
+        navigate('/home/' + address+'/'+routerName);
     }
     return (
         <div className='markets'>

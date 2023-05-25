@@ -15,8 +15,9 @@ export default function NewsNav() {
         toPage(index.key)
         setNav(index.key)
     }
+
     const toPage = (address) => {
-        navigate('/home/' + address, { state: {routerName:'about'} })
+        navigate('/home/' + address+'/about');
     }
     return (
 

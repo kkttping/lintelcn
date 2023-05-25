@@ -21,7 +21,7 @@ export default function CardNews2(props) {
                         <div className='title' style={{maxWidth:time?'700px':'850px'}}>{title}</div>
                         <div className='info' style={{maxWidth:time?'700px':'850px'}}>
                             {infoList?.map(item => {
-                                return (<span>{item} <br /></span>)
+                                return (<span key={item}>{item} <br /></span>)
                             })}
                         </div>
                         <span onClick={link}>READ MORE</span>
