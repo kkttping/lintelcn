@@ -22,7 +22,7 @@ export default function AboutHome() {
 
 
     const toPage = (address, routerName) => {
-        navigate('/home/' + address);
+        navigate('/' + address);
     }
     const link = () => {
 

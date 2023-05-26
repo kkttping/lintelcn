@@ -14,7 +14,7 @@ export default function AboutResponsibility() {
 
 
     const toPage = (address, info) => {
-        navigate('/home/' + address+'/'+info);
+        navigate('/' + address+'/'+info);
     }
     return (
         <div className='about_responsibility'>

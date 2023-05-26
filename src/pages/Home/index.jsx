@@ -38,7 +38,7 @@ export default function Home() {
         setCurrent(index.key)
     }
     const toPage = (address) => {
-        navigate('/home/' + address);
+        navigate('/' + address);
     }
     useEffect(()=>{
         if(getParams.address===null)return

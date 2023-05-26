@@ -13,7 +13,7 @@ export default function Products() {
 	const navigate = useNavigate()
 
 	const toProducts2 = () => {
-		navigate('/home/products2')
+		navigate('/products2')
 	}
 	return (
 		<div className='products'>
