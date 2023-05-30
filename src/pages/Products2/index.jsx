@@ -28,7 +28,7 @@ export default function Products2() {
         setInfo(res.data)
     }
     const getInfo2 = async () => {
-        let res = await Http.to.items("Pluggable_Transceiver").readByQuery({
+        let res = await Http.to.items("product_category").readByQuery({
             fields:['*']
         });
         console.log(res.data);
