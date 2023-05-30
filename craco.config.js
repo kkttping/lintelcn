@@ -3,7 +3,14 @@ module.exports = {
   webpack: {
     alias: {
       '@': path.join(__dirname, 'src')
-    }
+    },
+    configure: (webpackConfig, { env: webpackEnv, paths }) => {
+      webpackConfig.externals = {
+          'BMap': 'BMap',
+      };
+      
+      return webpackConfig;
+  },
   }, 
   devServer: {
     proxy: {

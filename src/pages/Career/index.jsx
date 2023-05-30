@@ -1,4 +1,3 @@
-import React from 'react'
 import { Menu, Row, Col } from 'antd'
 import TopInfo from '@/components/TopInfo'
 import imgBg from '@/static/img/c1_bg1.png'
@@ -6,7 +5,9 @@ import imgitem1 from '@/static/img/c1_item1.png'
 import imgitem2 from '@/static/img/c1_item2.png'
 import CardProducts from '@/components/CardProducts'
 import CardOpportunities from '@/components/CardOpportunities'
-
+import React, { useEffect, useState } from 'react'
+import Http from "@/utils/http";
+import ConstValue from "@/utils/value";
 import { useNavigate } from "react-router-dom";
 
 import './index.scss'
@@ -15,7 +16,17 @@ export default function Career() {
 
 
     const toPage = (address, routerName) => {
-        navigate('/' +routerName);
+        navigate('/' +address);
+    }
+    useEffect(() => {
+        getInfo();
+    }, []);
+
+    const getInfo = async () => {
+        let res = await Http.to.items("recruit").readByQuery({
+            sort: ['id'],
+        });
+        console.log(res);
     }
     return (
         <div className='career'>

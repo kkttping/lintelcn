@@ -10,11 +10,9 @@ export default function NavLink() {
                         <span>Products</span>
                         <span>·</span>
                         <span>Pluggable Transceiver</span>
-
                     </div>
-
                 </div>
-                <div className='right'>
+                <div className='right' onClick={()=>window.history.back()}>
                     <div className='return'></div>
                     <div className="link">
                         <span>Previous</span>

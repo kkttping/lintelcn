@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import imgBg from '@/static/img/ah_bg1.png'
 import TopInfo from '@/components/TopInfo'
 import { Menu, Row, Col } from 'antd'
@@ -14,18 +14,29 @@ import imgPerson from '@/static/img/ah_person1.png'
 
 import CardProducts from '@/components/CardProducts'
 import { useNavigate } from "react-router-dom";
-
+import Http from "@/utils/http";
+import ConstValue from "@/utils/value";
 import './index.scss'
 export default function AboutHome() {
     const [imgSelect, setImgSelect] = useState(0);
+    const [leadershipList, setLeadershipList] = useState([]);
+
     const navigate = useNavigate()
 
 
     const toPage = (address, routerName) => {
         navigate('/' + address);
     }
-    const link = () => {
+    useEffect(() => {
+        getInfo();
+    }, []);
 
+    const getInfo = async () => {
+        let res = await Http.to.items("Leadership").readByQuery({
+            sort: ['id'],
+        });
+        setLeadershipList(res.data)
+        console.log(res);
     }
 
     return (
@@ -35,12 +46,12 @@ export default function AboutHome() {
                 <Row justify={"center"}>
                     <Col sm={24} xl={12} >
                         <div className='card_item'>
-                            <CardProducts link={() => { toPage('company', 'about') }} img={imgitem1} styleSelf={{ color: '#fff',objectfit:'cover' }} titleout={'Company '} titleIn={'Company '} info={['12312313虚拟文字']} ></CardProducts>
+                            <CardProducts link={() => { toPage('company', 'about') }} img={imgitem1} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Company '} titleIn={'Company '} info={['12312313虚拟文字']} ></CardProducts>
                         </div>
                     </Col>
                     <Col sm={24} xl={12} >
                         <div className='card_item'>
-                            <CardProducts link={() => { toPage('culture', 'about') }} img={imgitem2} styleSelf={{ color: '#fff',objectfit:'cover' }} titleout={'Culture '} titleIn={'Culture '} info={['12312313虚拟文字']}></CardProducts>
+                            <CardProducts link={() => { toPage('culture', 'about') }} img={imgitem2} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Culture '} titleIn={'Culture '} info={['12312313虚拟文字']}></CardProducts>
                         </div>
                     </Col>
                 </Row>
@@ -48,7 +59,7 @@ export default function AboutHome() {
                     <Row justify={"center"}>
                         <Col sm={24} xl={12} >
                             <div className='human_img'>
-                                <img src={imgitem3} alt="" />
+                                <img src={ConstValue.url + "assets/" + leadershipList[imgSelect]?.Img} alt="" />
                                 <div className='name'>
                                     <img src={imgText} alt="" />
                                 </div>
@@ -58,19 +69,22 @@ export default function AboutHome() {
                             <div className='info'>
                                 <div className="text">
                                     <div className='leadership_type'>Leadership</div>
-                                    <div className='leadership_name'><div className='person_svg'></div>James Zhang</div>
-                                    <div className='leadership_work'>President & CEO</div>
-                                    <div className='leadership_info'>Founder, GM of Linktel <br />
-                                        James is the chairman and general manager of Linktel.<br />
-                                        James holds Bachelor's degree in electrical technology from Wuhan University of
-                                        ... </div>
-                                    <span onClick={() => { toPage('leadership', 'about') }}>READ MORE</span>
+                                    <div className='leadership_name'><div className='person_svg'></div>{leadershipList[imgSelect]?.Name}</div>
+                                    <div className='leadership_work'>{leadershipList[imgSelect]?.Position}</div>
+                                    <div className='leadership_info' dangerouslySetInnerHTML={{ __html: leadershipList[imgSelect]?.Introduce?.replace(/\n/g, "<br/>") }}></div>
+                                    <span onClick={() => { toPage('leadership', leadershipList[imgSelect]?.id) }}>READ MORE</span>
 
                                 </div>
                                 <div className="select_img">
-                                    <div className={imgSelect === 0 ? 'select_img activty' : 'select_img'} onClick={() => setImgSelect(0)}><img src={imgPerson} alt="" /></div>
-                                    <div className={imgSelect === 1 ? 'select_img activty' : 'select_img'} onClick={() => setImgSelect(1)}><img src={imgPerson} alt="" /></div>
-                                    <div className={imgSelect === 2 ? 'select_img activty' : 'select_img'} onClick={() => setImgSelect(2)}><img src={imgPerson} alt="" /></div>
+                                    {leadershipList.map((item, index) => {
+                                        return (
+                                            <div className={imgSelect === index ? 'select_img activty' : 'select_img'} onClick={() => setImgSelect(index)}><img src={ConstValue.url + "assets/" + item?.Thumbnail
+
+                                        } alt="" /></div>
+
+                                        )
+                                    })}
+                                    
                                     <div className='img' onClick={() => { toPage('leadership', 'about') }}><img src={imgitem4} alt="" /></div>
                                 </div>
                             </div>
@@ -82,7 +96,7 @@ export default function AboutHome() {
                 <Row justify={"center"}>
                     <Col sm={12} xl={6} >
                         <div className='card_item'>
-                            <CardProducts link={() => {  }} img={imgitem6} styleSelf={{ color: '#fff',objectfit:'cover' }} titleout={'Investors'} titleIn={'Investors'} info={['12312313虚拟文字']} ></CardProducts>
+                            <CardProducts link={() => { }} img={imgitem6} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Investors'} titleIn={'Investors'} info={['12312313虚拟文字']} ></CardProducts>
                         </div>
                     </Col>
                     <Col sm={12} xl={6} >
@@ -97,7 +111,7 @@ export default function AboutHome() {
                     </Col>
                     <Col sm={24} xl={12} >
                         <div className='card_item'>
-                            <CardProducts link={() => { toPage('quality', 'about') }} img={imgitem7} styleSelf={{ color: '#fff',objectfit:'cover' }} titleout={'Quality'} titleIn={'Quality'} info={['12312313虚拟文字']}></CardProducts>
+                            <CardProducts link={() => { toPage('quality', 'about') }} img={imgitem7} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Quality'} titleIn={'Quality'} info={['12312313虚拟文字']}></CardProducts>
                         </div>
                     </Col>
                 </Row>

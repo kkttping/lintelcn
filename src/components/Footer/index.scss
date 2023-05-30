@@ -2,6 +2,30 @@
     border-top: 1px solid #eeeeee;
     padding-top: 30px;
 
+    // @media screen and (max-width: 1000px) {
+    //     .pc {
+    //         display: none;
+    //     }
+
+    // }
+
+    // .ph {
+    //     .link {
+    //         cursor: pointer;
+    //         width: 81%;
+    //         margin: 40px;
+    //         padding-bottom: 20px;
+    //         box-sizing: border-box;
+    //         font-size: 16px;
+    //         font-weight: 700;
+    //         letter-spacing: 0px;
+    //         line-height: 19.84px;
+    //         color: rgba(56, 56, 56, 1);
+    //         text-align: left;
+    //         border-bottom: 1px solid #ccc;
+    //     }
+    // }
+
     .top {
         display: flex;
         justify-content: space-between;
@@ -52,5 +76,16 @@
             display: inline-block;
             padding-top: 10px;
         }
+    }
+
+    .svg {
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        display: block;
+        width: 22px;
+        height: 22px;
+        background-size: contain;
     }
 }

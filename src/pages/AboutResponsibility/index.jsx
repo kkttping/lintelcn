@@ -1,31 +1,61 @@
-import React from 'react'
 import TopInfo from '@/components/TopInfo'
 import imgBg from '@/static/img/ar_bg1.png'
 import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
 import CardNews2 from '@/components/CardNews2'
 import imgBg1 from '@/static/img/ar_item1.png'
+import React, { useEffect, useState } from 'react'
+import Http from "@/utils/http";
+import ConstValue from "@/utils/value";
 
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 import './index.scss'
 export default function AboutResponsibility() {
     const navigate = useNavigate()
+    const [info, setInfo] = useState([]);
 
 
     const toPage = (address, info) => {
-        navigate('/' + address+'/'+info);
+        navigate('/' + address + '/' + info);
+    }
+    useEffect(() => {
+        getInfo("New");
+    }, []);
+
+    const getInfo = async (url) => {
+        let res = await Http.to.items(url).readByQuery({
+            sort: ['id'],
+            filter: {
+                type
+                    :
+                    "Responsibility"
+            }
+        });
+
+        
+
+        setInfo(res.data);
+        console.log(res.data);
+    }
+    const timeSet = (num) => {
+        if (num < 10) {
+            return '0' + num;
+        }
+        return num
     }
     return (
         <div className='about_responsibility'>
             <TopInfo imgBg={imgBg} title={'Responsibility'} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
             <NavLink />
             <AboutNav />
-            <CardNews2 link={() => toPage('newsInfo', 'Linktel and MultiLane Showcase a 2xFR4 OSFP Transceiver Demo with Live 800G BERT Traffic at OFC 2022')} title={'Linktel and MultiLane Showcase a 2xFR4 OSFP Transceiver Demo with Live 800G BERT Traffic at OFC 2022'} infoList={['SAN Diego, Calif. — March 8, 2022，As the Optical Fiber Communication Conference kicks off, Linktel Technologies (Booth #2201) and MultiLane (Booth #3915) announce a successful …']}  img={imgBg1}/>
-            <CardNews2 link={() => toPage('newsInfo', 'Linktel and MultiLane Showcase a 2xFR4 OSFP Transceiver Demo with Live 800G BERT Traffic at OFC 2022')} title={'Linktel and MultiLane Showcase a 2xFR4 OSFP Transceiver Demo with Live 800G BERT Traffic at OFC 2022'} infoList={['SAN Diego, Calif. — March 8, 2022，As the Optical Fiber Communication Conference kicks off, Linktel Technologies (Booth #2201) and MultiLane (Booth #3915) announce a successful …']}  img={imgBg1}/>
-            <CardNews2 link={() => toPage('newsInfo', 'Linktel and MultiLane Showcase a 2xFR4 OSFP Transceiver Demo with Live 800G BERT Traffic at OFC 2022')} title={'Linktel and MultiLane Showcase a 2xFR4 OSFP Transceiver Demo with Live 800G BERT Traffic at OFC 2022'} infoList={['SAN Diego, Calif. — March 8, 2022，As the Optical Fiber Communication Conference kicks off, Linktel Technologies (Booth #2201) and MultiLane (Booth #3915) announce a successful …']}  img={imgBg1}/>
-            <CardNews2 link={() => toPage('newsInfo', 'Linktel and MultiLane Showcase a 2xFR4 OSFP Transceiver Demo with Live 800G BERT Traffic at OFC 2022')} title={'Linktel and MultiLane Showcase a 2xFR4 OSFP Transceiver Demo with Live 800G BERT Traffic at OFC 2022'} infoList={['SAN Diego, Calif. — March 8, 2022，As the Optical Fiber Communication Conference kicks off, Linktel Technologies (Booth #2201) and MultiLane (Booth #3915) announce a successful …']}  img={imgBg1}/>
-            
+            {info.map((item, index) => {
+                return (
+                    <CardNews2 key={index} link={() => toPage('newsInfo', item.id+'/'+item.type)} title={item.Title} infoList={[item.Preview]} img={ConstValue.url + "assets/" + item?.Img} />
+
+                )
+            })}
+
         </div>
     )
 }

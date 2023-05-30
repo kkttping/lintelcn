@@ -13,7 +13,7 @@ export default function Markets() {
 
 
     const toPage = (address, routerName) => {
-        navigate('/' +routerName);
+        navigate('/' +address);
     }
     return (
         <div className='markets'>

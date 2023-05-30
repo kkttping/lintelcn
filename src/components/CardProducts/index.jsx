@@ -11,7 +11,7 @@ export default function CardProducts(props) {
       <div className='bg_lin'></div>
       <div className='bg_hover'>
         <span>{titleIn}</span>
-        {info?.map(item=><span key={item}>{item}</span>)}
+        {info?.map(item=><span   dangerouslySetInnerHTML={{ __html:item}} key={item}></span>)}
         <span onClick={link}>READ MORE</span>
       </div>
     </div>

@@ -22,7 +22,9 @@
             right: 10px;
             display: flex;
             z-index: 2;
-
+            @media screen and (max-width: 1200px) {
+                display: none;
+            }
             img {
                 width: 105.26px;
                 height: 63.99px;

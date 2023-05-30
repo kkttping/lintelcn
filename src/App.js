@@ -1,9 +1,10 @@
 import './App.css';
+import Router from '@/router/MainRouter';
 
 function App() {
   return (
     <div className="App">
-      666
+      <Router></Router>
     </div>
   );
 }

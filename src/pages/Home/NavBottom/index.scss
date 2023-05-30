@@ -6,11 +6,12 @@
         .item {
             padding: 15px;
 
-            img {
+            .img {
                 width: 350px;
                 height: 120px;
-                object-fit: contain;
-                background-color: rgb(235, 235, 235);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
             }
 
             .title {
@@ -39,6 +40,7 @@
     .about_nav {
         display: flex;
         justify-content: center;
+
         div {
             cursor: pointer;
             width: 110px;
@@ -48,7 +50,8 @@
             font-size: 14px;
             font-weight: 700;
         }
-        div:hover{
+
+        div:hover {
             background-color: rgb(227, 229, 239);
             color: rgb(0, 61, 166);
         }

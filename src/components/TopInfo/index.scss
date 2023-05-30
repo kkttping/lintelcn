@@ -35,6 +35,10 @@
                     font-weight: 700;
                     z-index: 2;
                     margin-bottom: 10px;
+                    @media screen and (max-width: 1200px) {
+                        font-size: 8vw;
+        
+                    }
                 }
             }
         }
@@ -55,6 +59,10 @@
             color: #ffffff;
             font-size: 24px;
             z-index: 2;
+            @media screen and (max-width: 1200px) {
+                font-size: 3vw;
+
+            }
 
         }
     }

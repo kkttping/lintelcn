@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import TopInfo from '@/components/TopInfo'
 import imgBg from '@/static/img/ah_bg2.png'
 import NavLink from '@/components/NavLink'
@@ -6,22 +6,79 @@ import AboutNav from '@/components/AboutNav'
 import CardPersonInfo from '@/components/CardPersonInfo'
 import { Button, Checkbox, Form, Input } from 'antd';
 // import BMap  from 'BMap';
+import Http from "@/utils/http";
+import ConstValue from "@/utils/value";
+
 import './index.scss'
+const googleMap = window.google && window.google.maps;
 export default function AboutContact() {
+    const [mapList, setMapList] = useState([]);
+    const [linkList, setLinkList] = useState([]);
+
+    const [selectMap, setSelectMap] = useState(0);
+
     const onFinish = (values) => {
         console.log('Success:', values);
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-    useEffect(()=>{
+    const mapRef = useRef()
+    useEffect(() => {
         // var map = new BMap.Map("mapCurrent"); // 创建Map实例
-        // map.centerAndZoom(new BMap.Point(116.404, 39.915), 11); // 初始化地图,设置中心点坐标和地图级别
+        // map.centerAndZoom(new BMap.Point(103.404, 39.915), 11); // 初始化地图,设置中心点坐标和地图级别
         // map.addControl(new BMap.MapTypeControl()); //添加地图类型控件
-        // map.setCurrentCity("北京"); // 设置地图显示的城市 此项是必须设置的
+        // map.setCurrentCity(""); // 设置地图显示的城市 此项是必须设置的
         // map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
         // console.log(map);
-    },[])
+
+
+        if (googleMap == undefined) return
+        let mapProp = {
+            center: new googleMap.LatLng(0, 0),
+            zoom: 14,
+            mapTypeId: googleMap.MapTypeId.ROADMAP,
+        };
+        mapRef.current = new googleMap.Map(document.getElementById("mapCurrent"), mapProp);
+
+    }, [])
+    useEffect(() => {
+        getMapInfo();
+        getInfo();
+    }, []);
+    useEffect(() => { 
+        if(mapList.length===0)return
+        mapRef.current?.setCenter(new googleMap.LatLng(mapList[selectMap]?.Positioning?.coordinates[1], mapList[selectMap]?.Positioning?.coordinates[0]))
+    }, [selectMap])
+    const getMapInfo = async () => {
+        let res = await Http.to.items("office").readByQuery({
+            sort: ['id'],
+        });
+        setMapList(res.data)
+        res.data.forEach((item, index) => {
+            if (index === 0) {
+                mapRef.current?.setCenter(new googleMap.LatLng(item?.Positioning?.coordinates[1], item?.Positioning?.coordinates[0]))
+            }
+            if(googleMap===undefined)return
+            new googleMap.Marker({
+                position: {
+                    lat: item?.Positioning?.coordinates[1]
+                    , lng: item?.Positioning?.coordinates[0]
+                },
+                map: mapRef.current,
+                title: ''
+
+            });
+        })
+    }
+
+
+    const getInfo = async () => {
+        // let res = await Http.to.items("office").readByQuery({
+        // });
+        // setLinkList(res.data)
+        // console.log(res.data);
+    }
     return (
         <div className='about_contact'>
             <TopInfo imgBg={imgBg} title={'Contact'} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
@@ -31,16 +88,16 @@ export default function AboutContact() {
                 <div className='map' >
                     <div id='mapCurrent' ></div>
                     <div className="link">
-                        <div>Headquarters</div>
-                        <div>Linktel USA</div>
-                        <div>Linktel Malaysia</div>
+                        {mapList.map((item, index) => {
+                            return <div className={index === selectMap ? 'act' : ''} key={index} onClick={() => { setSelectMap(index) }}>{item?.Office}</div>
+                        })}
+
                     </div>
                     <div className='content_info'>
-                        <div className="title"> Linktel Technologies Co., Ltd</div>
-                        <div className="address"><div className='svg_address'></div>E12, No. 52 Liufang Road, East-Lake Hi-tech Development Zone, Wuhan, China
-                            Postcode: 430223</div>
-                        <div className="phone"><div className='svg_phone'></div>+86 27 8792 9298</div>
-                        <div className="email"><div className='svg_email'></div>info@linkteltech.com     sales@linkteltech.com</div>
+                        <div className="title">{mapList[selectMap]?.Company}</div>
+                        <div className="address"><div className='svg_address'></div>{mapList[selectMap]?.Address}</div>
+                        <div className="phone"><div className='svg_phone'></div>{mapList[selectMap]?.Phone}</div>
+                        <div className="email"><div className='svg_email'></div>{mapList[selectMap]?.Email}</div>
                     </div>
                 </div>
                 <div className='infomation'>
@@ -82,7 +139,7 @@ export default function AboutContact() {
                                     },
                                 ]}
                             >
-                                <Input placeholder={ "Your Name"} />
+                                <Input placeholder={"Your Name"} />
                             </Form.Item>
 
                             <Form.Item
@@ -94,7 +151,7 @@ export default function AboutContact() {
                                     },
                                 ]}
                             >
-                                <Input placeholder="Your Email"/>
+                                <Input placeholder="Your Email" />
                             </Form.Item>
                             <Form.Item
                                 name="message"
@@ -105,7 +162,7 @@ export default function AboutContact() {
                                     },
                                 ]}
                             >
-                                <Input.TextArea placeholder="Your Message"/>
+                                <Input.TextArea placeholder="Your Message" />
                             </Form.Item>
                             <Form.Item
 

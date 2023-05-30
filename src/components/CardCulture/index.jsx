@@ -9,8 +9,8 @@ export default function CardCulture(props) {
       </div>
       <div className='infomation'>
         <div className='name'><span >{title}</span></div>
-        <div className='info'>{infoList?.map(item => {
-          return <span>{item}</span>
+        <div className='info'>{infoList?.map((item,index) => {
+          return <span key={index}>{item}</span>
         })}</div>
       </div>
 

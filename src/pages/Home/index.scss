@@ -12,27 +12,83 @@
         display: flex;
         align-items: end;
         position: sticky;
+        min-height: 70px;
         top: 0;
-        z-index: 99;
+        z-index: 999;
         background-color: #fff;
         border-bottom: 1px solid #ccc;
         flex-direction: column;
-        .ant-menu-light.ant-menu-horizontal >.ant-menu-item-only-child:hover::after{
+
+        @media screen and (max-width: 1400px) {
+            background-color: #000;
+
+            .menu {
+                display: none;
+            }
+
+            .seach_icon_box {
+                display: none !important;
+
+            }
+
+            .seach_icon2 {
+                display: block !important;
+
+            }
+
+            .tag {
+                background-image: url("../../static/img/nav_tag2.png") !important;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+
+        }
+
+        .mask {
+            width: 100vw;
+            position: fixed;
+            height: 100vh;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .tag,
+            .seach_icon2 {
+                margin-top: 0 !important;
+            }
+
+            &>div {
+                cursor: pointer;
+                margin-top: 10vh;
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: 0px;
+                line-height: 19.84px;
+                color: rgba(255, 255, 255, 1);
+                text-align: left;
+            }
+        }
+
+        .ant-menu-light.ant-menu-horizontal>.ant-menu-item-only-child:hover::after {
             transition: all 0.5s;
             transform: translateX(0);
             opacity: 1;
             width: 60%;
         }
 
-        .ant-menu-light.ant-menu-horizontal >.ant-menu-item-only-child::after{
+        .ant-menu-light.ant-menu-horizontal>.ant-menu-item-only-child::after {
             opacity: 0;
             transform: translateX(-100%);
         }
-        .ant-menu-light.ant-menu-horizontal >.ant-menu-item-selected::after{
+
+        .ant-menu-light.ant-menu-horizontal>.ant-menu-item-selected::after {
             transform: translateX(0%);
             opacity: 1;
 
         }
+
         .tag {
             position: absolute;
             background-image: url("../../static/img/nav_tag.png");
@@ -45,7 +101,17 @@
         .menu {
             font-size: 14px;
             width: 30%;
-            
+
+            .ant-menu-light {
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: 0px;
+                line-height: 17.36px;
+                color: rgb(0, 0, 0);
+                text-align: left;
+                vertical-align: top;
+            }
+
             .ant-menu-overflow {
                 justify-content: flex-end;
                 padding-right: 104px;
@@ -61,22 +127,39 @@
                 }
             }
 
-
-
-
-
-
-
         }
 
         .seach_icon {
-            position: absolute;
             background-image: url("../../static/svg/seach.svg");
             background-repeat: no-repeat;
             width: 22.04px;
             height: 22px;
+        }
+
+        .seach_icon2 {
+            display: none;
+            position: absolute;
             right: 37.96px;
-            top: 25px;
+            top: 30px;
+            cursor: pointer;
+            background-image: url("../../static/svg/more.svg");
+            background-repeat: no-repeat;
+            width: 22.04px;
+            height: 22px;
+        }
+
+        .seach_icon_box {
+            position: absolute;
+            right: 37.96px;
+            top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 36px;
+            height: 36px;
+            opacity: 1;
+            border-radius: 18px;
+            background: rgba(42, 130, 228, 1);
         }
 
         .nav_bottom_page {
@@ -92,8 +175,36 @@
 
     }
 
+    .nav_home.blak {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        background-color: transparent;
+        border-bottom: 1px solid #cccccc3d;
+
+
+
+        .ant-menu-light {
+            color: rgb(255, 255, 255);
+            background-color: transparent;
+        }
+
+        .tag {
+            position: absolute;
+            background-image: url("../../static/img/nav_tag2.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 114px;
+            height: 54px;
+            left: 29px;
+            top: 9px;
+        }
+    }
+
     .content_home {
         overflow: hidden;
 
     }
+
+
 }

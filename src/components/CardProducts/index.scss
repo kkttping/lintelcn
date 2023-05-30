@@ -91,24 +91,29 @@
 
         span {
             margin-bottom: 27px;
-
             display: inline-block;
             width: 350px;
             font-size: 14px;
+            word-break: break-all;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2; /* 超出几行省略 */
+                    overflow: hidden;
         }
 
         span:last-child {
             font-size: 14px;
             position: relative;
             cursor: pointer;
-
+            padding-bottom: 8px;
             &::after {
                 content: '';
                 position: absolute;
-                bottom: -10px;
+                bottom: 0px;
                 left: 0;
                 width: 96px;
-                height: 1px;
+                height: 2px;
                 background-color: #fff;
             }
 
@@ -116,7 +121,7 @@
                 content: '';
                 position: absolute;
                 left: 90px;
-                bottom: 5px;
+                bottom: 12px;
                 width: 7px;
                 height: 7px;
                 border-right: 2px solid #fff;

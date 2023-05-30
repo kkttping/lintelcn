@@ -1,63 +1,108 @@
-import React from 'react'
-import imgitem1 from '@/static/img/item1.png'
-import imgitem2 from '@/static/img/item3.png'
-import imgitem3 from '@/static/img/item4.png'
+import React, { useEffect, useState } from 'react'
+
+import Http from "@/utils/http";
+import ConstValue from "@/utils/value";
+import { useNavigate } from "react-router-dom";
+
 import './index.scss'
 export default function NavBottom(porps) {
-    const productsPage = (
-        <div className='products_nav'>
-            <div className='item'>
-                <img src={imgitem1} alt="" />
-                <div className='title'>Pluggable Transceiver</div>
-                <p>1G solutions</p>
-                <p>25G solutions</p>
-                <p>40G solutions</p>
-                <p>50G solutions</p>
-                <p>100G solutions</p>
-                <p>200G solutions</p>
-                <p>400G solutions</p>
-                <p>800G solutions</p>
-            </div>
-            <div className='item'>
-                <img src={imgitem2} alt="" />
-                <div className='title'>Optical Engine</div>
-                <p>Optical Engine Solution</p>
-                <p>ELS Solution</p>
-                <p>Passive Optical Components Solution</p>
-            </div>
-            <div className='item'>
-                <img src={imgitem3} alt="" />
-                <div className='title'>NPO/CPO ELSFP & OE Connectivity</div>
-                <p>Replace with real classification in the later stage</p>
-                <p>ELS Solution</p>
-                <p>Passive Optical Components Solution</p>
-            </div>
-        </div>
-    );
-    const aboutPage = (
-        <div className='about_nav'>
-            <div>Company</div>
+    const [items, setItem] = useState([])
+    const [items2, setItem2] = useState([])
+    const navigate = useNavigate()
+
+    const toPage = (address) => {
+        navigate('/' +address);
+    }
+    useEffect(() => {
+        getNextM();
+        getNextM2();
+    }, []);
+
+const getNextM = async () => {
+    let res = await Http.to.items('menu_Menu_next').readByQuery({
+        sort: ['id'],
+        fields: ['item:menu.Menu', 'item:menu.Heroimg', 'item:menu.id'],
+        filter: { "menu_id": "1" }
+    });
+    let arr = []
+    for (let i = 0; i < res.data.length; i++) {
+        if (res.data[i].item !== null) {
+            let res2 = await Http.to.items('menu_Menu_next').readByQuery({
+
+                filter: { "menu_id": res.data[i].item.id + '' }
+            });
+            res.data[i].list = res2.data;
+            arr.push(res.data[i]);
+        }
+    }
+    console.log(arr);
+    window.imgArr=arr;
+    setItem(arr);
+}
+const getNextM2 = async () => {
+    let res = await Http.to.items('menu_Menu_next').readByQuery({
+        sort: ['id'],
+        fields: ['item:menu.Menu', 'item:menu.Heroimg', 'item:menu.id'],
+        filter: { "menu_id": "8" }
+    });
+    let arr = []
+    for (let i = 0; i < res.data.length; i++) {
+        if (res.data[i].item !== null) {
+            arr.push(res.data[i]);
+        }
+    }
+    setItem2(arr);
+}
+const productsPage = (
+    <div className='products_nav'>
+        {items.map((item) => {
+
+            return (
+                <div className='item' key={item?.item?.id} >
+                    <div className='img' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + item.item?.Heroimg})` }}></div>
+                    <div className='title'>{item.item?.Menu}</div>
+                    {item?.list?.map(item2 => {
+                        return <p key={item2.item}>{item2.item}G solutions</p>
+                    })}
+
+
+                </div>
+            )
+        })}
+
+
+    </div>
+);
+const aboutPage = (
+    <div className='about_nav'>
+        {items2.map((item) => {
+
+            return (
+                <div key={item?.item?.Menu} onClick={()=>toPage(item?.item?.Menu?.toLowerCase())}>{item?.item?.Menu}</div>
+            )
+        })}
+        {/* <div>Company</div>
             <div>Culture</div>
             <div>Leadership</div>
             <div>Investors</div>
             <div>News</div>
             <div>Quality</div>
             <div>Responsibility</div>
-            <div>Contact</div>
+            <div>Contact</div> */}
 
-        </div>
-    );
-    const selectItem = () => {
-        switch (porps.type) {
-            case 0: return productsPage;
-            case 3: return aboutPage;
+    </div>
+);
+const selectItem = () => {
+    switch (porps.type) {
+        case 0: return productsPage;
+        case 3: return aboutPage;
 
-        }
     }
-    return (
-        <div className='nav_bottom'>
-            {selectItem()}
+}
+return (
+    <div className='nav_bottom'>
+        {selectItem()}
 
-        </div>
-    )
+    </div>
+)
 }

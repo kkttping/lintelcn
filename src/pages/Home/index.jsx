@@ -1,17 +1,90 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './index.scss'
 import { Menu, } from 'antd'
-import { Outlet, useNavigate,useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import Footer from '@/components/Footer'
 import NavBottom from '@/pages/Home/NavBottom'
+import Http from "@/utils/http";
+import x from '@/static/svg/x.svg'
+import more from '@/static/svg/more.svg'
 
 
 export default function Home() {
-    const [current, setCurrent] = useState('products');
+    const [current, setCurrent] = useState('');
+    const [showmask, setshowmask] = useState(false);
+    const [showList, setshowList] = useState([]);
+
     const [currentIndex, setCurrentIndex] = useState(-1);
     const navigate = useNavigate()
     const getParams = useParams();
-
+    const navList=[
+        {
+            name:'Home',
+            next:'home'
+        },
+        {
+            name:'Products',
+            next:[
+                {
+                    name:'Pluggable Transceiver',
+                    next:'products2/1'
+                },
+                {
+                    name:'Optical Engine',
+                    next:'products2/2'
+                },
+                {
+                    name:'Optical Engine',
+                    next:'products2/3'
+                }
+            ]
+        },
+        {
+            name:'Markets',
+            next:'markets'
+        },
+        {
+            name:'About',
+            next:[
+                {
+                    name:'Company',
+                    next:'company'
+                },
+                {
+                    name:'Culture',
+                    next:'culture'
+                },
+                {
+                    name:'Leadership',
+                    next:'leadership'
+                },
+                {
+                    name:'Investors',
+                    next:'investors'
+                },
+                {
+                    name:'News',
+                    next:'news'
+                },{
+                    name:'Quality',
+                    next:'quality'
+                },
+                {
+                    name:'Responsibility',
+                    next:'responsibility'
+                },
+                {
+                    name:'Contact',
+                    next:'contact'
+                },
+                
+            ]
+        },
+        {
+            name:'Career',
+            next:'career'
+        },
+    ];
     const items = [
         {
             label: 'Home',
@@ -40,17 +113,41 @@ export default function Home() {
     const toPage = (address) => {
         navigate('/' + address);
     }
-    useEffect(()=>{
-        if(getParams.address===null)return
-        setCurrent(getParams.address);
-    },[getParams])
+    useEffect(() => {
+        if (getParams.address === null) return
+    }, [getParams])
+
+    useEffect(() => {
+        getInfo("menu");
+        setshowList(navList)
+    }, []);
+
+    const getInfo = async (url) => {
+        let res = await Http.to.items(url).readByQuery({
+            sort: ['id'],
+        });
+    }
+    const next=(data)=>{
+        if(data instanceof Array){
+            setshowList(data);
+        }else{
+            toPage(data);
+            setshowmask(false);
+            setshowList(navList)
+            if(data!=='home'){
+                setCurrent('')
+            }
+        }
+        
+    }
     return (
         <div className='page_home'>
-            <div className="nav_home">
+
+            <div className={current === 'home' ? "nav_home blak" : "nav_home"}>
                 <div className="tag">
                 </div>
                 <div className="menu">
-                    <Menu onClick={menuonClick} selectedKeys={[current]}  mode="horizontal"  >
+                    <Menu onClick={menuonClick} mode="horizontal"  >
                         {items.map((item, index) => {
                             return <Menu.Item key={item.key}>
                                 <div onMouseOver={() => { setCurrentIndex(index) }}><span >{item.label}</span></div>
@@ -58,11 +155,26 @@ export default function Home() {
                         })}
                     </Menu>
                 </div>
-                <div className="seach_icon">
+                <div className='seach_icon_box'><div className="seach_icon" onClick={()=>toPage('search')}>
+                </div></div>
+                <div className="seach_icon2" style={{backgroundImage:`url(${!showmask?more:x})`}} onClick={()=>{setshowmask(!showmask)}}>
                 </div>
-                <div ><div style={(currentIndex === 0 || currentIndex ===3) ? { display: 'block' } : {}} className='nav_bottom_page'>< NavBottom type={currentIndex} /></div></div>
+                <div ><div style={(currentIndex === 0 || currentIndex === 3) ? { display: 'block' } : {}} className='nav_bottom_page'>< NavBottom type={currentIndex} /></div></div>
+                <div className='mask' style={{display:showmask?'flex':'none'}}>
+                <div className="tag">
+                </div>
+                <div className="seach_icon2" style={{backgroundImage:`url(${!showmask?more:x})`}} onClick={()=>{setshowmask(!showmask)}}>
+                </div>
+                {showList.map((item,index)=>{
+                    return <div key={index} onClick={()=>next(item.next)}>{item.name}</div>
+                })}
+                        
+
+                </div>      
             </div>
+                 
             <div className="content_home" onMouseOver={() => { setCurrentIndex(-1) }}>
+                <div id={'top'}></div>
                 <Outlet />
             </div>
             <Footer />

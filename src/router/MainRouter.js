@@ -23,6 +23,7 @@ import CareerMessage from '@/pages/CareerMessage'
 import CareerWorkAtLinktel from '@/pages/CareerWorkAtLinktel'
 import CareerOpportunities from '@/pages/CareerOpportunities'
 import HomePage from '@/pages/HomePage'
+import Search from '@/pages/Search'
 
 export default function () {
 
@@ -31,16 +32,9 @@ export default function () {
 	}, []);
 
 	const getInfo = async () => {
-		let res = await Http.to.items("Basic_information").readByQuery({
+		let res = await Http.to.items("banner").readByQuery({
 			sort: ['id'],
-			fields: [
-				"id",
-				"Project_Name",
-				"description",
-				"Copyright"
-			]
 		});
-		console.log(res.data)
 	}
 
 	return (
@@ -48,9 +42,11 @@ export default function () {
 			<Router>
 				<Routes>
 					<Route path="/" element={<Navigate replace to="/home" />} />
-					<Route path='home/*' element={<Home />}>
+					<Route path="/news" element={<Navigate replace to="/exhibition" />} />
+					<Route path="/investors" element={<Navigate replace to="/" />} />
+					<Route path='/*' element={<Home />}>
 						<Route path='products' element={<Products />}></Route>
-						<Route path='products2' element={<Products2 />}></Route>
+						<Route path='products2/:id' element={<Products2 />}></Route>
 						<Route path='products3' element={<Products3 />}></Route>
 						<Route path='markets' element={<Markets />}></Route>
 						<Route path='markets2' element={<Markets2 />}></Route>
@@ -61,7 +57,7 @@ export default function () {
 						<Route path='leadership' element={<AboutLeadership />}></Route>
 						<Route path='exhibition' element={<AboutNewsExhibition />}></Route>
 						<Route path='events' element={<AboutNewsEvents />}></Route>
-						<Route path='newsInfo/:title' element={<AboutNewsInfo />}></Route>
+						<Route path='newsInfo/:id/:type' element={<AboutNewsInfo />}></Route>
 						<Route path='quality' element={<AboutQuality />}></Route>
 						<Route path='responsibility' element={<AboutResponsibility />}></Route>
 						<Route path='contact' element={<AboutContact />}></Route>
@@ -70,6 +66,7 @@ export default function () {
 						<Route path='workAtLinktel' element={<CareerWorkAtLinktel />}></Route>
 						<Route path='opportunities' element={<CareerOpportunities />}></Route>
 						<Route path='home' element={<HomePage />}></Route>
+						<Route path='search' element={<Search />}></Route>
 
 					</Route>
 				</Routes>
