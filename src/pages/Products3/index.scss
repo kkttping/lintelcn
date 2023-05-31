@@ -1,7 +1,19 @@
 .products3 {
     width: 100%;
 
-
+.download{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    a{
+        color: #000;
+    }
+    &:hover a{
+        color: rgb(0, 61, 166);
+    }
+}
     .top_bg {
         height: 25vw;
         width: 100%;

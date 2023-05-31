@@ -8,6 +8,44 @@
     justify-content: space-between;
     box-sizing: border-box;
     position: relative;
+    transition: all 0.5s;
+    &:hover {
+        background: rgb(0, 61, 166);
+        color: #fff;
+        .title,.title_tag,.name,.type,.info{
+            color: #fff !important;
+        }
+        .read_more{
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+                width: 96px;
+                height: 1px;
+                background-color: #ffffff;
+            }
+    
+            &::before {
+                content: '';
+                position: absolute;
+                left: 90px;
+                bottom: 5px;
+                width: 7px;
+                height: 7px;
+                border-right: 2px solid #ffffff;
+                border-bottom: 2px solid #ffffff;
+                transform: rotate(-45deg);
+            }
+        }
+        .name {
+            cursor: pointer;
+            &::after {
+                content: '';
+                background-image: url('../../static/svg/upload2.svg') !important;
+            }
+        }
+    }
 
     &>span {
         font-size: 14px;
@@ -91,6 +129,8 @@
             margin-right: 41px;
 
             .type {
+                margin-bottom: 5px;
+
                 color: rgb(142, 142, 142);
                 font-size: 12px;
                 font-weight: 500;
@@ -110,16 +150,19 @@
         }
     }
 }
-.ant-modal-content{
+
+.ant-modal-content {
     padding: 0 !important;
     border-radius: 0 !important;
 }
+
 .ant-modal-wrap {
-    .content{
+    .content {
         padding: 20px 24px;
-        max-height: 
-        60vh;
+        max-height:
+            60vh;
     }
+
     .title {
         margin: 26px 0;
 
@@ -135,11 +178,12 @@
         display: flex;
         border-bottom: 1px dashed #00000030;
         padding-bottom: 36px;
-        
+
         .item {
             margin-right: 41px;
 
             .type {
+                margin-bottom: 5px;
                 color: rgb(142, 142, 142);
                 font-size: 12px;
                 font-weight: 500;
@@ -162,7 +206,8 @@
     .info2 {
         overflow-y: auto;
         margin-top: 36px;
-        margin-bottom: 186px;   
+        margin-bottom: 186px;
+
         .info2_title {
             color: rgb(0, 0, 0);
             font-family: Noto Sans SC !important;
@@ -185,6 +230,7 @@
             text-align: justify;
         }
     }
+
     .name {
         cursor: pointer;
         color: rgb(142, 142, 142);
@@ -200,6 +246,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
         .svg {
             content: '';
             margin-left: 20px;

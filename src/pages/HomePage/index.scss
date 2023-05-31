@@ -5,10 +5,34 @@
         position: relative;
 
         @media screen and (max-width: 1200px) {
-            height: calc(100vh - 70px);
+            height: calc(100vh - 0px);
         }
+        .botom_mask{
+            position: absolute;
+            bottom: 0;
+            width: 100vw;
+            height: 100px;
+            z-index: 0;
+            @media screen and (max-width: 1200px) {
+                            background-color: #000000;
 
+    
+                }
+        }
+        .botom_mask2{
+            position: absolute;
+            bottom:100px;
+            width: 100vw;
+            height: 300px;
+            z-index: 0;
+            background: transparent;
+            @media screen and (max-width: 1200px) {
+            background: linear-gradient(180.00deg, rgba(239,239,239,0),rgb(0, 0, 0),rgb(0, 0, 0),rgb(0, 0, 0) 100%);
+
+            }
+        }
         .bg {
+            
             .img_box {
                 overflow: hidden;
                 position: relative;
@@ -23,17 +47,28 @@
                     justify-content: center;
                     align-items: center;
                     object-fit: cover;
-
                     @media screen and (max-width: 1200px) {
-                        height: calc(100vh - 70px);
+                        height: calc(100vh - 0px);
                     }
 
-                    .text {
+                    .text1 {
                         width: 900px;
                         max-width: 90vw;
                         height: 207.69px;
                         background-repeat: no-repeat;
                         background-size: contain;
+                        animation:ball2 2s ;
+                        @keyframes ball2 {
+                            0% {
+                                opacity: 0;
+                                transform: translateY(-50%);
+                            }
+    
+                            100% {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
                     }
                 }
 
@@ -54,9 +89,7 @@
                     bottom: 10%;
                     left: 5%;
 
-                    @media screen and (max-width: 1200px) {
-                        bottom: 30vw;
-                    }
+                    
 
                     .time {
                         font-size: 48px;
@@ -69,6 +102,7 @@
 
                         @media screen and (max-width: 1200px) {
                             font-size: 3.5vw;
+                            display: none;
                         }
                     }
 
@@ -111,8 +145,10 @@
             }
 
             .item {
+                overflow: hidden;
+
                 cursor: pointer;
-                width: 105.26px;
+                margin: 0 3vw;
                 height: 63.99px;
                 display: flex;
                 justify-content: center;
@@ -131,14 +167,23 @@
                 opacity: 1;
                 color: rgba(42, 130, 228, 1) !important;
 
-                &::after {
-                    content: '';
+                .buttom {
                     width: 100%;
                     height: 2px;
                     background-color: rgba(42, 130, 228, 1);
                     position: absolute;
                     bottom: -10px;
-                    left: 0;
+                    animation: ball 1s;
+
+                    @keyframes ball {
+                        0% {
+                            left: -100%;
+                        }
+
+                        100% {
+                            left: 0px;
+                        }
+                    }
                 }
 
             }
@@ -160,10 +205,10 @@
         .event {
             width: 100vw;
             background: linear-gradient(180deg, rgba(42, 130, 228, 0.2) 0%, rgba(42, 130, 228, 0) 100%);
-            padding-bottom: 200px;
-
+            padding-bottom: 300px;
+            
             @media screen and (max-width: 1200px) {
-                padding-bottom: 10vw;
+                padding-bottom: 20vw;
 
             }
 
@@ -356,6 +401,9 @@
 
                     @media screen and (max-width: 1600px) {
                         margin-left: 200px;
+                    height: 30vw;
+                    top: 10vw;
+
                     }
 
                     @media screen and (max-width: 1200px) {

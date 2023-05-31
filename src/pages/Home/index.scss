@@ -172,6 +172,7 @@
             left: 0;
             background-color: #ffffff;
         }
+        
 
     }
 
@@ -182,7 +183,12 @@
         background-color: transparent;
         border-bottom: 1px solid #cccccc3d;
 
+        @media screen and (max-width: 1200px) {
+            background-color: #000 !important;
+            position: sticky;
+            top: 0;
 
+            }
 
         .ant-menu-light {
             color: rgb(255, 255, 255);

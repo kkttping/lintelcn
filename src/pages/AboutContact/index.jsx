@@ -46,8 +46,8 @@ export default function AboutContact() {
         getMapInfo();
         getInfo();
     }, []);
-    useEffect(() => { 
-        if(mapList.length===0)return
+    useEffect(() => {
+        if (mapList.length === 0) return
         mapRef.current?.setCenter(new googleMap.LatLng(mapList[selectMap]?.Positioning?.coordinates[1], mapList[selectMap]?.Positioning?.coordinates[0]))
     }, [selectMap])
     const getMapInfo = async () => {
@@ -59,7 +59,7 @@ export default function AboutContact() {
             if (index === 0) {
                 mapRef.current?.setCenter(new googleMap.LatLng(item?.Positioning?.coordinates[1], item?.Positioning?.coordinates[0]))
             }
-            if(googleMap===undefined)return
+            if (googleMap === undefined) return
             new googleMap.Marker({
                 position: {
                     lat: item?.Positioning?.coordinates[1]
@@ -74,10 +74,10 @@ export default function AboutContact() {
 
 
     const getInfo = async () => {
-        // let res = await Http.to.items("office").readByQuery({
-        // });
-        // setLinkList(res.data)
-        // console.log(res.data);
+        let res = await Http.to.items("Marketing_").readByQuery({
+        });
+        setLinkList(res.data)
+        console.log(res.data);
     }
     return (
         <div className='about_contact'>
@@ -104,15 +104,22 @@ export default function AboutContact() {
                     <div className="content_title">
                         Sales & Marketing
                     </div>
-                    <div className='person_info'>
-                        <CardPersonInfo title={'Overseas sales'} />
-                    </div>
-                    <div className='person_info'>
-                        <CardPersonInfo title={'Domestic sales'} />
-                    </div>
-                    <div className='person_info'>
-                        <CardPersonInfo title={'Marketing'} />
-                    </div>
+                    {linkList.map((item, index) => {
+                        return (
+                            <div key={index} className='person_info'>
+                                <CardPersonInfo
+                                    title={item?.Project}
+                                    name={item?.contacts}
+                                    phone
+                                    ={item?.Phone
+                                    }
+                                    email={item?.Email}
+
+                                />
+                            </div>
+                        )
+                    })}
+
                     <div className="content_title">
                         Leave Your Message
                     </div>

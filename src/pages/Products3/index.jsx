@@ -1,12 +1,21 @@
-import React, { useState, useRef } from 'react'
+import React, { useState,useEffect, useRef } from 'react'
 import './index.scss'
 import img_bg from '@/static/img/bg_3.png'
 import { Carousel, Row, Col, Table } from 'antd'
 import NavLink from '@/components/NavLink'
+import { useParams } from 'react-router-dom';
+import Http from "@/utils/http";
+import {
+    CloudDownloadOutlined
+  } from '@ant-design/icons';
+import ConstValue from "@/utils/value";
 
 export default function Products3() {
     const [activtyKey, setActivtyKey] = useState(0);
     const carRfe = useRef();
+    const getParams = useParams();
+    const [info, setInfo] = useState({});
+    const [info2, setInfo2] = useState([{}]);
 
     const selectArr = [{
         src: img_bg
@@ -19,63 +28,63 @@ export default function Products3() {
 
         {
             title: 'Part No.',
-            dataIndex: 'address',
+            dataIndex: 'part_no',
             key: '1',
             width: 79,
         },
         {
             title: 'Form Factor',
-            dataIndex: 'address',
+            dataIndex: 'form_factor',
             key: '2',
             width: 79,
         },
         {
             title: 'Data Rate',
-            dataIndex: 'address',
+            dataIndex: 'data_rate',
             key: '3',
             width: 79,
         },
         {
             title: 'Reach',
-            dataIndex: 'address',
+            dataIndex: 'reach',
             key: '4',
             width: 79,
         },
         {
             title: 'Wavelength',
-            dataIndex: 'address',
+            dataIndex: 'wavelength',
             key: '5',
             width: 79,
         },
         {
             title: 'Transmitter',
-            dataIndex: 'address',
+            dataIndex: 'transmitter',
             key: '6',
             width: 79,
         },
         {
             title: 'Receiver',
-            dataIndex: 'address',
+            dataIndex: 'receiver',
             key: '7',
             width: 79,
         },
         {
             title: 'Interface',
-            dataIndex: 'address',
+            dataIndex: 'interface',
             key: '8',
             width: 79,
 
         },
         {
             title: 'Temperature',
-            dataIndex: 'address',
+            dataIndex: 'temperature',
             key: '9',
             width: 79,
 
         },
         {
             title: 'Application',
-            dataIndex: 'address',
+            dataIndex: 'application',
             key: '10',
             width: 79,
 
@@ -85,37 +94,43 @@ export default function Products3() {
             key: 'operation',
             fixed: 'right',
             width: 59,
-            render: () => <a>action</a>,
+            render: () =><div className='download'><a onClick={()=>{download(ConstValue.url + "assets/" + info2[0]?.download)}} ><CloudDownloadOutlined /></a> </div> ,
         },
     ];
-    const data = [
-        {
-            key: 1,
-            name: `Edward 1`,
-            age: 32,
-            address: `London `,
-        },
-        {
-            key: 1,
-            name: `Edward 1`,
-            age: 32,
-            address: `London `,
-        },
-        {
-            key: 1,
-            name: `Edward 1`,
-            age: 32,
-            address: `London `,
-        },
-        {
-            key: 2,
-            name: `Edward 1`,
-            age: 32,
-            address: `London `,
-        }
-    ];
+    function download(url = '', fileName = 'data') {
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.setAttribute('target', '_blank');
+        
+        fileName && a.setAttribute('download', fileName);
+        a.href = url;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
     const selectChange = (index) => {
         carRfe.current.goTo(index); setActivtyKey(index);
+    }
+    useEffect(() => {
+        getInfo();
+    }, []);
+    const getInfo = async () => {
+        let res = await Http.to.items("Pluggable_Transceiver/" + getParams?.id).readByQuery({
+            sort: ['id'],
+        });
+        console.log(res.data);
+        getInfo2(res.data.specification[0])
+        setInfo(res.data)
+    }
+    const getInfo2 = async (id) => {
+        let res = await Http.to.items("product_specifications/" + id).readByQuery({
+            sort: ['id'],
+        });
+        setInfo2([{
+            key: 1,
+            ...res.data
+        }])
+        console.log(res.data);
     }
     return (
         <div className='products3'>
@@ -147,8 +162,8 @@ export default function Products3() {
                 <Row justify={'center'}>
                     <Col xs={24} sm={24} xl={8}>
                         <div className='left'>
-                            <div className='title'>OSFP 2xLR4</div>
-                            <div className='item_content'>Linktel’s family of 800G transceivers accelerate data connectivity for data center Interconnection and Metro Networks. Our complete product line includes OSFP 2xFR4，OSFP 2xLR4，QSFP-DD DR8，QSFP-DD DR8+，QSFP-DD DR8++ series for applications up to 800 Gb/s. Each transceiver solution leverages Linktel's optoelectronic Integration technology for the transmission of data while reducing the size and power dissipation of traditional high speed design.</div>
+                            <div className='title'>{info?.name}</div>
+                            <div className='item_content'>{info?.description}</div>
                         </div>
                     </Col>
                     <Col xs={0} sm={0} xl={1}>
@@ -161,23 +176,11 @@ export default function Products3() {
                                     Features
                                 </div>
                                 <div className='item_content'>
-                                    <p>Cooled 8x100Gb/s channels  CWDM EML TOSA</p>
-                                    <p>Power dissipation less than 16W</p>
-                                    <p>Single channels PIN photo detector</p>
-                                    <p>Up to 2km on SMF</p>
+                                    {info?.features
+}
                                 </div>
                             </div>
-                            <div className='item'>
-                                <div className='title'>
-                                    Features
-                                </div>
-                                <div className='item_content'>
-                                    <p>Cooled 8x100Gb/s channels  CWDM EML TOSA</p>
-                                    <p>Power dissipation less than 16W</p>
-                                    <p>Single channels PIN photo detector</p>
-                                    <p>Up to 2km on SMF</p>
-                                </div>
-                            </div>
+                            
                         </div>
                     </Col>
                 </Row>
@@ -186,7 +189,7 @@ export default function Products3() {
                         <div className="title">SPECIFICATIONS</div>
                         <Table
                             columns={columns}
-                            dataSource={data}
+                            dataSource={info2}
                             scroll={{ x: 1200 }}
                             pagination={false}
                         />

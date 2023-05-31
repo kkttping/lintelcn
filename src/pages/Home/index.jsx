@@ -10,7 +10,9 @@ import more from '@/static/svg/more.svg'
 
 
 export default function Home() {
-    const [current, setCurrent] = useState('');
+    const [current, setCurrent] = useState('home');
+    const [flag, setFlag] = useState(0);
+
     const [showmask, setshowmask] = useState(false);
     const [showList, setshowList] = useState([]);
 
@@ -107,6 +109,7 @@ export default function Home() {
 
     ]
     const menuonClick = (index) => {
+        setFlag(0)
         toPage(index.key)
         setCurrent(index.key)
     }
@@ -143,11 +146,13 @@ export default function Home() {
     return (
         <div className='page_home'>
 
-            <div className={current === 'home' ? "nav_home blak" : "nav_home"}>
+            <div className={current === 'home' ? "nav_home blak" : "nav_home"} onMouseEnter={()=>{if(current === 'home'){setCurrent('');setFlag(1)}}} onMouseLeave={()=>{if(flag===1){
+                setCurrent('home')
+            }}}>
                 <div className="tag">
                 </div>
                 <div className="menu">
-                    <Menu onClick={menuonClick} mode="horizontal"  >
+                    <Menu current={[current]} onClick={menuonClick} mode="horizontal"  >
                         {items.map((item, index) => {
                             return <Menu.Item key={item.key}>
                                 <div onMouseOver={() => { setCurrentIndex(index) }}><span >{item.label}</span></div>
@@ -159,7 +164,7 @@ export default function Home() {
                 </div></div>
                 <div className="seach_icon2" style={{backgroundImage:`url(${!showmask?more:x})`}} onClick={()=>{setshowmask(!showmask)}}>
                 </div>
-                <div ><div style={(currentIndex === 0 || currentIndex === 3) ? { display: 'block' } : {}} className='nav_bottom_page'>< NavBottom type={currentIndex} /></div></div>
+                <div ><div style={(currentIndex === 1 || currentIndex === 3) ? { display: 'block' } : {}} className='nav_bottom_page'>< NavBottom type={currentIndex} /></div></div>
                 <div className='mask' style={{display:showmask?'flex':'none'}}>
                 <div className="tag">
                 </div>

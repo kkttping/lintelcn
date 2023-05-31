@@ -13,10 +13,11 @@ import { useNavigate } from "react-router-dom";
 import './index.scss'
 export default function Career() {
     const navigate = useNavigate()
+    const [info, setInfo] = useState([]);
 
 
     const toPage = (address, routerName) => {
-        navigate('/' +address);
+        navigate('/' + address);
     }
     useEffect(() => {
         getInfo();
@@ -26,6 +27,7 @@ export default function Career() {
         let res = await Http.to.items("recruit").readByQuery({
             sort: ['id'],
         });
+        setInfo(res.data)
         console.log(res);
     }
     return (
@@ -55,34 +57,16 @@ export default function Career() {
                     </Col>
                 </Row>
                 <Row justify={"center"}>
-                    <Col  >
-                        <Row justify={"center"}>
-                            <Col  >
+                    {info.map((item, index) => {
+                        return (
+                            <Col  key={index}>
                                 <div className='opportunities_item'>
-                                    <CardOpportunities />
+                                    <CardOpportunities data={item} />
                                 </div>
                             </Col>
-                            <Col  >
-                                <div className='opportunities_item'>
-                                    <CardOpportunities />
-                                </div>
-                            </Col>
-                        </Row>
-                    </Col>
-                    <Col  >
-                        <Row justify={"center"}>
-                            <Col  >
-                                <div className='opportunities_item'>
-                                    <CardOpportunities />
-                                </div>
-                            </Col>
-                            <Col  >
-                                <div className='opportunities_item'>
-                                    <CardOpportunities />
-                                </div>
-                            </Col>
-                        </Row>
-                    </Col>
+                        )
+                    })}
+
                 </Row>
             </div>
         </div>

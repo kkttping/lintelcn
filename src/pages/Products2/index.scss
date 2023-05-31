@@ -108,6 +108,16 @@
                         display: inline-block;
                         max-width: 350px;
                         font-size: 14px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                      // 只要超过宽度就换行，不论中文还是英文
+                        word-break: break-all;
+                     //最多展示两行
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 3;
+
+
                     }
                     span:nth-child(3) {
                         font-size: 14px;
@@ -153,26 +163,25 @@
             @media screen and (max-width: 1200px) {
                 border:0;
             }
-            .title,
-            .item1,
-            .item2 {
+            h2,
+            p{
                 margin-bottom: 24px;
                 display: inline-block;
                 max-width: 360px;
             }
 
-            .title {
+            h2 {
                 width: 360px;
                 font-size: 32px;
                 font-weight: 600;
             }
 
-            .item1 {
+            p {
                 font-size: 16px;
                 font-weight: 600;
             }
 
-            .item2 {
+            p:last-child {
                 font-size: 14px;
                 font-weight: 400;
                 color: rgb(51, 51, 51, 0.8);

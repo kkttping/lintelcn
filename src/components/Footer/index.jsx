@@ -1,18 +1,33 @@
 import React from 'react'
 import { Row, Col } from 'antd'
-import { LinkedinOutlined, MediumOutlined, EnvironmentOutlined, PhoneOutlined } from '@ant-design/icons';
+import { LinkedinOutlined, MediumOutlined, EnvironmentOutlined, PhoneOutlined,VerticalAlignTopOutlined } from '@ant-design/icons';
 import './index.scss'
 import imgBg from '@/static/svg/toTop.svg'
+import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
+    const toPage = (address, routerName) => {
+        navigate('/' + address);
+    }
+    const navigate = useNavigate()
+
     return (
         <div className='com_footer'>
+            <div className='to_top' onClick={
+                            () => window.scrollTo({
+                                top: 0,
+                                behavior: "smooth"
+                            })}>
+            <VerticalAlignTopOutlined
+            
+            style={{ fontSize: '30px',color:'#fff' }} />
+            </div>
             <div className='pc'>
                 <div className="top">
                     <div className='content'>
                         <Row>
                             <Col xs={24} sm={12} md={6}>
-                                <div className='items'>
+                                <div className='items' onClick={() => toPage('products')}>
                                     <span className='title'>Products</span>
                                     <span className='item'>Pluggable Transceiver</span>
                                     <span className='item'>Optical Engine</span>
@@ -20,14 +35,14 @@ export default function Footer() {
                                 </div>
                             </Col>
                             <Col xs={24} sm={12} md={6}>
-                                <div className='items'>
+                                <div className='items' onClick={() => toPage('markets')}>
                                     <span className='title'>Markets</span>
                                     <span className='item'>Products</span>
                                     <span className='item'>Application</span>
                                 </div>
                             </Col>
                             <Col xs={24} sm={12} md={6}>
-                                <div className='items'>
+                                <div className='items' onClick={() => toPage('about')}>
                                     <span className='title'>About</span>
                                     <span className='item'>Company</span>
                                     <span className='item'>Culture</span>
@@ -40,7 +55,7 @@ export default function Footer() {
                                 </div>
                             </Col>
                             <Col xs={24} sm={12} md={6}>
-                                <div className='items'>
+                                <div className='items' onClick={() => toPage('career')}>
                                     <span className='title'>Career</span>
                                     <span className='item'>GM's Message</span>
                                     <span className='item'>Work At Linktel</span>
@@ -70,14 +85,23 @@ export default function Footer() {
                     </Row>
                 </div>
             </div>
-            {/* <div className='ph'>
-                <div className='link'>Products</div>
-                <div className='link'>Technology</div>
-                <div className='link'>Company</div>
-                <div className='link'>Career</div>
-                <div className='link'>Contact</div>
-
-            </div> */}
+            <div className='ph'>
+                <div className='link' onClick={() => toPage('products')}>Products</div>
+                <div className='link' onClick={() => toPage('technology')}>Technology</div>
+                <div className='link' onClick={() => toPage('company')}>Company</div>
+                <div className='link' onClick={() => toPage('career')}>Career</div>
+                <div className='link' onClick={() => toPage('contact')}>Contact</div>
+                <ul style={{ listStyle: 'none' }} class="share">
+                    <li><a href="https://www.linkedin.com/company/linktel/" class="icon-linkedin iconfont"><LinkedinOutlined style={{ fontSize: '50px' }} /></a></li>
+                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#firve" class="icon-youxiang1 iconfont"><MediumOutlined style={{ fontSize: '50px' }} /></a></li>
+                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#one" class="icon-dingwei1 iconfont"><EnvironmentOutlined style={{ fontSize: '50px' }} /></a></li>
+                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact" class="icon-dianhua iconfont"></a><PhoneOutlined style={{ fontSize: '50px' }} /></li>
+                </ul>
+                <div class="footer__b g-flex">
+                    <p>Shenzhen Stock Exchange code: 301205</p>
+                    <p class="g-flex">Copyright © 2023 Linktel Technologies Co., Ltd. All rights reserved <a id="top" class="icon-fanhuidingbu iconfont"></a></p>
+                </div>
+            </div>
         </div>
     )
 }
