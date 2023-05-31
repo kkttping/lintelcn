@@ -1,20 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './index.scss'
-import img_bg from '@/static/img/h1_bg1.png'
+import img_bg from '@/static/img/h1_bg1.jpg'
 import img_text1 from '@/static/img/h1_text1.png'
 import img_item1 from '@/static/img/h1_item1.png'
-import img_item2 from '@/static/img/h1_item2.png'
+import img_item2 from '@/static/img/h1_item2.jpg'
 import img_item3 from '@/static/img/h1_item3.png'
 import img_item4 from '@/static/img/h1_item4.png'
-import img_item5 from '@/static/img/h1_item5.png'
+import img_item5 from '@/static/img/h1_item5.jpg'
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";
 
 import img_item6 from '@/static/img/h1_item6.png'
 import svg1 from '@/static/svg/blueRightDir.svg'
 import { Parallax } from 'rc-scroll-anim';
-import img_bg2 from '@/static/img/h1_bg2.png'
-import img_bg3 from '@/static/img/h1_bg3.png'
+import img_bg2 from '@/static/img/h1_bg2.jpg'
+import img_bg3 from '@/static/img/h1_bg3.jpg'
 import Texty from 'rc-texty';
 import { Carousel, Row, Col, Table } from 'antd'
 export default function HomePage() {

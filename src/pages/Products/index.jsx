@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import imgitem1 from '@/static/img/item1.png'
 import imgitem2 from '@/static/img/item3.png'
 import imgitem3 from '@/static/img/item4.png'
-import imgBg from '@/static/img/bg_1.png'
+import imgBg from '@/static/img/bg_1.jpg'
 import TopInfo from '@/components/TopInfo'
 import React, { useEffect, useState } from 'react'
 import Http from "@/utils/http";
