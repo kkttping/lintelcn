@@ -20,7 +20,7 @@ export default function Footer() {
                             })}>
             <VerticalAlignTopOutlined
             
-            style={{ fontSize: '30px',color:'#fff' }} />
+            style={{ fontSize: '20px',color:'#fff' }} />
             </div>
             <div className='pc'>
                 <div className="top">
@@ -92,10 +92,10 @@ export default function Footer() {
                 <div className='link' onClick={() => toPage('career')}>Career</div>
                 <div className='link' onClick={() => toPage('contact')}>Contact</div>
                 <ul style={{ listStyle: 'none' }} class="share">
-                    <li><a href="https://www.linkedin.com/company/linktel/" class="icon-linkedin iconfont"><LinkedinOutlined style={{ fontSize: '50px' }} /></a></li>
-                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#firve" class="icon-youxiang1 iconfont"><MediumOutlined style={{ fontSize: '50px' }} /></a></li>
-                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#one" class="icon-dingwei1 iconfont"><EnvironmentOutlined style={{ fontSize: '50px' }} /></a></li>
-                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact" class="icon-dianhua iconfont"></a><PhoneOutlined style={{ fontSize: '50px' }} /></li>
+                    <li><a href="https://www.linkedin.com/company/linktel/" class="icon-linkedin iconfont"><LinkedinOutlined style={{ fontSize: '30px' }} /></a></li>
+                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#firve" class="icon-youxiang1 iconfont"><MediumOutlined style={{ fontSize: '30px' }} /></a></li>
+                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#one" class="icon-dingwei1 iconfont"><EnvironmentOutlined style={{ fontSize: '30px' }} /></a></li>
+                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact" class="icon-dianhua iconfont"><PhoneOutlined style={{ fontSize: '30px'  }} /></a></li>
                 </ul>
                 <div class="footer__b g-flex">
                     <p>Shenzhen Stock Exchange code: 301205</p>
