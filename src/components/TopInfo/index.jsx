@@ -11,8 +11,9 @@ export default function TopInfo(props) {
 					<div className="img_main"
 						style={{
 							backgroundColor: styleSelf?.bgColor ?? '',
+							backgroundAttachment: styleSelf?.bgColor?'scroll':'fixed',
 							backgroundImage:`url(${imgBg})`,
-							height: styleSelf?.height ?? 'calc(100vh - 70px)'
+							height: styleSelf?.height ?? 'calc(100vh - 0px)'
 						}}
 					>
 						<span className='titel'>

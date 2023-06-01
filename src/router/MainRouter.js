@@ -44,9 +44,11 @@ export default function () {
 					<Route path="/" element={<Navigate replace to="/home" />} />
 					<Route path="/news" element={<Navigate replace to="/exhibition" />} />
 					<Route path="/investors" element={<Navigate replace to="/" />} />
+					<Route path="/socialResponsibility" element={<Navigate replace to="/" />} />
+
 					<Route path='/*' element={<Home />}>
 						<Route path='products' element={<Products />}></Route>
-						<Route path='products2/:id' element={<Products2 />}></Route>
+						<Route path='products2/:id/:itemId?' element={<Products2 />}></Route>
 						<Route path='products3/:id' element={<Products3 />}></Route>
 						<Route path='markets' element={<Markets />}></Route>
 						<Route path='markets2' element={<Markets2 />}></Route>

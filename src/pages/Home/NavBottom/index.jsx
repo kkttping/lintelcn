@@ -14,6 +14,7 @@ export default function NavBottom(porps) {
 
     const toPage = (address) => {
         navigate('/' + address);
+        window.location.reload()
     }
     useEffect(() => {
         getNextM();
@@ -37,7 +38,7 @@ export default function NavBottom(porps) {
                             <div className='title'>{item?.menu
 }</div>
                             {item?.nextmenu?.map(item2 => {
-                                return <p key={item2.menuby}>{item2.menu}</p>
+                                return <p onClick={()=>toPage(item2?.link)}  key={item2.menuby}>{item2.menu}</p>
                             })}
 
 
@@ -53,7 +54,7 @@ export default function NavBottom(porps) {
             {info?.nextmenu?.[2]?.nextmenu?.map((item,index) => {
 
                 return (
-                    <div key={index} >{item?.menu}</div>
+                    <div key={index} onClick={()=>toPage(item?.link)} >{item?.menu}</div>
                 )
             })}
             {/* <div>Company</div>
