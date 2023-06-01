@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import TopInfo from '@/components/TopInfo'
-import imgBg from '@/static/img/an_bg2.png'
+import imgBg from '@/static/img/an_bg2.jpg'
 import NavLink from '@/components/NavLink'
 import NewsNav from '@/components/NewsNav'
 import CardNews2 from '@/components/CardNews2'
-import imgBg1 from '@/static/img/an_item3.png'
+import imgBg1 from '@/static/img/an_item3.jpg'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import './index.scss'
 import Http from "@/utils/http";

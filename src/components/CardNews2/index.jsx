@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu, Row, Col } from 'antd'
-import imgBg2 from '@/static/img/an_item2.png'
+import imgBg2 from '@/static/img/an_item2.jpg'
 
 import './index.scss'
 export default function CardNews2(props) {

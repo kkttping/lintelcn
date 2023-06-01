@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import TopInfo from '@/components/TopInfo'
-import imgBg from '@/static/img/ah_bg2.png'
+import imgBg from '@/static/img/ah_bg2.jpg'
 import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
 import CardPersonInfo from '@/components/CardPersonInfo'

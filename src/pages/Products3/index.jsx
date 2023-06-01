@@ -1,6 +1,6 @@
 import React, { useState,useEffect, useRef } from 'react'
 import './index.scss'
-import img_bg from '@/static/img/bg_3.png'
+import img_bg from '@/static/img/bg_3.jpg'
 import { Carousel, Row, Col, Table } from 'antd'
 import NavLink from '@/components/NavLink'
 import { useParams } from 'react-router-dom';

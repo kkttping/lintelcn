@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import TopInfo from '@/components/TopInfo'
-import imgBg from '@/static/img/al_bg1.png'
+import imgBg from '@/static/img/al_bg1.jpg'
 import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
 import { Carousel, Row, Col } from 'antd'
-import imgitem3 from '@/static/img/ah_item3.png'
-import imgPerson from '@/static/img/al_item1.png'
+import imgitem3 from '@/static/img/ah_item3.jpg'
+import imgPerson from '@/static/img/al_item1.jpg'
 import rightDir from '@/static/svg/right_dir2.svg'
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";

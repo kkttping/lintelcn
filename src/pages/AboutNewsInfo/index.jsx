@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import NavLink from '@/components/NavLink'
 import { useParams } from 'react-router-dom';
-import imgitem from '@/static/img/an_item3.png'
+import imgitem from '@/static/img/an_item3.jpg'
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";
 

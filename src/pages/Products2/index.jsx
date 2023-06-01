@@ -1,6 +1,6 @@
 import { Menu, Row, Col } from 'antd'
 import { useNavigate } from "react-router-dom";
-import imgBg from '@/static/img/bg_2.png'
+import imgBg from '@/static/img/bg_2.jpg'
 import TopInfo from '@/components/TopInfo'
 import NavLink from '@/components/NavLink'
 import { useParams } from 'react-router-dom';

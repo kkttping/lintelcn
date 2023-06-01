@@ -1,9 +1,9 @@
 import React from 'react'
 import { Menu, Row, Col } from 'antd'
 import TopInfo from '@/components/TopInfo'
-import imgBg from '@/static/img/bg_4.png'
-import imgitem1 from '@/static/img/m_item1.png'
-import imgitem2 from '@/static/img/m_item2.png'
+import imgBg from '@/static/img/bg_4.jpg'
+import imgitem1 from '@/static/img/m_item1.jpg'
+import imgitem2 from '@/static/img/m_item2.jpg'
 import CardProducts from '@/components/CardProducts'
 import { useNavigate } from "react-router-dom";
 

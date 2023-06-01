@@ -1,10 +1,10 @@
 import React from 'react'
 import TopInfo from '@/components/TopInfo'
-import imgBg from '@/static/img/ac_bg1.png'
+import imgBg from '@/static/img/ac_bg1.jpg'
 import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
-import imgBg2 from '@/static/img/ac_bg2.png'
-import imgItem from '@/static/img/ac_item1.png'
+import imgBg2 from '@/static/img/ac_bg2.jpg'
+import imgItem from '@/static/img/ac_item1.jpg'
 
 import './index.scss'
 export default function AboutCompany() {

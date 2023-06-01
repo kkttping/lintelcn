@@ -1,8 +1,8 @@
 import React from 'react'
 import TopInfo from '@/components/TopInfo'
-import imgBg from '@/static/img/c2_bg1.png'
-import imgitem from '@/static/img/c2_item1.png'
-import imgitem2 from '@/static/img/c2_item2.png'
+import imgBg from '@/static/img/c2_bg1.jpg'
+import imgitem from '@/static/img/c2_item1.jpg'
+import imgitem2 from '@/static/img/c2_item2.jpg'
 import NavLink from '@/components/NavLink'
 import CareerNav from '@/components/CareerNav'
 

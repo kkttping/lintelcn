@@ -1,6 +1,6 @@
 import React from 'react'
 import TopInfo from '@/components/TopInfo'
-import imgBg from '@/static/img/c4_bg1.png'
+import imgBg from '@/static/img/c4_bg1.jpg'
 import NavLink from '@/components/NavLink'
 import CareerNav from '@/components/CareerNav'
 import { Menu, Row, Col } from 'antd'

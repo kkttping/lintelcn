@@ -1,10 +1,10 @@
 import TopInfo from '@/components/TopInfo'
-import imgBg from '@/static/img/acu_bg1.png'
+import imgBg from '@/static/img/acu_bg1.jpg'
 import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
 import CardCulture from '@/components/CardCulture'
 import { Menu, Row, Col } from 'antd'
-import imgItem3 from '@/static/img/acu_item3.png'
+import imgItem3 from '@/static/img/acu_item3.jpg'
 import React, { useState, useEffect } from 'react'
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";

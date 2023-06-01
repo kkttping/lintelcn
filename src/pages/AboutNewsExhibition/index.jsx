@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import TopInfo from '@/components/TopInfo'
-import imgBg from '@/static/img/an_bg1.png'
+import imgBg from '@/static/img/an_bg1.jpg'
 import NavLink from '@/components/NavLink'
 import NewsNav from '@/components/NewsNav'
 import CardNews from '@/components/CardNews'
-import imgBg1 from '@/static/img/an_item1.png'
+import imgBg1 from '@/static/img/an_item1.jpg'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";

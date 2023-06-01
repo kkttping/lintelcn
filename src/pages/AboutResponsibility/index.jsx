@@ -1,9 +1,9 @@
 import TopInfo from '@/components/TopInfo'
-import imgBg from '@/static/img/ar_bg1.png'
+import imgBg from '@/static/img/ar_bg1.jpg'
 import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
 import CardNews2 from '@/components/CardNews2'
-import imgBg1 from '@/static/img/ar_item1.png'
+import imgBg1 from '@/static/img/ar_item1.jpg'
 import React, { useEffect, useState } from 'react'
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";

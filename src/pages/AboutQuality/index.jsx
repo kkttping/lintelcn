@@ -1,9 +1,9 @@
 import TopInfo from '@/components/TopInfo'
-import imgBg from '@/static/img/aq_bg1.png'
+import imgBg from '@/static/img/aq_bg1.jpg'
 import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
-import imgItem1 from '@/static/img/aq_item1.png'
-import imgItem2 from '@/static/img/aq_item2.png'
+import imgItem1 from '@/static/img/aq_item1.jpg'
+import imgItem2 from '@/static/img/aq_item2.jpg'
 
 import { Menu, Row, Col } from 'antd'
 import React, { useEffect, useState } from 'react'

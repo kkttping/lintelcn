@@ -1,7 +1,7 @@
 import React from 'react'
 import NavLink from '@/components/NavLink'
 import { useParams } from 'react-router-dom';
-import imgitem from '@/static/img/m3_bg1.png'
+import imgitem from '@/static/img/m3_bg1.jpg'
 
 import './index.scss'
 export default function Market3() {
