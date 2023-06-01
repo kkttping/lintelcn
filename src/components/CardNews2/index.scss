@@ -43,28 +43,21 @@
         }
 
         &>span {
-            margin-bottom: 20px;
-
             font-size: 14px;
             position: relative;
             cursor: pointer;
             color: rgb(142, 142, 142);
+            width: 106px;
+            padding:6px 0;
+            border-bottom: 1px solid #000000;
+            transition: 0.5s;
 
-            &::after {
-                content: '';
-                position: absolute;
-                bottom: -10px;
-                left: 0;
-                width: 96px;
-                height: 2px;
-                background-color: rgb(142, 142, 142);
-            }
 
             &::before {
                 content: '';
                 position: absolute;
-                left: 85px;
-                bottom: 5px;
+                left: 90px;
+                bottom: 12px;
                 width: 7px;
                 height: 7px;
                 border-right: 2px solid rgb(142, 142, 142);

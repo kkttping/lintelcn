@@ -24,7 +24,7 @@ export default function CardNews2(props) {
                                 return (<span key={item}>{item} <br /></span>)
                             })}
                         </div>
-                        <span onClick={link}>READ MORE</span>
+                        <span className='morehover'  onClick={link}>READ MORE</span>
 
                     </div>
                 </Col>
