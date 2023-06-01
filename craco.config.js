@@ -1,17 +1,17 @@
-const path = require('path')
+const path = require("path");
 module.exports = {
   webpack: {
     alias: {
-      '@': path.join(__dirname, 'src')
+      "@": path.join(__dirname, "src"),
     },
     configure: (webpackConfig, { env: webpackEnv, paths }) => {
       webpackConfig.externals = {
-          'BMap': 'BMap',
+        BMap: "BMap",
       };
-      
+
       return webpackConfig;
+    },
   },
-  }, 
   devServer: {
     proxy: {
       // '/api': {
@@ -21,10 +21,18 @@ module.exports = {
       //     "^/api": ''
       //   }
       // },
-      '/items': {
-        target: 'http://47.108.244.114:8055/',
+      "/items": {
+        target: "http://47.108.244.114:8055/",
         changeOrigin: true,
       },
     },
   },
-}
+  devServer: {
+    proxy: {
+      /* ... */
+    },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  },
+};
