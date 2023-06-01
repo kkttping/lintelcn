@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.scss'
 import { Row, Col, Form, Input } from 'antd';
-import imgItem3 from '@/static/img/bg_3.png'
+import imgItem3 from '@/static/img/bg_3.jpg'
 
 export default function Search() {
   return (
