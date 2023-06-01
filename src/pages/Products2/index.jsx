@@ -40,8 +40,12 @@ export default function Products2() {
         getInfo3(res.data[0].id, getParams?.id)
     }
     const getInfo3 = async (id1, id2) => {
+        if(getParams?.itemId!==undefined)id1=getParams?.itemId;
+
+
         let res = await Http.to.items("Pluggable_Transceiver").readByQuery({
-            fields: ['*']
+            fields: ['*'],
+            
         });
         setInfo3(res.data)
         console.log(res.data)
