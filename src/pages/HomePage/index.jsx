@@ -194,7 +194,7 @@ export default function HomePage() {
 
                 </div>
                 <div className='leading' style={{ backgroundImage: `url(${img_bg2})` }}>
-                    Innovation drivenProduct leading
+                    A Solution and Service Provider <br/> of High Speed Optical I/O Connectivity
                 </div>
                 <div className='products_item' style={{ backgroundImage: `url(${img_bg3})` }}>
                     <div className='title_h1'>
