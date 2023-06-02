@@ -6,6 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
+    word-break: keep-all;
+    word-wrap: break-word; 
 }
 
 code {
@@ -23,4 +25,11 @@ p {
 .morehover:hover{
   border-color:rgb(42, 130, 228) ;
   
+}
+.title,.span{   
+    word-break: keep-all;
+    word-wrap: break-word; 
+    white-space: pre-wrap;
+    text-align:justify; 
+    text-justify:inter-ideograph;
 }
