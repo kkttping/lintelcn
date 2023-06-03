@@ -24,10 +24,7 @@ class Http {
       this.#directus = new Directus('')
     }
     return this.#directus;
-
   }
-
-
 }
 
 export default Http;

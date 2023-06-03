@@ -29,7 +29,7 @@ export default function HomePage() {
     const [newInfo, setNewInfo] = useState({});
     const [pFlag, setpFlag] = useState(0);
 
-    const [newImg, setnewImg] = useState([]);
+    const [newImg, setnewImg] = useState('');
     const navigate = useNavigate()
 
     const carRfe = useRef();
@@ -80,6 +80,8 @@ export default function HomePage() {
     const getNews = async () => {
         let res = await Http.to.items("New").readByQuery({
             sort: ['id'],
+            fields: ['*'],
+
             filter: { 'Homepage': 'true' }
         });
         let res2 = await Http.to.items("New_Content").readByQuery({
@@ -181,12 +183,12 @@ export default function HomePage() {
                             </Col>
                             <Col sm={24} xl={14} >
                                 <div className='img_info'>
-                                    <div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>
+                                    {newImg&&<div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>
                                         <div className='time'>
                                             <span >{(new Date(newInfo?.date_created)).getFullYear()}<br /></span>
                                             <span>{timeSet((new Date(newInfo?.date_created)).getMonth())}-{timeSet((new Date(newInfo?.date_created)).getDay())}</span>
                                         </div>
-                                    </div>
+                                    </div>}
                                 </div>
                             </Col>
                         </Row>
