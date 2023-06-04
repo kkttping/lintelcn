@@ -15,14 +15,18 @@ module.exports = {
   devServer: {
     proxy: {
       // '/api': {
-      //   target: 'http://47.108.244.114:8055/',
+      //   target: 'https://linktelcms.zeaylu.com/',
       //   changeOrigin: true,
       //   pathRewrite: {
       //     "^/api": ''
       //   }
       // },
       "/items": {
-        target: "http://47.108.244.114:8055/",
+        target: "https://linktelcms.zeaylu.com",
+        changeOrigin: true,
+      },
+      "/assets": {
+        target: "https://linktelcms.zeaylu.com",
         changeOrigin: true,
       },
     },
