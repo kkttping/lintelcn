@@ -359,40 +359,24 @@ export default function HomePage() {
         </div>
         <div className="link">
           <div className="title_h1">Members of</div>
-          <Row justify={"center"}>
-            <Col>
-              <Row justify={"center"}>
-                <Col>
-                  <div
+          <div className="home_link">
+            <div
                     className="link_img"
                     style={{ backgroundImage: `url(${img_item2})` }}
                   ></div>
-                </Col>
-                <Col>
                   <div
                     className="link_img"
                     style={{ backgroundImage: `url(${img_item3})` }}
                   ></div>
-                </Col>
-              </Row>
-            </Col>
-            <Col>
-              <Row justify={"center"}>
-                <Col>
                   <div
                     className="link_img"
                     style={{ backgroundImage: `url(${img_item4})` }}
                   ></div>
-                </Col>
-                <Col>
                   <div
                     className="link_img"
                     style={{ backgroundImage: `url(${img_item5})` }}
                   ></div>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
+          </div>
         </div>
       </div>
     </div>

@@ -166,16 +166,7 @@ export default function Footer() {
               Copyright © 2023 Linktel Technologies Co., Ltd. All rights
               reserved{" "}
             </p>
-            <a
-              onClick={() =>
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                })
-              }
-              className="svg"
-              style={{ backgroundImage: `url(${imgBg})` }}
-            ></a>         
+                    
           </div>
         </div>
       </div>
