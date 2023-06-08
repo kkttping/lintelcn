@@ -62,7 +62,7 @@ export default function AboutNewsEvents() {
     return (
         <div className='about_news_events'>
             <TopInfo imgBg={imgBg} title={'News'} styleSelf={{ bgColor: '#000' }} />
-            <NavLink />
+            <NavLink  title1={'About'} link1={()=>{toPage('about')}} title2={'News'}/>
             <NewsNav />
             {info.map((item, index) => {
                 return (

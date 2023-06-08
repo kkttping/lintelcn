@@ -66,8 +66,17 @@ export default function HomePage() {
             return el != null;
 
         });
-        console.log(lastArr);
-        setInfoList(lastArr)
+        let arr2=[]
+        lastArr.forEach((item) => {
+            if(item.status === 'Publick'){
+                arr2.unshift(item)
+            }else{
+                arr2.push(item)
+            }
+            
+        })
+        console.log(arr2);
+        setInfoList(arr2)
         let time = window.setInterval(() => {
             let cur = activtyKey;
             setActivtyKey((activtyKey) => (activtyKey + 1) % lastArr.length);
@@ -132,7 +141,7 @@ export default function HomePage() {
 
                                                     </div>
                                                     <div className='title'>
-                                                        {activtyKey === index && <Texty type={'bottom'} duration={1000} delay={500} mode={'sync'}>{item?.title}</Texty>}
+                                                        {activtyKey === index && <Texty split={(i)=>{return i.split(' ').map(j=>j+' ')}} type={'bottom'} duration={1000} delay={500} mode={'sync'}>{item?.title}</Texty>}
                                                     </div>
                                                 </div>)
                                             }

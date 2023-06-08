@@ -10,10 +10,15 @@ import rightDir from '@/static/svg/right_dir2.svg'
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";
 import './index.scss'
+import { useNavigate } from "react-router-dom";
+
 export default function AboutLeadership() {
     const [imgSelect, setImgSelect] = useState(0);
     const [leadershipList, setLeadershipList] = useState([]);
-
+    const navigate = useNavigate()
+    const toPage = (address, routerName) => {
+        navigate('/' +address);
+    }
     const carRfe = useRef();
 
     const add = () => {
@@ -44,7 +49,7 @@ export default function AboutLeadership() {
     return (
         <div className='about_leadership'>
             <TopInfo imgBg={imgBg} title={'Leadership'} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
-            <NavLink />
+            <NavLink title1={'About'} link1={()=>{toPage('about')}} title2={'Leadership'}/>
             <AboutNav />
             <div className='content'>
                 <Row justify={"center"}>

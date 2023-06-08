@@ -4,11 +4,19 @@ import { useParams } from 'react-router-dom';
 import imgitem from '@/static/img/an_item3.jpg'
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 import './index.scss'
 export default function AboutNewsInfo() {
     const [info, setInfo] = useState({});
+    const navigate = useNavigate()
 
+    const toPage = (address, info) => {
+        navigate('/' + address + '/' + info);
+    }
+    const toPage2 = (address, info) => {
+        navigate('/' + address );
+    }
     const getParams = useParams();
     useEffect(() => {
         getInfo("New/" + getParams?.id);
@@ -66,7 +74,7 @@ export default function AboutNewsInfo() {
     }
     return (
         <div className='about_news_info'>
-            <NavLink />
+            <NavLink title1={'About'} link1={()=>{toPage2('about')}} title2={getParams?.type} link2={()=>{if(getParams?.type!=='Event'){toPage2(getParams?.type?.toLocaleLowerCase())}else{toPage2('events')}}} title3={info?.Title}/>
             <div className='title'>
                 <div className='title_box'>
                     {info?.date_created && <div className='time'>

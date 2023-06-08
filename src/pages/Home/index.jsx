@@ -15,76 +15,78 @@ export default function Home() {
 
     const [showmask, setshowmask] = useState(false);
     const [showList, setshowList] = useState([]);
+    const [pFlag, setpFlag] = useState(0);
+    const [info, setInfo] = useState([])
 
     const [currentIndex, setCurrentIndex] = useState(-1);
     const navigate = useNavigate()
     const getParams = useParams();
-    const navList=[
+    const navList = [
         {
-            name:'Home',
-            next:'home'
+            name: 'Home',
+            next: 'home'
         },
         {
-            name:'Products',
-            next:[
+            name: 'Products',
+            next: [
                 {
-                    name:'Pluggable Transceiver',
-                    next:'products2/1'
+                    name: 'Pluggable Transceiver',
+                    next: 'products2/1'
                 },
                 {
-                    name:'Optical Engine',
-                    next:'products2/2'
+                    name: 'Optical Engine',
+                    next: 'products2/2'
                 },
                 {
-                    name:'Optical Engine',
-                    next:'products2/3'
+                    name: 'Optical Engine',
+                    next: 'products2/3'
                 }
             ]
         },
         {
-            name:'Markets',
-            next:'markets'
+            name: 'Markets',
+            next: 'markets'
         },
         {
-            name:'About',
-            next:[
+            name: 'About',
+            next: [
                 {
-                    name:'Company',
-                    next:'company'
+                    name: 'Company',
+                    next: 'company'
                 },
                 {
-                    name:'Culture',
-                    next:'culture'
+                    name: 'Culture',
+                    next: 'culture'
                 },
                 {
-                    name:'Leadership',
-                    next:'leadership'
+                    name: 'Leadership',
+                    next: 'leadership'
                 },
                 {
-                    name:'Investors',
-                    next:'investors'
+                    name: 'Investors',
+                    next: 'investors'
                 },
                 {
-                    name:'News',
-                    next:'news'
-                },{
-                    name:'Quality',
-                    next:'quality'
+                    name: 'News',
+                    next: 'news'
+                }, {
+                    name: 'Quality',
+                    next: 'quality'
                 },
                 {
-                    name:'Responsibility',
-                    next:'responsibility'
+                    name: 'Responsibility',
+                    next: 'responsibility'
                 },
                 {
-                    name:'Contact',
-                    next:'contact'
+                    name: 'Contact',
+                    next: 'contact'
                 },
-                
+
             ]
         },
         {
-            name:'Career',
-            next:'career'
+            name: 'Career',
+            next: 'career'
         },
     ];
     const items = [
@@ -114,15 +116,22 @@ export default function Home() {
         setCurrent(index.key)
     }
     const toPage = (address) => {
+        setshowmask(false)
         navigate('/' + address);
     }
     useEffect(() => {
-        if (getParams.address === null) return
+        if (window.location.hash === '#/home') {
+            setCurrent('home')
+        } else {
+            setCurrent('')
+            setFlag(0)
+        }
     }, [getParams])
 
     useEffect(() => {
         getInfo("menu");
         setshowList(navList)
+        getNextM()
     }, []);
 
     const getInfo = async (url) => {
@@ -130,25 +139,33 @@ export default function Home() {
             sort: ['id'],
         });
     }
-    const next=(data)=>{
-        if(data instanceof Array){
+    const getNextM = async () => {
+        let res = await Http.to.items('menu_new').readByQuery({
+            sort: ['id'],
+        });
+        setInfo(res.data);
+    }
+    const next = (data) => {
+        if (data instanceof Array) {
             setshowList(data);
-        }else{
+        } else {
             toPage(data);
             setshowmask(false);
             setshowList(navList)
-            if(data!=='home'){
+            if (data !== 'home') {
                 setCurrent('')
             }
         }
-        
+
     }
     return (
         <div className='page_home'>
 
-            <div className={current === 'home' ? "nav_home blak" : "nav_home"} onMouseEnter={()=>{if(current === 'home'){setCurrent('');setFlag(1)}}} onMouseLeave={()=>{if(flag===1){
-                setCurrent('home')
-            }}}>
+            <div className={current === 'home' ? "nav_home blak" : "nav_home"} onMouseEnter={() => { if (current === 'home') { setCurrent(''); setFlag(1); } }} onMouseLeave={() => {
+                if (flag === 1) {
+                    setCurrent('home')
+                }
+            }}>
                 <div className="tag">
                 </div>
                 <div className="menu">
@@ -160,24 +177,42 @@ export default function Home() {
                         })}
                     </Menu>
                 </div>
-                <div className='seach_icon_box'><div className="seach_icon" onClick={()=>toPage('search')}>
+                <div className='seach_icon_box'><div className="seach_icon" onClick={() => toPage('search')}>
                 </div></div>
-                <div className="seach_icon2" style={{backgroundImage:`url(${!showmask?more:x})`}} onClick={()=>{setshowmask(!showmask)}}>
+                <div className="seach_icon2" style={{ backgroundImage: `url(${!showmask ? more : x})` }} onClick={() => { setshowmask(!showmask) }}>
                 </div>
-                <div ><div style={(currentIndex === 1 || currentIndex === 3) ? { display: 'block' } : {}} className='nav_bottom_page'>< NavBottom type={currentIndex} /></div></div>
-                <div className='mask' style={{display:showmask?'flex':'none'}}>
-                <div className="tag">
-                </div>
-                <div className="seach_icon2" style={{backgroundImage:`url(${!showmask?more:x})`}} onClick={()=>{setshowmask(!showmask)}}>
-                </div>
-                {showList.map((item,index)=>{
-                    return <div key={index} onClick={()=>next(item.next)}>{item.name}</div>
-                })}
-                        
+                <div ><div style={(currentIndex === 1) ? { height: '500px', opacity: '1' } : ((currentIndex === 2 || currentIndex === 3 || currentIndex === 4) ? { height: '70px', opacity: '1' } : {})} className='nav_bottom_page'>< NavBottom type={currentIndex} /></div></div>
+                <div className='mask' style={{ display: showmask ? 'flex' : 'none' }}>
+                    <div className="tag">
+                    </div>
+                    <div className="seach_icon2" style={{ backgroundImage: `url(${!showmask ? more : x})` }} onClick={() => { setshowmask(!showmask) }}>
+                    </div>
+                    {/* {showList.map((item, index) => {
+                        return <div key={index} onClick={() => next(item.next)}>{item.name}</div>
+                    })} */}
+                    {info?.nextmenu?.map((item, index) => {
+                        return (
+                            <div key={index} className={ 'title_nav' } onClick={()=>setpFlag(index)} >
+                                {item.menu}
+                                <div className='nav_box' style={pFlag !== index ? {height:0} : {height:'200px'}}>
+                                    {item.nextmenu.map((item2, index2) => {
+                                        return (
+                                            <div key={index2} className='info_nav' onClick={()=>{toPage(item2.link)}}>
+                                                {item2.menu}
+                                            </div>
+                                        )
+                                    })}
+                                </div>
 
-                </div>      
+
+                            </div>
+
+                        )
+                    })}
+
+                </div>
             </div>
-                 
+
             <div className="content_home" onMouseOver={() => { setCurrentIndex(-1) }}>
                 <div id={'top'}></div>
                 <Outlet />

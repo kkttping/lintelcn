@@ -15,6 +15,10 @@ export default function NavBottom(porps) {
     const toPage = (address) => {
         navigate('/' + address);
         window.location.reload()
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
     }
     useEffect(() => {
         getNextM();
@@ -35,7 +39,7 @@ export default function NavBottom(porps) {
                     return (
                         <div className='item' key={index} >
                             <div className='img' dangerouslySetInnerHTML={{ __html: item?.img }}></div>
-                            <div className='title'>{item?.menu
+                            <div className='title' onClick={()=>toPage(item?.link)}>{item?.menu
 }</div>
                             {item?.nextmenu?.map(item2 => {
                                 return <p onClick={()=>toPage(item2?.link)}  key={item2.menuby}>{item2.menu}</p>
@@ -57,21 +61,35 @@ export default function NavBottom(porps) {
                     <div key={index} onClick={()=>toPage(item?.link)} >{item?.menu}</div>
                 )
             })}
-            {/* <div>Company</div>
-            <div>Culture</div>
-            <div>Leadership</div>
-            <div>Investors</div>
-            <div>News</div>
-            <div>Quality</div>
-            <div>Responsibility</div>
-            <div>Contact</div> */}
+        </div>
+    );
+    const marketsPage = (
+        <div className='about_nav'>
+            {info?.nextmenu?.[1]?.nextmenu?.map((item,index) => {
 
+                return (
+                    <div key={index} onClick={()=>toPage(item?.link)} >{item?.menu}</div>
+                )
+            })}
+        </div>
+    );
+    const careerPage = (
+        <div className='about_nav'>
+            {info?.nextmenu?.[3]?.nextmenu?.map((item,index) => {
+
+                return (
+                    <div key={index} onClick={()=>toPage(item?.link)} >{item?.menu}</div>
+                )
+            })}
         </div>
     );
     const selectItem = () => {
         switch (porps.type) {
             case 1: return productsPage;
+            case 2: return marketsPage;
+
             case 3: return aboutPage;
+            case 4: return careerPage;
 
         }
     }

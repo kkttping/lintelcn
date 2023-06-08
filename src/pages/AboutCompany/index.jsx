@@ -5,13 +5,18 @@ import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
 import imgBg2 from '@/static/img/ac_bg2.jpg'
 import imgItem from '@/static/img/ac_item1.jpg'
-
+import { useNavigate } from "react-router-dom";
+    
 import './index.scss'
 export default function AboutCompany() {
+    const navigate = useNavigate()
+    const toPage = (address, routerName) => {
+        navigate('/' +address);
+    }
     return (
         <div className='about_company'>
             <TopInfo imgBg={imgBg} title={'Company'} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
-            <NavLink />
+            <NavLink title1={'About'} link1={()=>{toPage('about')}} title2={'Company'}/>
             <AboutNav />
             <div className='content'>
                 <div className='text1'>

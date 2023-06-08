@@ -69,7 +69,10 @@
         }
         .items {
             margin-left: 5%;
-            
+            margin-right: 5%;
+
+            height: 700px;
+            overflow-y: auto;
             .item {
                 display: flex;
                 align-items: center;

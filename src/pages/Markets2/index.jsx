@@ -16,10 +16,14 @@ export default function Markets2() {
         navigate('/markets3/'+title)
     }
 
+
+    const toPage = (address, routerName) => {
+        navigate('/' +address);
+    }
     return (
         <div className='markets2'>
             <TopInfo imgBg={imgBg} title={'Application'} styleSelf={{ bgColor: '#000', height: '400px' }} info1={''} info2={''} />
-            <NavLink />
+            <NavLink title1={'Markets'} link1={()=>{toPage('markets')}} title2={'Application'} />
             <div className='content'>
                 <Row justify={"center"}>
                     <Col sm={24} xl={8} xxl={6} >

@@ -8,13 +8,17 @@ import { Button, Checkbox, Form, Input } from 'antd';
 // import BMap  from 'BMap';
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";
+import { useNavigate } from "react-router-dom";
 
 import './index.scss'
 const googleMap = window.google && window.google.maps;
 export default function AboutContact() {
     const [mapList, setMapList] = useState([]);
     const [linkList, setLinkList] = useState([]);
-
+    const navigate = useNavigate()
+    const toPage = (address, routerName) => {
+        navigate('/' +address);
+    }
     const [selectMap, setSelectMap] = useState(0);
 
     const onFinish = (values) => {
@@ -82,7 +86,7 @@ export default function AboutContact() {
     return (
         <div className='about_contact'>
             <TopInfo imgBg={imgBg} title={'Contact'} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
-            <NavLink />
+            <NavLink title1={'About'} link1={()=>{toPage('about')}} title2={'Contact'}/>
             <AboutNav />
             <div className='content'>
                 <div className='map' >

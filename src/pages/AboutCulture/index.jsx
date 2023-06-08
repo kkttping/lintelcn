@@ -8,11 +8,15 @@ import imgItem3 from '@/static/img/acu_item3.jpg'
 import React, { useState, useEffect } from 'react'
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";
+import { useNavigate } from "react-router-dom";
 
 import './index.scss'
 export default function AboutCulture() {
     const [cultureList, setCultureList] = useState([]);
-
+    const navigate = useNavigate()
+    const toPage = (address, routerName) => {
+        navigate('/' +address);
+    }
     useEffect(() => {
         getInfo();
     }, []);
@@ -26,8 +30,8 @@ export default function AboutCulture() {
     }
     return (
         <div className='about_culture'>
-            <TopInfo imgBg={imgBg} title={'Company '} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
-            <NavLink />
+            <TopInfo imgBg={imgBg} title={'Culture '} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
+            <NavLink title1={'About'} link1={()=>{toPage('about')}} title2={'Culture'}/>
             <AboutNav />
             <Row justify={'center'}>
                 {cultureList.map((item, index) => {

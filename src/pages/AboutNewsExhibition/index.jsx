@@ -25,7 +25,7 @@ export default function AboutNewsExhibition() {
 
     const getInfo = async (url) => {
         let res = await Http.to.items(url).readByQuery({
-            sort: ['id'],
+            sort: ['sort'],
             filter: {
                 type
                     :
@@ -39,6 +39,7 @@ export default function AboutNewsExhibition() {
         });
         let img = '';
         res.data.forEach((item0) => {
+
             item0.Content.forEach((item) => {
                 res2?.data?.forEach((item2) => {
                     if (item === item2.id
@@ -49,21 +50,30 @@ export default function AboutNewsExhibition() {
                 })
             })
         })
+        let arr=[]
+        res.data.forEach((item) => {
+            if(item.status === 'Publick'){
+                arr.unshift(item)
+            }else{
+                arr.push(item)
+            }
+            
+        })
+        
 
+        setInfo(arr);
 
-        setInfo(res.data);
-
-        console.log(res.data)
+        console.log(arr)
     }
 
     return (
         <div className='about_news_exhibition'>
             <TopInfo imgBg={imgBg} title={'News'} styleSelf={{ bgColor: '#000' }} />
-            <NavLink />
+            <NavLink title1={'About'} link1={() => { toPage('about') }} title2={'News'} />
             <NewsNav />
             {info.map((item, index) => {
                 return (
-                    <CardNews key={index} link={() => toPage('newsInfo', item.id+'/'+item.type)} title={item.Title} infoList={item.Exhibition.split('/n')} img={ConstValue.url + "assets/" + item?.img} />
+                    <CardNews key={index} link={() => toPage('newsInfo', item.id + '/' + item.type)} title={item.Title} infoList={item.Exhibition.split('/n')} img={ConstValue.url + "assets/" + item?.img} />
 
                 )
             })}

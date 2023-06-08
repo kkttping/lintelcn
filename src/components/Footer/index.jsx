@@ -1,68 +1,71 @@
-import React from 'react'
 import { Row, Col } from 'antd'
-import { LinkedinOutlined, MediumOutlined, EnvironmentOutlined, PhoneOutlined,VerticalAlignTopOutlined } from '@ant-design/icons';
+import { LinkedinOutlined, MediumOutlined, EnvironmentOutlined, PhoneOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
 import './index.scss'
 import imgBg from '@/static/svg/toTop.svg'
 import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import Http from "@/utils/http";
 
 export default function Footer() {
+    const [info, setInfo] = useState([])
+
     const toPage = (address, routerName) => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+
         navigate('/' + address);
+        window.location.reload()
+
     }
     const navigate = useNavigate()
+    useEffect(() => {
+        getNextM();
+    }, []);
 
+    const getNextM = async () => {
+        let res = await Http.to.items('menu_new').readByQuery({
+            sort: ['id'],
+        });
+        setInfo(res.data);
+        console.log(res.data);
+    }
     return (
         <div className='com_footer'>
             <div className='to_top' onClick={
-                            () => window.scrollTo({
-                                top: 0,
-                                behavior: "smooth"
-                            })}>
-            <VerticalAlignTopOutlined
-            
-            style={{ fontSize: '20px',color:'#fff' }} />
+                () => window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                })}>
+                <VerticalAlignTopOutlined
+
+                    style={{ fontSize: '20px', color: '#fff' }} />
             </div>
             <div className='pc'>
                 <div className="top">
                     <div className='content'>
                         <Row>
-                            <Col xs={24} sm={12} md={6}>
-                                <div className='items' onClick={() => toPage('products')}>
-                                    <span className='title'>Products</span>
-                                    <span className='item'>Pluggable Transceiver</span>
-                                    <span className='item'>Optical Engine</span>
-                                    <span className='item'>NPO or CPO</span>
-                                </div>
-                            </Col>
-                            <Col xs={24} sm={12} md={6}>
-                                <div className='items' onClick={() => toPage('markets')}>
-                                    <span className='title'>Markets</span>
-                                    <span className='item'>Products</span>
-                                    <span className='item'>Application</span>
-                                </div>
-                            </Col>
-                            <Col xs={24} sm={12} md={6}>
-                                <div className='items' onClick={() => toPage('about')}>
-                                    <span className='title'>About</span>
-                                    <span className='item'>Company</span>
-                                    <span className='item'>Culture</span>
-                                    <span className='item'>Leadership</span>
-                                    <span className='item'>Investors</span>
-                                    <span className='item'>News</span>
-                                    <span className='item'>Quality</span>
-                                    <span className='item'>Social Responsibility</span>
-                                    <span className='item'>Contact</span>
-                                </div>
-                            </Col>
-                            <Col xs={24} sm={12} md={6}>
-                                <div className='items' onClick={() => toPage('career')}>
-                                    <span className='title'>Career</span>
-                                    <span className='item'>GM's Message</span>
-                                    <span className='item'>Work At Linktel</span>
-                                    <span className='item'>Job Opportunities</span>
-                                </div>
-                            </Col>
+
+                            {info?.nextmenu?.map((item, index) => {
+                                return (
+                                    <Col xs={24} sm={12} md={6}>
+                                        <div key={index} className='items' >
+                                            <span className='title' onClick={()=>{toPage(item.link)}} >{item.menu}</span>
+                                            {item.nextmenu.map((item2, index2) => {
+                                                return (
+                                                    <span onClick={(e)=>{ toPage(item2.link)}} key={index2} className='item'>{item2.menu}</span>
+
+                                                )
+                                            })}
+
+                                        </div>
+                                    </Col>
+                                )
+                            })}
                         </Row>
+
+                        
                     </div>
                     <div className="link">
                         <Row>
@@ -95,7 +98,7 @@ export default function Footer() {
                     <li><a href="https://www.linkedin.com/company/linktel/" class="icon-linkedin iconfont"><LinkedinOutlined style={{ fontSize: '30px' }} /></a></li>
                     <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#firve" class="icon-youxiang1 iconfont"><MediumOutlined style={{ fontSize: '30px' }} /></a></li>
                     <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#one" class="icon-dingwei1 iconfont"><EnvironmentOutlined style={{ fontSize: '30px' }} /></a></li>
-                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact" class="icon-dianhua iconfont"><PhoneOutlined style={{ fontSize: '30px'  }} /></a></li>
+                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact" class="icon-dianhua iconfont"><PhoneOutlined style={{ fontSize: '30px' }} /></a></li>
                 </ul>
                 <div class="footer__b g-flex">
                     <p>Shenzhen Stock Exchange code: 301205</p>

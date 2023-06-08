@@ -18,7 +18,10 @@ export default function Products2() {
     const [curr, setcurr] = useState('');
 
     const toProducts3 = (id) => {
-        navigate('/products3/'+id);
+        navigate('/products3/'+id+'/'+getParams?.id);
+    }
+    const toPage = (address, routerName) => {
+        navigate('/' + address);
     }
     useEffect(() => {
         getInfo();
@@ -53,11 +56,15 @@ export default function Products2() {
     const menuonClick = (index) => {
         setcurr(index.key)
     }
-
+    const navInfo={
+        '1':'Pluggable Transceiver',
+        '2':'Optical Engine',
+        '3':'NPO/CPO ELSFP & OE Connectivity'
+    }
     return (
         <div className='products2'>
             <TopInfo imgBg={imgBg} title={info?.name} styleSelf={{ bgColor: '#000', height: '400px' }} info1={''} info2={''} />
-            <NavLink />
+            <NavLink title1={'Products'} link1={()=>{toPage('products')}}title2={navInfo[getParams?.id]} />
 
             <div className="info">
                 <div className='infoma' dangerouslySetInnerHTML={{ __html: info?.text }}></div>

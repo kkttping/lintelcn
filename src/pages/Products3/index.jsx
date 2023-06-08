@@ -9,6 +9,7 @@ import {
     CloudDownloadOutlined
   } from '@ant-design/icons';
 import ConstValue from "@/utils/value";
+import { useNavigate } from "react-router-dom";
 
 export default function Products3() {
     const [activtyKey, setActivtyKey] = useState(0);
@@ -16,6 +17,7 @@ export default function Products3() {
     const getParams = useParams();
     const [info, setInfo] = useState({});
     const [info2, setInfo2] = useState([{}]);
+    const navigate = useNavigate()
 
     const selectArr = [{
         src: img_bg
@@ -111,6 +113,9 @@ export default function Products3() {
     const selectChange = (index) => {
         carRfe.current.goTo(index); setActivtyKey(index);
     }
+    const toPage = (address, routerName) => {
+        navigate('/' + address);
+    }
     useEffect(() => {
         getInfo();
     }, []);
@@ -132,9 +137,14 @@ export default function Products3() {
         }])
         console.log(res.data);
     }
+    const navInfo={
+        '1':'Pluggable Transceiver',
+        '2':'Optical Engine',
+        '3':'NPO/CPO ELSFP & OE Connectivity'
+    }
     return (
         <div className='products3'>
-            <NavLink />
+            <NavLink title1={'Products'} link1={()=>{toPage('products')}} title2={navInfo[getParams?.id2]} link2={()=>{toPage('products2/'+getParams?.id2)}} title3={info?.name} />
 
             <div className='top_bg'>
                 <div className='bg'><Carousel ref={carRfe} style={{ height: '100%' }} dots={false}  >

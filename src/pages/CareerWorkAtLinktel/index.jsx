@@ -7,13 +7,18 @@ import imgitem2 from '@/static/img/c3_item2.jpg'
 import NavLink from '@/components/NavLink'
 import CareerNav from '@/components/CareerNav'
 import { Menu, Row, Col } from 'antd'
+import { useNavigate } from "react-router-dom";
 
 import './index.scss'
 export default function CareerWorkAtLinktel() {
+    const navigate = useNavigate()
+    const toPage = (address, routerName) => {
+        navigate('/' +address);
+    }
     return (
         <div className='career_work_at_linktel'>
-            <TopInfo imgBg={imgBg} title={"GM's Message"} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
-            <NavLink />
+            <TopInfo imgBg={imgBg} title={"Work At Linktel"} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
+            <NavLink title1={'Career'} link1={()=>{toPage('career')}} title2={"Work At Linktel"} />
             <CareerNav />
             <div className='content'>
                 <div className="title">

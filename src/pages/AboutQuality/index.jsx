@@ -9,12 +9,16 @@ import { Menu, Row, Col } from 'antd'
 import React, { useEffect, useState } from 'react'
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";
+import { useNavigate } from "react-router-dom";
 
 
 import './index.scss'
 export default function AboutQuality() {
     const [quality, setQuality] = useState([]);
-
+    const navigate = useNavigate()
+    const toPage = (address, routerName) => {
+        navigate('/' +address);
+    }
     useEffect(() => {
         getInfo();
     }, []);
@@ -28,7 +32,7 @@ export default function AboutQuality() {
     return (
         <div className='about_quality'>
             <TopInfo imgBg={imgBg} title={'Quality'} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
-            <NavLink />
+            <NavLink title1={'About'} link1={()=>{toPage('about')}} title2={'Quality'}/>
             <AboutNav />
             <div className='content'>
                 <div className='img_top'>

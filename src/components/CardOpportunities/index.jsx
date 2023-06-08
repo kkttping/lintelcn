@@ -25,8 +25,8 @@ export default function CardOpportunities(props) {
 
             <div className='infomation'>
                 <div className='item'>
-                    <div className='type'>Job Category</div>
-                    <div className='info'>{data?.Job_Category}</div>
+                    <div className='type'>country</div>
+                    <div className='info'>{data?.country}</div>
                 </div>
                 <div className='item'>
                     <div className='type'>Place</div>
@@ -45,8 +45,8 @@ export default function CardOpportunities(props) {
 
                     <div className='infomation'>
                         <div className='item'>
-                            <div className='type'>Job Category</div>
-                            <div className='info'>{data?.Job_Category}</div>
+                            <div className='type'>country</div>
+                            <div className='info'>{data?.country}</div>
                         </div>
                         <div className='item'>
                             <div className='type'>Place</div>

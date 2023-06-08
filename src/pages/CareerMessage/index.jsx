@@ -5,13 +5,18 @@ import imgitem from '@/static/img/c2_item1.jpg'
 import imgitem2 from '@/static/img/c2_item2.jpg'
 import NavLink from '@/components/NavLink'
 import CareerNav from '@/components/CareerNav'
+import { useNavigate } from "react-router-dom";
 
 import './index.scss'
 export default function CareerMessage() {
+    const navigate = useNavigate()
+    const toPage = (address, routerName) => {
+        navigate('/' +address);
+    }
     return (
         <div className='career_message'>
             <TopInfo imgBg={imgBg} title={"GM's Message"} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
-            <NavLink />
+            <NavLink title1={'Career'} link1={()=>{toPage('career')}} title2={"GM's Message"}/>
             <CareerNav />
             <div className='content'>
                 <div className="title">General Manager's Message</div>
