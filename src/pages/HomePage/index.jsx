@@ -29,15 +29,10 @@ export default function HomePage() {
     const [newInfo, setNewInfo] = useState({});
     const [pFlag, setpFlag] = useState(0);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     const [newImg, setnewImg] = useState('');
-=======
-    const [newImg, setnewImg] = useState([]);
->>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
-=======
-    const [newImg, setnewImg] = useState([]);
->>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
+
+
     const navigate = useNavigate()
 
     const carRfe = useRef();
@@ -74,27 +69,19 @@ export default function HomePage() {
             return el != null;
 
         });
-<<<<<<< HEAD
-<<<<<<< HEAD
-        let arr2=[]
+
+        let arr2 = []
         lastArr.forEach((item) => {
-            if(item.status === 'Publick'){
+            if (item.status === 'Publick') {
                 arr2.unshift(item)
-            }else{
+            } else {
                 arr2.push(item)
             }
-            
+
         })
         console.log(arr2);
         setInfoList(arr2)
-=======
-        console.log(lastArr);
-        setInfoList(lastArr)
->>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
-=======
-        console.log(lastArr);
-        setInfoList(lastArr)
->>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
+
         let time = window.setInterval(() => {
             let cur = activtyKey;
             setActivtyKey((activtyKey) => (activtyKey + 1) % lastArr.length);
@@ -107,14 +94,10 @@ export default function HomePage() {
     const getNews = async () => {
         let res = await Http.to.items("New").readByQuery({
             sort: ['id'],
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             fields: ['*'],
 
-=======
->>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
-=======
->>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
+
             filter: { 'Homepage': 'true' }
         });
         let res2 = await Http.to.items("New_Content").readByQuery({
@@ -165,15 +148,9 @@ export default function HomePage() {
 
                                                     </div>
                                                     <div className='title'>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                                        {activtyKey === index && <Texty split={(i)=>{return i.split(' ').map(j=>j+' ')}} type={'bottom'} duration={1000} delay={500} mode={'sync'}>{item?.title}</Texty>}
-=======
-                                                        {activtyKey === index && <Texty type={'bottom'} duration={1000} delay={500} mode={'sync'}>{item?.title}</Texty>}
->>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
-=======
-                                                        {activtyKey === index && <Texty type={'bottom'} duration={1000} delay={500} mode={'sync'}>{item?.title}</Texty>}
->>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
+
+                                                        {activtyKey === index && <Texty split={(i) => { return i.split(' ').map(j => j + ' ') }} type={'bottom'} duration={1000} delay={500} mode={'sync'}>{item?.title}</Texty>}
+
                                                     </div>
                                                 </div>)
                                             }
@@ -224,45 +201,33 @@ export default function HomePage() {
                             </Col>
                             <Col sm={24} xl={14} >
                                 <div className='img_info'>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                    {newImg&&<div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>
-=======
-                                    <div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>
->>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
-=======
-                                    <div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>
->>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
+
+                                    {newImg && <div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>
+
                                         <div className='time'>
                                             <span >{(new Date(newInfo?.date_created)).getFullYear()}<br /></span>
                                             <span>{timeSet((new Date(newInfo?.date_created)).getMonth())}-{timeSet((new Date(newInfo?.date_created)).getDay())}</span>
                                         </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                                     </div>}
-=======
-                                    </div>
->>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
-=======
-                                    </div>
->>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
                                 </div>
+
                             </Col>
                         </Row>
                     </Parallax>
 
                 </div>
                 <div className='leading' style={{ backgroundImage: `url(${img_bg2})` }}>
-                    A Solution and Service Provider <br/> of High Speed Optical I/O Connectivity
+                    A Solution and Service Provider <br /> of High Speed Optical I/O Connectivity
                 </div>
                 <div className='products_item' style={{ backgroundImage: `url(${img_bg3})` }}>
                     <div className='title_h1'>
                         Products
                     </div>
 
-                    <div className={pFlag === 0?'act_img item_img':'item_img'} style={{ backgroundImage: `url(${imgitem1})` }}></div>
-                    <div className={pFlag === 1?'act_img item_img':'item_img'} style={{ backgroundImage: `url(${imgitem2})` }}></div>
-                    <div className={pFlag === 2?'act_img item_img':'item_img'} style={{ backgroundImage: `url(${imgitem3})` }}></div>
+                    <div className={pFlag === 0 ? 'act_img item_img' : 'item_img'} style={{ backgroundImage: `url(${imgitem1})` }}></div>
+                    <div className={pFlag === 1 ? 'act_img item_img' : 'item_img'} style={{ backgroundImage: `url(${imgitem2})` }}></div>
+                    <div className={pFlag === 2 ? 'act_img item_img' : 'item_img'} style={{ backgroundImage: `url(${imgitem3})` }}></div>
 
                     <Row justify={"center"}>
                         <Col sm={24} xl={24} xxl={12} >
