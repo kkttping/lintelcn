@@ -59,7 +59,7 @@ export default function AboutHome() {
                     <Row justify={"center"}>
                         <Col sm={24} xl={12} >
                             <div className='human_img'>
-                                <img src={ConstValue.url + "assets/" + leadershipList[imgSelect]?.Img} alt="" />
+                                {leadershipList.length!==0&&<img src={ConstValue.url + "assets/" + leadershipList[imgSelect]?.Img} alt="" />}
                                 <div className='name'>
                                     <img src={imgText} alt="" />
                                 </div>
