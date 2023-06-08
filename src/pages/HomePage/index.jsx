@@ -30,7 +30,11 @@ export default function HomePage() {
     const [pFlag, setpFlag] = useState(0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     const [newImg, setnewImg] = useState('');
+=======
+    const [newImg, setnewImg] = useState([]);
+>>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
 =======
     const [newImg, setnewImg] = useState([]);
 >>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
@@ -71,6 +75,7 @@ export default function HomePage() {
 
         });
 <<<<<<< HEAD
+<<<<<<< HEAD
         let arr2=[]
         lastArr.forEach((item) => {
             if(item.status === 'Publick'){
@@ -82,6 +87,10 @@ export default function HomePage() {
         })
         console.log(arr2);
         setInfoList(arr2)
+=======
+        console.log(lastArr);
+        setInfoList(lastArr)
+>>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
 =======
         console.log(lastArr);
         setInfoList(lastArr)
@@ -99,8 +108,11 @@ export default function HomePage() {
         let res = await Http.to.items("New").readByQuery({
             sort: ['id'],
 <<<<<<< HEAD
+<<<<<<< HEAD
             fields: ['*'],
 
+=======
+>>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
 =======
 >>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
             filter: { 'Homepage': 'true' }
@@ -154,7 +166,11 @@ export default function HomePage() {
                                                     </div>
                                                     <div className='title'>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                         {activtyKey === index && <Texty split={(i)=>{return i.split(' ').map(j=>j+' ')}} type={'bottom'} duration={1000} delay={500} mode={'sync'}>{item?.title}</Texty>}
+=======
+                                                        {activtyKey === index && <Texty type={'bottom'} duration={1000} delay={500} mode={'sync'}>{item?.title}</Texty>}
+>>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
 =======
                                                         {activtyKey === index && <Texty type={'bottom'} duration={1000} delay={500} mode={'sync'}>{item?.title}</Texty>}
 >>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
@@ -209,7 +225,11 @@ export default function HomePage() {
                             <Col sm={24} xl={14} >
                                 <div className='img_info'>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     {newImg&&<div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>
+=======
+                                    <div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>
+>>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
 =======
                                     <div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>
 >>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
@@ -218,7 +238,11 @@ export default function HomePage() {
                                             <span>{timeSet((new Date(newInfo?.date_created)).getMonth())}-{timeSet((new Date(newInfo?.date_created)).getDay())}</span>
                                         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     </div>}
+=======
+                                    </div>
+>>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
 =======
                                     </div>
 >>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
