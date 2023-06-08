@@ -1,7 +1,7 @@
 {
   "name": "linktel",
   "version": "0.1.0",
-  "homepage": ".",
+  "homepage": "",
   "private": true,
   "dependencies": {
     "@directus/sdk": "^10.3.3",
