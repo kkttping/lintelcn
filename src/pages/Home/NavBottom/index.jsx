@@ -15,10 +15,13 @@ export default function NavBottom(porps) {
     const toPage = (address) => {
         navigate('/' + address);
         window.location.reload()
+<<<<<<< HEAD
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         })
+=======
+>>>>>>> 2fc09e5313762f2c443492fdfe4bab3a82023a49
     }
     useEffect(() => {
         getNextM();
