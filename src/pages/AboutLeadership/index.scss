@@ -23,7 +23,8 @@
                 flex: none;
                 order: 0;
                 flex-grow: 0;
-                @media screen  and (max-width: 750px){
+
+                @media screen and (max-width: 750px) {
                     font-size: 8vw;
                 }
             }
@@ -41,6 +42,47 @@
                     height: 281px;
                     background: #F1F5FB;
                     padding: 0 33px;
+                    transition: all 0.5s;
+
+                    &:hover {
+                        background: #003DA6;
+
+                        .position,
+                        .name,
+                        .info {
+                            color: #ffffffe3;
+                        }
+
+                        span:last-child {
+                            font-size: 14px;
+                            position: relative;
+                            cursor: pointer;
+                            padding-bottom: 8px;
+                            color: #fff;
+
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                bottom: 0px;
+                                left: 0;
+                                width: 96px;
+                                height: 2px;
+                                background-color: #ffffff;
+                            }
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                left: 90px;
+                                bottom: 12px;
+                                width: 7px;
+                                height: 7px;
+                                border-right: 2px solid #ffffff;
+                                border-bottom: 2px solid #ffffff;
+                                transform: rotate(-45deg);
+                            }
+                        }
+                    }
 
                     .position {
                         margin-top: 63px;
@@ -118,7 +160,7 @@
                 }
 
                 .img {
-                    width: 396px;
+                    width: 462px;
                     height: 281px;
                     overflow: hidden;
                     position: relative;
@@ -318,6 +360,7 @@
         flex-wrap: wrap;
         justify-content: center;
         padding-top: 40px;
+
         .img {
             width: 291.55px;
             height: 332px;
