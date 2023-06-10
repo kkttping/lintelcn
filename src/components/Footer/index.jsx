@@ -49,7 +49,7 @@ export default function Footer() {
 
                             {info?.nextmenu?.map((item, index) => {
                                 return (
-                                    <Col xs={24} sm={12} md={6}>
+                                    <Col key={index} xs={24} sm={12} md={6}>
                                         <div key={index} className='items' >
                                             <span className='title' onClick={()=>{toPage(item.link)}} >{item.menu}</span>
                                             {item.nextmenu.map((item2, index2) => {
@@ -94,15 +94,15 @@ export default function Footer() {
                 <div className='link' onClick={() => toPage('company')}>Company</div>
                 <div className='link' onClick={() => toPage('career')}>Career</div>
                 <div className='link' onClick={() => toPage('contact')}>Contact</div>
-                <ul style={{ listStyle: 'none' }} class="share">
-                    <li><a href="https://www.linkedin.com/company/linktel/" class="icon-linkedin iconfont"><LinkedinOutlined style={{ fontSize: '30px' }} /></a></li>
-                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#firve" class="icon-youxiang1 iconfont"><MediumOutlined style={{ fontSize: '30px' }} /></a></li>
-                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#one" class="icon-dingwei1 iconfont"><EnvironmentOutlined style={{ fontSize: '30px' }} /></a></li>
-                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact" class="icon-dianhua iconfont"><PhoneOutlined style={{ fontSize: '30px' }} /></a></li>
+                <ul style={{ listStyle: 'none' }} className="share">
+                    <li><a href="https://www.linkedin.com/company/linktel/" className="icon-linkedin iconfont"><LinkedinOutlined style={{ fontSize: '30px' }} /></a></li>
+                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#firve" className="icon-youxiang1 iconfont"><MediumOutlined style={{ fontSize: '30px' }} /></a></li>
+                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#one" className="icon-dingwei1 iconfont"><EnvironmentOutlined style={{ fontSize: '30px' }} /></a></li>
+                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact" className="icon-dianhua iconfont"><PhoneOutlined style={{ fontSize: '30px' }} /></a></li>
                 </ul>
-                <div class="footer__b g-flex">
+                <div className="footer__b g-flex">
                     <p>Shenzhen Stock Exchange code: 301205</p>
-                    <p class="g-flex">Copyright © 2023 Linktel Technologies Co., Ltd. All rights reserved <a id="top" class="icon-fanhuidingbu iconfont"></a></p>
+                    <p className="g-flex">Copyright © 2023 Linktel Technologies Co., Ltd. All rights reserved <a id="top" className="icon-fanhuidingbu iconfont"></a></p>
                 </div>
             </div>
         </div>

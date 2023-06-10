@@ -3,7 +3,7 @@ import TopInfo from '@/components/TopInfo'
 import imgBg from '@/static/img/al_bg1.jpg'
 import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
-import { Carousel, Row, Col } from 'antd'
+import { Modal, Row, Col } from 'antd'
 import imgitem3 from '@/static/img/ah_item3.jpg'
 import imgPerson from '@/static/img/al_item1.jpg'
 import rightDir from '@/static/svg/right_dir2.svg'
@@ -15,14 +15,19 @@ import { useNavigate } from "react-router-dom";
 export default function AboutLeadership() {
     const [imgSelect, setImgSelect] = useState(0);
     const [leadershipList, setLeadershipList] = useState([]);
+    const [data, setData] = useState({});
+    const [isModalOpen, setisModalOpen] = useState(false);
+
+    const [leadershipListType, setLeadershipListType] = useState([]);
+
     const navigate = useNavigate()
     const toPage = (address, routerName) => {
-        navigate('/' +address);
+        navigate('/' + address);
     }
     const carRfe = useRef();
 
     const add = () => {
-        if (imgSelect >= leadershipList.length-1) return;
+        if (imgSelect >= leadershipList.length - 1) return;
         setImgSelect(imgSelect + 1);
         selectChange(imgSelect + 1)
     }
@@ -37,6 +42,7 @@ export default function AboutLeadership() {
     }
     useEffect(() => {
         getInfo();
+        getInfoType();
     }, []);
 
     const getInfo = async () => {
@@ -45,60 +51,88 @@ export default function AboutLeadership() {
         });
         setLeadershipList(res.data)
     }
+    const getInfoType = async () => {
+        let res = await Http.to.items("Management_team").readByQuery({
+            sort: ['sort'],
+        });
+        setLeadershipListType(res.data);
+        console.log(res);
+    }
+    const CardItem = (text1) => {
+        let temp = 0;
+        leadershipList.map((item) => {
+            if (item.Position === text1) {
+                temp++
+            }
 
+        })
+        if (temp === 0) {
+            return
+        }
+        return (
+            <div className='leader_item'>
+                <div className='title'>{text1}</div>
+                <div>
+                    <Row justify={"center"}>
+                        {leadershipList.map((item, index) => {
+                            if (item.Position === text1) {
+                                return (
+                                    <Col key={index}>
+                                        <div className='item'>
+                                            <div className='img'>
+                                                <img src={ConstValue.url + "assets/" + item?.Img} alt="" />
+                                            </div>
+                                            <div className='infomation2'>
+                                                <div className='position'>{item?.Position}</div>
+                                                <div className='name'>{item?.Name}</div>
+                                                <div className='info'>{item?.Introduce}</div>
+                                                <span onClick={() => { setisModalOpen(true); setData(item) }}>READ MORE</span>
+                                            </div>
+                                        </div>
+                                    </Col>
+
+                                )
+                            }
+                        })}
+
+                    </Row>
+                </div>
+            </div>
+        )
+    }
+    const handleCancel = () => {
+        setisModalOpen(false);
+    }
     return (
         <div className='about_leadership'>
             <TopInfo imgBg={imgBg} title={'Leadership'} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
-            <NavLink title1={'About'} link1={()=>{toPage('about')}} title2={'Leadership'}/>
+            <NavLink title1={'About'} link1={() => { toPage('about') }} title2={'Leadership'} />
             <AboutNav />
             <div className='content'>
-                <Row justify={"center"}>
-                    <Col sm={24} xl={12} >
-                        <div className='human_img'>
-                            {/* <img src={imgitem3} alt="" /> */}
-                            <div className='bg'>
-                                <Carousel ref={carRfe} style={{ height: '100%' }} dots={false}  >
-                                    {leadershipList.map((item, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <img src={ConstValue.url + "assets/" + item?.Img} alt="" />
-                                            </div>
-                                        )
-                                    })}
+                {leadershipListType.map((item, index) => {
 
-                                </Carousel >
-                            </div >
-                            <div className='name'>
-                            {leadershipList[imgSelect]?.Position}
-                                <div className='select_control'>
-                                    <div className={'left'} onClick={mius} style={{ opacity: imgSelect === 0 ? 0.3 : 1 }} >
-                                        <img src={rightDir} alt="" />
-                                    </div>
-                                    <div className='right' onClick={add} style={{ opacity: imgSelect === leadershipList.length-1 ? 0.3 : 1 }}>
-                                        <img src={rightDir} alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col sm={24} xl={12} >
-                        <div className='infomation'>
-                            <div className="name"><div className='person_svg'></div>{leadershipList[imgSelect]?.Name}</div>
-                            <div className='info'>
-                                <div dangerouslySetInnerHTML={{ __html: leadershipList[imgSelect]?.Introduce?.replace(/\n/g, "<br/>") }}></div>
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
-                <div className="select">
-                    {leadershipList.map((item, index) => {
-                        return (
-                            <div key={index} className={imgSelect === index ? 'select_img activty' : 'select_img'} onClick={() => { setImgSelect(index); selectChange(index) }}><img src={ConstValue.url + "assets/" + item?.Thumbnail} alt="" /><span>{item?.Name}</span></div>
+                    return <div key={index}>{CardItem(item.classification)}</div>
+                })}
 
-                        )
-                    })}
-                </div>
+
             </div>
+            <Modal open={isModalOpen} onCancel={handleCancel} footer={[]} width={837.55}>
+                <div className='content_modal'>
+                    <div className='top'></div>
+                    <div className='modal_content'>
+                        <div className='img'>
+                            <img src={ConstValue.url + "assets/" + data?.Img} alt="" />
+                        </div>
+                        <div className='infomation2'>
+                            <div className='modal_name'>{data?.Name}</div>
+                            <div className='modal_position'>{data?.Position}</div>
+
+                            <div className='modal_info'>{data?.Introduce}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </Modal>
         </div>
     )
 }
