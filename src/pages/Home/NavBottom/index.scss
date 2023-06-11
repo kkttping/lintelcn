@@ -45,11 +45,10 @@
     .about_nav {
         display: flex;
         justify-content: center;
+        gap:32px;
 
         div {
-            cursor: pointer;
-            min-width: 110px;
-            
+            cursor: pointer;            
             height: 72px;
             line-height: 72px;
             text-align: center;
