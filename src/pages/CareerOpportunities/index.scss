@@ -2,6 +2,7 @@
     width: 100%;
 
     .content {
+        padding: 2rem;
         .title_name {
             width: 760px;
             margin: 0 auto;
@@ -22,9 +23,12 @@
         }
 
         .opportunities_item {
-            margin: 40px;
-            width: 30%;
-            height: 280px;
+            margin: 32px;
+            width: 100%;
+            @media screen and (max-width: 640px){
+              margin: 8px auto;  
+            }
+
         }
        
     }
