@@ -176,7 +176,7 @@
       height: 36px;
       opacity: 1;
       border-radius: 18px;
-<<<<<<< HEAD
+
       background: transparent;
       transition: all 0.5s;
 
@@ -187,27 +187,17 @@
           background-image: url("../../static/svg/seach.svg");
 
         }
-=======
-      background: rgba(42, 130, 228, 0);
-      transition:all 0.5s;
-      &:hover{
-        background: rgba(42, 130, 228, 1);
->>>>>>> a7a4b34506043da47743c4dee5aecd4d179475f4
+
       }
     }
 
     .nav_bottom_page {
       border-top: 1px solid #ccc;
       border-bottom: 1px solid #ccc;
-<<<<<<< HEAD
       overflow: hidden;
       height: 0;
       opacity: 0;
       transition: all 0.5s;
-=======
-      top:70px;
-      display: none;
->>>>>>> a7a4b34506043da47743c4dee5aecd4d179475f4
       position: absolute;
       width: 100%;
       left: 0;
