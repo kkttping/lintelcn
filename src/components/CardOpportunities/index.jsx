@@ -14,9 +14,6 @@ export default function CardOpportunities(props) {
     const { data } = props;
     return (
         <div className='card_opportunities'>
-            <div className='upload_svg'>
-                <div className='name'>Apply</div>
-            </div>
             <span className='read_more' onClick={() => { setIsModalOpen(true) }}>READ MORE</span>
             <div>
                 <div className="title_tag">Position</div>
@@ -25,7 +22,7 @@ export default function CardOpportunities(props) {
 
             <div className='infomation'>
                 <div className='item'>
-                    <div className='type'>country</div>
+                    <div className='type'>Country</div>
                     <div className='info'>{data?.country}</div>
                 </div>
                 <div className='item'>
@@ -45,7 +42,7 @@ export default function CardOpportunities(props) {
 
                     <div className='infomation'>
                         <div className='item'>
-                            <div className='type'>country</div>
+                            <div className='type'>Country</div>
                             <div className='info'>{data?.country}</div>
                         </div>
                         <div className='item'>
@@ -73,6 +70,7 @@ export default function CardOpportunities(props) {
                 <div>
                     <div className='upload_svg'>
                         <div className='name'>Apply <div className='svg'></div></div>
+                        <div className='namelink'>Linkedin <div className='svg'></div></div>
                     </div>
                 </div>
             </Modal>

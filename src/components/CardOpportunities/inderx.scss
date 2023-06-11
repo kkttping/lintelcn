@@ -141,9 +141,9 @@
 
             .info {
                 color: rgb(0, 0, 0);
-                font-size: 24px;
+                font-size: 2rem;
                 font-weight: 400;
-                line-height: 20px;
+                line-height: 2.5rem;
                 letter-spacing: 0px;
                 text-align: left;
             }
@@ -159,8 +159,6 @@
 .ant-modal-wrap {
     .content {
         padding: 20px 24px;
-        max-height:
-            60vh;
     }
 
     .title {
@@ -206,7 +204,7 @@
     .info2 {
         overflow-y: auto;
         margin-top: 36px;
-        margin-bottom: 186px;
+        margin-bottom: 36px;
 
         .info2_title {
             color: rgb(0, 0, 0);
@@ -246,13 +244,59 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
+        transition:all 0.5s;
         .svg {
             content: '';
             margin-left: 20px;
             width: 24.79px;
             height: 19px;
+            transition:all 0.5s;
             background-image: url('../../static/svg/upload.svg');
         }
+        &:hover{
+        background-color: rgb(0, 61, 166);
+        color: rgb(255, 255, 255);
+        .svg{
+        filter: drop-shadow(16px 16px 20px red) invert(75%);
+        }
+    }
+    }
+}
+.ant-modal-body{   
+    .upload_svg{
+            display: flex; 
+            .namelink{
+    cursor: pointer;
+    color: rgb(142, 142, 142);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: left;
+    position: relative;
+    width: 100%;
+    background-color: rgb(214, 215, 225);
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition:all 0.5s;
+    .svg{
+        content: "";
+    margin-left: 20px;
+    width: 20px;
+    height: 21px;
+    background-image: url('../../static/svg/Union.svg');
+    transition:all 0.5s;
+    }
+     &:hover{
+        background-color: rgb(0, 61, 166);
+        color: rgb(255, 255, 255);
+        .svg{
+        filter: drop-shadow(16px 16px 20px red) invert(75%);
+        }
+    }
+            }
     }
 }
