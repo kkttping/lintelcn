@@ -4,7 +4,7 @@
     position: relative;
     margin: 0;
     cursor: pointer;
-
+    background: linear-gradient(192.53deg, rgb(94 94 94 / 25%) 0%, rgb(255 255 255) 50%);
     .img {
         margin: 0 auto;
         width: 100%;
@@ -20,10 +20,12 @@
     }
 
     .name {
-        font-size: 24px;
+        font-size: 32px;
+        font-weight: 700;
         position: absolute;
-        bottom: 10%;
-        left: 4%;
+        bottom: 40px;
+        left: 38px;
+        width: 300px;
     }
 
     .bg_lin {
@@ -57,15 +59,16 @@
         flex-direction: column;
         justify-content: end;
         color: #ffffff;
-        padding-left: 64px;
-        padding-bottom: 47px;
+        padding-left: 32px;
+        padding-bottom: 12px;
         box-sizing: border-box;
         transition: .56s;
+        overflow:hidden;
 
         &:hover {
             &::before {
                 transition: .56s;
-                transform: scale(1);
+                bottom: 0;
             }
         }
 
@@ -76,9 +79,9 @@
             height: 100%;
             width: 100%;
             left: 0;
-            bottom: 0;
+            bottom: -100%;
             transition: .56s;
-            transform: scale(0);
+            transform: scale(1);
             transform-origin: 50%;
             z-index: -1;
             background: linear-gradient(192.53deg, rgba(0, 61, 166, 0.00) 25.563%, rgba(0, 61, 166, 1.00) 99.432%);
@@ -94,7 +97,6 @@
             display: inline-block;
             width: 350px;
             font-size: 14px;
-            word-break: break-all;
                     text-overflow: ellipsis;
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
@@ -130,4 +132,18 @@
             }
         }
     }
+}
+.products{
+    @media (min-width: 1000px){
+    :where(.css-dev-only-do-not-override-ed5zg0).ant-col-xl-24{
+        flex: 0 0 33.33%;
+    }
+    }
+}
+.span{   
+    word-break: keep-all;
+    word-wrap: break-word; 
+    white-space: pre-wrap;
+    text-align:justify; 
+    text-justify:inter-ideograph;
 }

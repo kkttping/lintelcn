@@ -192,3 +192,14 @@
         }
     }
 }
+
+.solutions {
+    >.ant-row-center {
+    >div:first-child {
+        width:40%;
+      } 
+      >div:last-child {
+          width:60%;
+      } 
+    }
+}

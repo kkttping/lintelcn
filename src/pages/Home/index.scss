@@ -12,17 +12,18 @@
   .nav_home {
     display: flex;
     align-items: end;
+    align-items: center;
     position: sticky;
     min-height: 70px;
     top: 0;
     z-index: 999;
     background-color: #fff;
     border-bottom: 1px solid #ccc;
-    flex-direction: column;
-
+    flex-direction: row;
+    justify-content: flex-end;
     @media screen and (max-width: 640px) {
       background-color: #000;
-
+      min-height: 60px;
       .menu {
         display: none;
       }
@@ -51,6 +52,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      top:60px;
 
       .tag,
       .seach_icon2 {
@@ -107,10 +109,11 @@
     .tag {
       position: absolute;
       background-image: url("../../static/img/nav_tag.png");
-      width: 114px;
       height: 54px;
       left: 29px;
-      top: 9px;
+      background-repeat: no-repeat;
+      width: 100%;
+      
     }
 
     .menu {
@@ -154,12 +157,12 @@
       display: none;
       position: absolute;
       right: 37.96px;
-      top: 30px;
       cursor: pointer;
       background-image: url("../../static/svg/more.svg");
       background-repeat: no-repeat;
       width: 22.04px !important;
       height: 22px;
+      background-position: center;
     }
 
     .seach_icon_box {
@@ -173,6 +176,7 @@
       height: 36px;
       opacity: 1;
       border-radius: 18px;
+<<<<<<< HEAD
       background: transparent;
       transition: all 0.5s;
 
@@ -183,16 +187,27 @@
           background-image: url("../../static/svg/seach.svg");
 
         }
+=======
+      background: rgba(42, 130, 228, 0);
+      transition:all 0.5s;
+      &:hover{
+        background: rgba(42, 130, 228, 1);
+>>>>>>> a7a4b34506043da47743c4dee5aecd4d179475f4
       }
     }
 
     .nav_bottom_page {
       border-top: 1px solid #ccc;
       border-bottom: 1px solid #ccc;
+<<<<<<< HEAD
       overflow: hidden;
       height: 0;
       opacity: 0;
       transition: all 0.5s;
+=======
+      top:70px;
+      display: none;
+>>>>>>> a7a4b34506043da47743c4dee5aecd4d179475f4
       position: absolute;
       width: 100%;
       left: 0;
@@ -228,10 +243,14 @@
       background-image: url("../../static/img/nav_tag2.png");
       background-repeat: no-repeat;
       background-size: contain;
-      width: 114px;
+      width: 100%;
       height: 54px;
       left: 29px;
-      top: 9px;
+      z-index: 1000;
+      background-repeat: no-repeat;
+       @media screen and (max-width: 640px){
+           height: 40px;
+       }
     }
   }
 

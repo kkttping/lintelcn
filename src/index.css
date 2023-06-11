@@ -6,6 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
+  word-break: keep-all;
+  word-wrap: break-word;
 }
 
 code {
@@ -20,7 +22,72 @@ p {
   margin-block-start: 0.5em;
   margin-block-end: 0.5em;
 }
-.morehover:hover{
-  border-color:rgb(42, 130, 228) ;
-  
+.morehover:hover {
+  border-color: rgb(42, 130, 228);
 }
+.title,
+.span {
+  word-break: keep-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+html {
+  font-size: 1em;
+}
+@media screen and (max-width: 1600px) {
+  html {
+    font-size: 0.875em;
+  }
+}
+@media screen and (max-width: 1300px) {
+  html {
+    font-size: 0.75em;
+  }
+}
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 0.65em;
+  }
+}
+@media screen and (max-width: 640px) {
+  html {
+    font-size: 0.5em;
+  }
+  :where(.css-dev-only-do-not-override-ed5zg0).ant-row{
+    flex-direction: column;
+  }
+}
+.readmore{
+              display: flex;
+              padding: 6px 0;
+              font-size: 14px;
+              font-weight: 600;
+              border-bottom: 1px solid #000000;
+              align-items: center;
+              width: 100px;
+              transition:all 0.5s;
+              white-space: nowrap;
+}
+                .readmore span {
+                        width: 5px;
+                        height: 5px;
+                        margin-left: 4px;
+                        border-right: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        transform: rotate(-45deg);
+                        transition:all 0.5s;
+                }
+                .readmore:hover{
+                    width: 110px;
+                    border-color:  rgb(42, 130, 228);
+                    color: rgb(42, 130, 228);
+                    
+                }
+                .readmore:hover span {
+                       margin-left: 14px;  
+                     border-right: 2px solid rgb(42, 130, 228);
+                        border-bottom: 2px solid rgb(42, 130, 228);   
+                    }
+                
