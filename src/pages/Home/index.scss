@@ -12,17 +12,18 @@
   .nav_home {
     display: flex;
     align-items: end;
+    align-items: center;
     position: sticky;
     min-height: 70px;
     top: 0;
     z-index: 999;
     background-color: #fff;
     border-bottom: 1px solid #ccc;
-    flex-direction: column;
-
+    flex-direction: row;
+    justify-content: flex-end;
     @media screen and (max-width: 640px) {
       background-color: #000;
-
+      min-height: 60px;
       .menu {
         display: none;
       }
@@ -51,6 +52,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      top:60px;
 
       .tag,
       .seach_icon2 {
@@ -107,10 +109,11 @@
     .tag {
       position: absolute;
       background-image: url("../../static/img/nav_tag.png");
-      width: 114px;
       height: 54px;
       left: 29px;
-      top: 9px;
+      background-repeat: no-repeat;
+      width: 120px;
+      
     }
 
     .menu {
@@ -154,25 +157,26 @@
       display: none;
       position: absolute;
       right: 37.96px;
-      top: 30px;
       cursor: pointer;
       background-image: url("../../static/svg/more.svg");
       background-repeat: no-repeat;
-      width: 22.04px !important;
-      height: 22px;
+      width: 20px !important;
+      height: 20px;
+      background-position: center;
     }
 
     .seach_icon_box {
       position: absolute;
       right: 37.96px;
-      top: 20px;
+      top: 25px;
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 36px;
-      height: 36px;
+      width: 20px;
+      height: 20px;
       opacity: 1;
       border-radius: 18px;
+
       background: transparent;
       transition: all 0.5s;
 
@@ -183,6 +187,7 @@
           background-image: url("../../static/svg/seach.svg");
 
         }
+
       }
     }
 
@@ -196,6 +201,7 @@
       position: absolute;
       width: 100%;
       left: 0;
+      top:72px;
       background-color: #ffffff;
     }
   }
@@ -228,10 +234,14 @@
       background-image: url("../../static/img/nav_tag2.png");
       background-repeat: no-repeat;
       background-size: contain;
-      width: 114px;
+      width: 120px;
       height: 54px;
       left: 29px;
-      top: 9px;
+      z-index: 1000;
+      background-repeat: no-repeat;
+       @media screen and (max-width: 640px){
+           height: 40px;
+       }
     }
   }
 

@@ -123,14 +123,29 @@
   }
 
   .svg {
-    display: block;
-    cursor: pointer;
-    position: absolute;
-    right: 10px;
-    bottom: 0;
-    display: block;
-    width: 22px;
-    height: 22px;
+    position: relative;
+    width: 15px;
+    height: 16px;
     background-size: contain;
+    margin-left: 20px;
   }
+}
+.footer_top{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+@media (min-width: 576px){
+:where(.css-dev-only-do-not-override-ed5zg0).ant-col-sm-6{
+      flex: 0 0 35%;
+      margin-right:80px;
+      max-width:100%;
+ } 
+}
+.footer__b{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding:24px 32px;
 }

@@ -181,6 +181,7 @@ export default function Home() {
                 </div></div>
                 <div className="seach_icon2" style={{ backgroundImage: `url(${!showmask ? more : x})` }} onClick={() => { setshowmask(!showmask) }}>
                 </div>
+
                 <div ><div style={(currentIndex === 1) ? { height: '500px', opacity: '1' } : ((currentIndex === 2 || currentIndex === 3 || currentIndex === 4) ? { height: '70px', opacity: '1' } : {})} className='nav_bottom_page'>< NavBottom type={currentIndex} /></div></div>
                 <div className='mask' style={{ display: showmask ? 'flex' : 'none' }}>
                     <div className="tag">
@@ -206,7 +207,6 @@ export default function Home() {
 
 
                             </div>
-
                         )
                     })}
 
