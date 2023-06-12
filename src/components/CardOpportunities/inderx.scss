@@ -9,13 +9,20 @@
     box-sizing: border-box;
     position: relative;
     transition: all 0.5s;
+
     &:hover {
         background: rgb(0, 61, 166);
         color: #fff;
-        .title,.title_tag,.name,.type,.info{
+
+        .title,
+        .title_tag,
+        .name,
+        .type,
+        .info {
             color: #fff !important;
         }
-        .read_more{
+
+        .read_more {
             &::after {
                 content: '';
                 position: absolute;
@@ -25,7 +32,7 @@
                 height: 1px;
                 background-color: #ffffff;
             }
-    
+
             &::before {
                 content: '';
                 position: absolute;
@@ -38,8 +45,10 @@
                 transform: rotate(-45deg);
             }
         }
+
         .name {
             cursor: pointer;
+
             &::after {
                 content: '';
                 background-image: url('../../static/svg/upload2.svg') !important;
@@ -76,6 +85,8 @@
             transform: rotate(-45deg);
         }
     }
+
+
 
     .upload_svg {
         position: absolute;
@@ -230,7 +241,18 @@
             text-align: justify;
         }
     }
+    .upload_box {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(227, 229, 239);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover {
+            background-color: rgb(211, 213, 223);
 
+        }
+    }
     .name {
         cursor: pointer;
         color: rgb(142, 142, 142);
@@ -241,7 +263,6 @@
         text-align: left;
         position: relative;
         width: 100%;
-        background-color: rgb(227, 229, 239);
         height: 64px;
         display: flex;
         justify-content: center;
@@ -253,6 +274,19 @@
             width: 24.79px;
             height: 19px;
             background-image: url('../../static/svg/upload.svg');
+            background-repeat: no-repeat;
+
         }
+
+        .svg2 {
+            content: '';
+            margin-left: 20px;
+            width: 24.79px;
+            height: 19px;
+            background-repeat: no-repeat;
+            background-image: url('../../static/svg/Union.svg');
+        }
+
+        
     }
 }
