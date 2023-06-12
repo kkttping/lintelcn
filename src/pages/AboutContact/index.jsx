@@ -4,7 +4,7 @@ import imgBg from '@/static/img/ah_bg2.jpg'
 import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
 import CardPersonInfo from '@/components/CardPersonInfo'
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, message, Form, Input,Spin } from 'antd';
 // import BMap  from 'BMap';
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";
@@ -15,19 +15,57 @@ const googleMap = window.google && window.google.maps;
 export default function AboutContact() {
     const [mapList, setMapList] = useState([]);
     const [linkList, setLinkList] = useState([]);
+    const [loadFlag, setloadFlag] = useState(false);
+
     const navigate = useNavigate()
+    const [messageApi, contextHolder] = message.useMessage();
+
     const toPage = (address, routerName) => {
-        navigate('/' +address);
+        navigate('/' + address);
     }
     const [selectMap, setSelectMap] = useState(0);
 
-    const onFinish = (values) => {
-        console.log('Success:', values);
+    const onFinish = async (values) => {
+        setloadFlag(true)
+        messageApi.open({
+            key: 'updatable',
+            type: 'loading',
+            content: 'Loading...',
+        });
+        try {
+            let res = await Http.to.items("message").createOne({
+                ...values
+
+            });
+            setloadFlag(false)
+
+            if (res) {
+                formRef.current?.resetFields()
+                messageApi.open({
+                    key: 'updatable',
+                    type: 'success',
+                    content: 'success!',
+                    duration: 2,
+                })
+            }
+        } catch (e) {
+            setloadFlag(false)
+
+            console.log(e);
+            messageApi.open({
+                key: 'updatable',
+                type: 'error',
+                content: 'error',
+            });
+        }
+
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
     const mapRef = useRef()
+    const formRef = useRef()
+
     useEffect(() => {
         // var map = new BMap.Map("mapCurrent"); // 创建Map实例
         // map.centerAndZoom(new BMap.Point(103.404, 39.915), 11); // 初始化地图,设置中心点坐标和地图级别
@@ -85,8 +123,9 @@ export default function AboutContact() {
     }
     return (
         <div className='about_contact'>
+            {contextHolder}
             <TopInfo imgBg={imgBg} title={'Contact'} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
-            <NavLink title1={'About'} link1={()=>{toPage('about')}} title2={'Contact'}/>
+            <NavLink title1={'About'} link1={() => { toPage('about') }} title2={'Contact'} />
             <AboutNav />
             <div className='content'>
                 <div className='map' >
@@ -130,7 +169,7 @@ export default function AboutContact() {
                     <div className='form'>
                         <Form
                             name="basic"
-
+                            ref={formRef}
                             style={{
                                 Width: 600,
                             }}
@@ -142,7 +181,7 @@ export default function AboutContact() {
                             autoComplete="off"
                         >
                             <Form.Item
-                                name="username"
+                                name="name"
                                 rules={[
                                     {
                                         required: true,
@@ -158,6 +197,7 @@ export default function AboutContact() {
                                 rules={[
                                     {
                                         required: true,
+                                        pattern: /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/,
                                         message: 'Please input your Email!',
                                     },
                                 ]}
@@ -166,10 +206,11 @@ export default function AboutContact() {
                             </Form.Item>
                             <Form.Item
                                 name="message"
+
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input your Email!',
+                                        message: 'Please input your Message!',
                                     },
                                 ]}
                             >
@@ -179,7 +220,7 @@ export default function AboutContact() {
 
                             >
                                 <Button type="primary" htmlType="submit">
-                                    Submit
+                                    {loadFlag?<Spin></Spin>: 'Submit'}
                                 </Button>
                             </Form.Item>
                         </Form>
