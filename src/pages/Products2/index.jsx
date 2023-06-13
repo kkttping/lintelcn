@@ -41,7 +41,8 @@ export default function Products2() {
     }
     const getInfo2 = async () => {
         let res = await Http.to.items("product_category").readByQuery({
-            fields: ['*']
+            fields: ['*'],
+            filter:{superior:getParams?.id+""}
         });
         setInfo2(res.data);
         if (getParams?.itemId) {
@@ -81,7 +82,7 @@ export default function Products2() {
     }
     return (
         <div className='products2'>
-            <TopInfo imgBg={imgBg} title={info?.name} styleSelf={{ bgColor: '#000', height: '400px' }} info1={''} info2={''} />
+            <TopInfo imgBg={ConstValue.url + "assets/" +info?.topimg} title={info?.name} styleSelf={{ bgColor: '#000', height: '400px' }} info1={''} info2={''} />
             <NavLink title1={'Products'} link1={() => { toPage('products') }} title2={navInfo[getParams?.id]} />
 
             <div className="info">

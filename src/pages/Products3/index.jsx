@@ -156,7 +156,13 @@ export default function Products3() {
 
             <div className='top_bg'>
                 <div className='bg'>
+                    
                     <Carousel ref={carRfe} style={{ height: '100%' }} dots={false}  >
+                    {info?.image && (
+                        <div >
+                            <img src={ConstValue.url + "assets/" + info?.image} alt="" />
+                        </div>
+                    )}
                         {infoImg.map((item, index) => {
                             return (
                                 <div key={index}>
@@ -165,17 +171,19 @@ export default function Products3() {
                             )
 
                         })}
-                        {infoImg.length === 0 &&info?.image&& (
-                            <div >
-                                <img src={ConstValue.url + "assets/" + info?.image} alt="" />
-                            </div>
-                        )}
+
                     </Carousel >
                 </div >
                 <div className="select">
+                    {info?.image && (
+                        <div key={0} className={"item " + ((activtyKey === 0) ? 'activtyitem' : '')} onClick={() => selectChange(0)}>
+                            <img src={ConstValue.url + "assets/" + info?.image} alt="" />
+                        </div>
+                        
+                    )}
                     {infoImg.map((item, index) => {
                         return (
-                            <div key={index} className={"item " + ((activtyKey === index) ? 'activtyitem' : '')} onClick={() => selectChange(index)}>
+                            <div key={index+1} className={"item " + ((activtyKey === (index+1)) ? 'activtyitem' : '')} onClick={() => selectChange((index+1))}>
                                 <img src={ConstValue.url + "assets/" + item?.directus_files_id} alt="" />
                             </div>
                         )
@@ -199,7 +207,7 @@ export default function Products3() {
                                 <div className='title'>
                                     Features
                                 </div>
-                                <div className='item_content' dangerouslySetInnerHTML={{__html:info?.features}}></div>
+                                <div className='item_content' dangerouslySetInnerHTML={{ __html: info?.features }}></div>
                             </div>
 
                         </div>
