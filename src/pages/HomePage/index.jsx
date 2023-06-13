@@ -236,20 +236,20 @@ export default function HomePage() {
                                     Pluggable Transceiver <div className='svg_right' style={{ backgroundImage: `url(${svg1})` }}></div>
                                 </div>
                                 <div className={'info '} style={pFlag === 0 ? { height: '100px' } : {}}>
-                                    <a style={{ color: '#6e6e6e' }} href="http://www.linkteltech.com/index.php?r=product-category%2Findex#">100G/400G/800G/1.6T EML/TFLN/Sipho OSFP/QSFP-DD</a>
+                                    <a style={{ color: '#6e6e6e' }} href="/#/products">100G/400G/800G/1.6T EML/TFLN/Sipho OSFP/QSFP-DD</a>
 
                                 </div>
                                 <div className={pFlag === 1 ? 'title' : 'titleb'} onClick={() => setpFlag(1)}>
                                     Optical Engine<div className='svg_right' style={{ backgroundImage: `url(${svg1})` }}></div>
                                 </div>
                                 <div className={'info '} style={pFlag === 1 ? { height: '100px' } : {}} >
-                                    <a style={{ color: '#6e6e6e' }} href="http://www.linkteltech.com/index.php?r=product-category%2Findex#">n-house Design &amp; Manufacture 100G/λ and 200G/λ Optical Engines with Cutting Edge OE Packaging Capabilities            </a>
+                                    <a style={{ color: '#6e6e6e' }} href="/#/products">n-house Design &amp; Manufacture 100G/λ and 200G/λ Optical Engines with Cutting Edge OE Packaging Capabilities            </a>
                                 </div>
                                 <div className={pFlag === 2 ? 'title' : 'titleb'} onClick={() => setpFlag(2)}>
                                     NPO/CPO ELSFP & OE Connectivity<div className='svg_right' style={{ backgroundImage: `url(${svg1})` }}></div>
                                 </div>
                                 <div className={'info '} style={pFlag === 2 ? { height: '100px' } : {}} >
-                                    <a style={{ color: '#6e6e6e' }} href="http://www.linkteltech.com/index.php?r=product-category%2Findex#">1.6T/3.2T NPO/CPO Optical Engines Optical/Electrical Hybrid Packaging Platforms</a>
+                                    <a style={{ color: '#6e6e6e' }} href="/#/products">1.6T/3.2T NPO/CPO Optical Engines Optical/Electrical Hybrid Packaging Platforms</a>
                                 </div>
                                 {/* <div className='info2'>
                                     Optical Engine<br />
