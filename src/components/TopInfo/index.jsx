@@ -13,7 +13,7 @@ export default function TopInfo(props) {
 							backgroundColor: styleSelf?.bgColor ?? '',
 							backgroundAttachment: styleSelf?.bgColor?'scroll':'fixed',
 							backgroundImage:`url(${imgBg})`,
-							height: styleSelf?.height ?? 'calc(100vh - 0px)'
+							
 						}}
 					>
 						<span className='titel'>
