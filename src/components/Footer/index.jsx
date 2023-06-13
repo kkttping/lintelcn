@@ -39,6 +39,7 @@ export default function Footer() {
             sort: ['id'],
         });
         setInfo2(res.data);
+        console.log(res.data);
     }
     return (
         <div className='com_footer'>
@@ -90,12 +91,12 @@ export default function Footer() {
                 </div>
                 <div className="bottom">
                     <Row justify={'space-between'}>
-                        <Col xs={24} sm={6}><span className='item'>Shenzhen Stock Exchange code:301205</span></Col>
+                        <Col xs={24} sm={6}><span className='item'>{info2?.Basic_information}</span></Col>
                         <Col xs={24} sm={12}>
                             <div style={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
                                 <span className='item'>
 
-                                    Copyright 2023 Linktel Technologise Co.,Ltd. All rights reserved</span><a onClick={
+                                {info2?.Copyright}</span><a onClick={
                                         () => window.scrollTo({
                                             top: 0,
                                             behavior: "smooth"
@@ -123,8 +124,8 @@ export default function Footer() {
 
                 </ul>
                 <div className="footer__b g-flex">
-                    <p>Shenzhen Stock Exchange code: 301205</p>
-                    <p className="g-flex">Copyright © 2023 Linktel Technologies Co., Ltd. All rights reserved <a id="top" className="icon-fanhuidingbu iconfont"></a></p>
+                    <p>{info2?.Basic_information}</p>
+                    <p className="g-flex">{info2?.Copyright}<a id="top" className="icon-fanhuidingbu iconfont"></a></p>
                 </div>
             </div>
         </div>
