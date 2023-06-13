@@ -58,10 +58,10 @@ export default function AboutLeadership() {
         setLeadershipListType(res.data);
         console.log(res);
     }
-    const CardItem = (text1) => {
+    const CardItem = (text1,id) => {
         let temp = 0;
         leadershipList.map((item) => {
-            if (item.Position === text1) {
+            if (item.testj=== id) {
                 temp++
             }
 
@@ -75,7 +75,7 @@ export default function AboutLeadership() {
                 <div>
                     <Row justify={"center"}>
                         {leadershipList.map((item, index) => {
-                            if (item.Position === text1) {
+                            if (item.testj === id) {
                                 return (
                                     <Col key={index}>
                                         <div className='item'>
@@ -111,7 +111,7 @@ export default function AboutLeadership() {
             <div className='content'>
                 {leadershipListType.map((item, index) => {
 
-                    return <div key={index}>{CardItem(item.classification)}</div>
+                    return <div key={index}>{CardItem(item.classification,item?.id)}</div>
                 })}
 
 
