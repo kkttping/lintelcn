@@ -1,4 +1,4 @@
-import { Menu, Row, Col } from 'antd'
+import { Menu, Row, Col,Empty  } from 'antd'
 import { useNavigate } from "react-router-dom";
 import imgBg from '@/static/img/bg_2.jpg'
 import TopInfo from '@/components/TopInfo'
@@ -16,9 +16,12 @@ export default function Products2() {
     const [info3, setInfo3] = useState([]);
 
     const [curr, setcurr] = useState('');
+    const [curr2, setcurr2] = useState(0);
+
+    const [currid, setcurrid] = useState('');
 
     const toProducts3 = (id) => {
-        navigate('/products3/'+id+'/'+getParams?.id);
+        navigate('/products3/' + id + '/' + getParams?.id);
     }
     const toPage = (address, routerName) => {
         navigate('/' + address);
@@ -27,7 +30,9 @@ export default function Products2() {
         getInfo();
         getInfo2();
     }, []);
-
+    useEffect(() => {
+        getInfo3()
+    }, [curr]);
     const getInfo = async () => {
         let res = await Http.to.items("CLASSIFICATION/" + getParams?.id).readByQuery({
             sort: ['id'],
@@ -38,33 +43,45 @@ export default function Products2() {
         let res = await Http.to.items("product_category").readByQuery({
             fields: ['*']
         });
-        setcurr(res.data[0].id);
         setInfo2(res.data);
+        if (getParams?.itemId) {
+            res.data.some((item)=>{
+                if(item.name===getParams?.itemId){
+                    setcurr(item?.id + '');
+                    return true
+                }
+            })
+        } else {
+            setcurr(res.data[0].id + '');
+
+        }
         getInfo3(res.data[0].id, getParams?.id)
+
     }
     const getInfo3 = async (id1, id2) => {
-        if(getParams?.itemId!==undefined)id1=getParams?.itemId;
-
+        if (getParams?.itemId !== undefined) id1 = getParams?.itemId;
+        if (!getParams?.id) return
+        if (curr === '') return
 
         let res = await Http.to.items("Pluggable_Transceiver").readByQuery({
             fields: ['*'],
-            
+            filter: { 'Advanced_category': getParams?.id, category: curr }
         });
         setInfo3(res.data)
         console.log(res.data)
     }
     const menuonClick = (index) => {
-        setcurr(index.key)
+        setcurr(index.key);
     }
-    const navInfo={
-        '1':'Pluggable Transceiver',
-        '2':'Optical Engine',
-        '3':'NPO/CPO ELSFP & OE Connectivity'
+    const navInfo = {
+        '1': 'Pluggable Transceiver',
+        '2': 'Optical Engine',
+        '3': 'NPO/CPO ELSFP & OE Connectivity'
     }
     return (
         <div className='products2'>
             <TopInfo imgBg={imgBg} title={info?.name} styleSelf={{ bgColor: '#000', height: '400px' }} info1={''} info2={''} />
-            <NavLink title1={'Products'} link1={()=>{toPage('products')}}title2={navInfo[getParams?.id]} />
+            <NavLink title1={'Products'} link1={() => { toPage('products') }} title2={navInfo[getParams?.id]} />
 
             <div className="info">
                 <div className='infoma' dangerouslySetInnerHTML={{ __html: info?.text }}></div>
@@ -76,10 +93,10 @@ export default function Products2() {
                 </div> */}
                 <div className='select'>
 
-                    <Menu onClick={menuonClick} current={[curr]} mode="horizontal" >
+                    <Menu  selectedKeys={[curr]} mode="horizontal" >
                         {info2.map((item, index) => {
                             return (<Menu.Item key={item.id} >
-                                <span>{item.name}</span>
+                                <span onClick={() => {setcurr(item.id+'');setcurr2(index)}}>{item.name}</span>
                             </Menu.Item>)
                         })}
                     </Menu>
@@ -88,7 +105,7 @@ export default function Products2() {
             <div className="solutions">
                 <Row justify={'center'}>
                     <Col sm={24} xl={12}>
-                        <div className="solution" dangerouslySetInnerHTML={{ __html: info2?.[0]?.text }}>
+                        <div className="solution" dangerouslySetInnerHTML={{ __html: info2?.[curr2]?.text }}>
 
                             {/* <span className='title'>1G solutions</span> */}
                             {/* <span className='item1'>Linktel’s family of 800G transceivers accelerate data connectivity for data center Interconnection and Metro Networks. Our complete product line includes OSFP 2xFR4，OSFP 2xLR4，QSFP-DD DR8，QSFP-DD DR8+</span> */}
@@ -108,7 +125,7 @@ export default function Products2() {
                                                 <div className='info_item'>
                                                     <span>{item?.name}</span>
                                                     <span>{item?.description}</span>
-                                                    <span onClick={()=>toProducts3(item?.id)}>READ MORE</span>
+                                                    <span onClick={() => toProducts3(item?.id)}>READ MORE</span>
 
                                                 </div>
                                             </Col>
@@ -116,7 +133,7 @@ export default function Products2() {
                                     </div>
                                 )
                             })}
-                            
+                            {info3?.length===0&&<Empty></Empty>}
                         </div>
                     </Col>
                 </Row>

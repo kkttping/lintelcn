@@ -8,6 +8,7 @@ import Http from "@/utils/http";
 
 export default function Footer() {
     const [info, setInfo] = useState([])
+    const [info2, setInfo2] = useState({})
 
     const toPage = (address, routerName) => {
         window.scrollTo({
@@ -22,6 +23,7 @@ export default function Footer() {
     const navigate = useNavigate()
     useEffect(() => {
         getNextM();
+        getInfo();
     }, []);
 
     const getNextM = async () => {
@@ -30,6 +32,13 @@ export default function Footer() {
         });
         setInfo(res.data);
         console.log(res.data);
+
+    }
+    const getInfo = async () => {
+        let res = await Http.to.items('Basic_information').readByQuery({
+            sort: ['id'],
+        });
+        setInfo2(res.data);
     }
     return (
         <div className='com_footer'>
@@ -51,10 +60,10 @@ export default function Footer() {
                                 return (
                                     <Col key={index} xs={24} sm={12} md={6}>
                                         <div key={index} className='items' >
-                                            <span className='title' onClick={()=>{toPage(item.link)}} >{item.menu}</span>
+                                            <span className='title' onClick={() => { toPage(item.link) }} >{item.menu}</span>
                                             {item.nextmenu.map((item2, index2) => {
                                                 return (
-                                                    <span onClick={(e)=>{ toPage(item2.link)}} key={index2} className='item'>{item2.menu}</span>
+                                                    <span onClick={(e) => { toPage(item2.link) }} key={index2} className='item'>{item2.menu}</span>
 
                                                 )
                                             })}
@@ -65,14 +74,16 @@ export default function Footer() {
                             })}
                         </Row>
 
-                        
+
                     </div>
                     <div className="link">
                         <Row>
-                            <Col xs={24} sm={12} md={6} ><LinkedinOutlined style={{ fontSize: '30px' }} /></Col>
-                            <Col xs={24} sm={12} md={6} ><MediumOutlined style={{ fontSize: '30px' }} /></Col>
-                            <Col xs={24} sm={12} md={6} ><EnvironmentOutlined style={{ fontSize: '30px' }} /></Col>
-                            <Col xs={24} sm={12} md={6} ><PhoneOutlined style={{ fontSize: '30px' }} /></Col>
+                            {info2?.Social_Graphs?.map((item, index) => {
+                                return (
+                                    <Col key={index} xs={24} sm={12} md={6} ><div onClick={() => { window.open(item.website, "_blank"); }} dangerouslySetInnerHTML={{ __html: item?.Icon2 }}></div></Col>
+                                )
+                            })}
+
 
                         </Row>
                     </div>
@@ -80,25 +91,36 @@ export default function Footer() {
                 <div className="bottom">
                     <Row justify={'space-between'}>
                         <Col xs={24} sm={6}><span className='item'>Shenzhen Stock Exchange code:301205</span></Col>
-                        <Col xs={24} sm={6}><span className='item'>Copyright 2023 Linktel Technologise Co.,Ltd. All rights reserved</span><a onClick={
-                            () => window.scrollTo({
-                                top: 0,
-                                behavior: "smooth"
-                            })} className='svg' style={{ backgroundImage: `url(${imgBg})` }}></a></Col>
+                        <Col xs={24} sm={12}>
+                            <div style={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
+                                <span className='item'>
+
+                                    Copyright 2023 Linktel Technologise Co.,Ltd. All rights reserved</span><a onClick={
+                                        () => window.scrollTo({
+                                            top: 0,
+                                            behavior: "smooth"
+                                        })} className='svg' style={{ backgroundImage: `url(${imgBg})`, display: 'inline-block' }}></a>
+                            </div>
+                        </Col>
                     </Row>
                 </div>
             </div>
             <div className='ph'>
-                <div className='link' onClick={() => toPage('products')}>Products</div>
-                <div className='link' onClick={() => toPage('technology')}>Technology</div>
-                <div className='link' onClick={() => toPage('company')}>Company</div>
-                <div className='link' onClick={() => toPage('career')}>Career</div>
-                <div className='link' onClick={() => toPage('contact')}>Contact</div>
+                {info?.nextmenu?.map((item, index) => {
+                    return (
+                        <div key={index} className='link' onClick={() => toPage(item?.link)}>{item?.menu}</div>
+
+                    )
+                })}
+                
                 <ul style={{ listStyle: 'none' }} className="share">
-                    <li><a href="https://www.linkedin.com/company/linktel/" className="icon-linkedin iconfont"><LinkedinOutlined style={{ fontSize: '30px' }} /></a></li>
-                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#firve" className="icon-youxiang1 iconfont"><MediumOutlined style={{ fontSize: '30px' }} /></a></li>
-                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact#one" className="icon-dingwei1 iconfont"><EnvironmentOutlined style={{ fontSize: '30px' }} /></a></li>
-                    <li><a href="http://www.linkteltech.com/index.php?r=site%2Fcontact" className="icon-dianhua iconfont"><PhoneOutlined style={{ fontSize: '30px' }} /></a></li>
+                    {info2?.Social_Graphs?.map((item, index) => {
+                        return (
+                            <li key={index}><a href={item.website} className=" iconfont"><div dangerouslySetInnerHTML={{ __html: item?.Icon2 }}></div></a></li>
+
+                        )
+                    })}
+
                 </ul>
                 <div className="footer__b g-flex">
                     <p>Shenzhen Stock Exchange code: 301205</p>
