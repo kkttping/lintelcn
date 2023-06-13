@@ -29,6 +29,10 @@ module.exports = {
         target: "https://linktelcms.zeaylu.com",
         changeOrigin: true,
       },
+      "/files": {
+        target: "https://linktelcms.zeaylu.com",
+        changeOrigin: true,
+      },
     },
   },
 };
