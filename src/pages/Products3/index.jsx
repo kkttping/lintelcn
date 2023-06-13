@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './index.scss'
 import img_bg from '@/static/img/bg_3.jpg'
 import { Carousel, Row, Col, Table } from 'antd'
@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import Http from "@/utils/http";
 import {
     CloudDownloadOutlined
-  } from '@ant-design/icons';
+} from '@ant-design/icons';
 import ConstValue from "@/utils/value";
 import { useNavigate } from "react-router-dom";
 
@@ -17,6 +17,8 @@ export default function Products3() {
     const getParams = useParams();
     const [info, setInfo] = useState({});
     const [info2, setInfo2] = useState([{}]);
+    const [infoImg, setInfoImg] = useState([]);
+
     const navigate = useNavigate()
 
     const selectArr = [{
@@ -96,20 +98,20 @@ export default function Products3() {
             key: 'operation',
             fixed: 'right',
             width: 59,
-            render: () =><div className='download'><a onClick={()=>{download(ConstValue.url + "assets/" + info2[0]?.download)}} ><CloudDownloadOutlined /></a> </div> ,
+            render: () => <div className='download'><a onClick={() => { download(ConstValue.url + "assets/" + info2[0]?.download) }} ><CloudDownloadOutlined /></a> </div>,
         },
     ];
     function download(url = '', fileName = 'data') {
         const a = document.createElement('a');
         a.style.display = 'none';
         a.setAttribute('target', '_blank');
-        
+
         fileName && a.setAttribute('download', fileName);
         a.href = url;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-      }
+    }
     const selectChange = (index) => {
         carRfe.current.goTo(index); setActivtyKey(index);
     }
@@ -123,46 +125,58 @@ export default function Products3() {
         let res = await Http.to.items("Pluggable_Transceiver/" + getParams?.id).readByQuery({
             sort: ['id'],
         });
-        console.log(res.data);
-        getInfo2(res.data.specification[0])
+        let res2 = await Http.to.items("Pluggable_Transceiver_files_1").readByQuery({
+            fields: ['*'],
+            filter: { "Pluggable_Transceiver_id": res.data?.id + '' }
+        });
+        console.log(res);
+        setInfoImg(res2.data);
+        getInfo2(res.data.specification)
         setInfo(res.data)
     }
     const getInfo2 = async (id) => {
         let res = await Http.to.items("product_specifications/" + id).readByQuery({
             sort: ['id'],
         });
+
         setInfo2([{
             key: 1,
             ...res.data
         }])
         console.log(res.data);
     }
-    const navInfo={
-        '1':'Pluggable Transceiver',
-        '2':'Optical Engine',
-        '3':'NPO/CPO ELSFP & OE Connectivity'
+    const navInfo = {
+        '1': 'Pluggable Transceiver',
+        '2': 'Optical Engine',
+        '3': 'NPO/CPO ELSFP & OE Connectivity'
     }
     return (
         <div className='products3'>
-            <NavLink title1={'Products'} link1={()=>{toPage('products')}} title2={navInfo[getParams?.id2]} link2={()=>{toPage('products2/'+getParams?.id2)}} title3={info?.name} />
+            <NavLink title1={'Products'} link1={() => { toPage('products') }} title2={navInfo[getParams?.id2]} link2={() => { toPage('products2/' + getParams?.id2) }} title3={info?.name} />
 
             <div className='top_bg'>
-                <div className='bg'><Carousel ref={carRfe} style={{ height: '100%' }} dots={false}  >
-                    <div>
-                        <img src={img_bg} alt="" />
-                    </div>
-                    <div>
-                        <img src={img_bg} alt="" />
-                    </div>
-                    <div>
-                        <img src={img_bg} alt="" />
-                    </div>
-                </Carousel ></div >
+                <div className='bg'>
+                    <Carousel ref={carRfe} style={{ height: '100%' }} dots={false}  >
+                        {infoImg.map((item, index) => {
+                            return (
+                                <div key={index}>
+                                    <img src={ConstValue.url + "assets/" + item.directus_files_id} alt="" />
+                                </div>
+                            )
+
+                        })}
+                        {infoImg.length === 0 &&info?.image&& (
+                            <div >
+                                <img src={ConstValue.url + "assets/" + info?.image} alt="" />
+                            </div>
+                        )}
+                    </Carousel >
+                </div >
                 <div className="select">
-                    {selectArr.map((item, index) => {
+                    {infoImg.map((item, index) => {
                         return (
                             <div key={index} className={"item " + ((activtyKey === index) ? 'activtyitem' : '')} onClick={() => selectChange(index)}>
-                                <img src={item.src} alt="" />
+                                <img src={ConstValue.url + "assets/" + item?.directus_files_id} alt="" />
                             </div>
                         )
                     })}
@@ -185,12 +199,9 @@ export default function Products3() {
                                 <div className='title'>
                                     Features
                                 </div>
-                                <div className='item_content'>
-                                    {info?.features
-}
-                                </div>
+                                <div className='item_content' dangerouslySetInnerHTML={{__html:info?.features}}></div>
                             </div>
-                            
+
                         </div>
                     </Col>
                 </Row>

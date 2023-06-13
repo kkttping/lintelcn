@@ -78,7 +78,7 @@ export default function AboutHome() {
                                 <div className="select_img">
                                     {leadershipList.map((item, index) => {
                                         return (
-                                            <div className={imgSelect === index ? 'select_img activty' : 'select_img'} onClick={() => setImgSelect(index)}><img src={ConstValue.url + "assets/" + item?.Thumbnail
+                                            <div key={index} className={imgSelect === index ? 'select_img activty' : 'select_img'} onClick={() => setImgSelect(index)}><img src={ConstValue.url + "assets/" + item?.Thumbnail
 
                                         } alt="" /></div>
 

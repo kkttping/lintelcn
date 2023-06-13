@@ -12,7 +12,14 @@ export default function NavBottom(porps) {
     const [items2, setItem2] = useState([])
     const navigate = useNavigate()
 
-    const toPage = (address) => {
+    const toPage = (address, data) => {
+        if (data) {
+            navigate('/' + address + '/' + data);
+        window.location.reload()
+
+            return
+        }
+        console.log(address, data);
         navigate('/' + address);
         window.location.reload()
 
@@ -36,15 +43,15 @@ export default function NavBottom(porps) {
     const productsPage = (
         <div className='products_nav'>
             {info?.nextmenu?.[0]?.nextmenu?.
-                map((item,index) => {
+                map((item, index) => {
 
                     return (
                         <div className='item' key={index} >
                             <div className='img' dangerouslySetInnerHTML={{ __html: item?.img }}></div>
-                            <div className='title' onClick={()=>toPage(item?.link)}>{item?.menu
-}</div>
+                            <div className='title' onClick={() => toPage(item?.link)}>{item?.menu
+                            }</div>
                             {item?.nextmenu?.map(item2 => {
-                                return <p onClick={()=>toPage(item2?.link)}  key={item2.menuby}>{item2.menu}</p>
+                                return <p onClick={() => toPage(item2?.link,item2?.menuby)} key={item2.menuby}>{item2.menu}</p>
                             })}
 
 
@@ -57,30 +64,30 @@ export default function NavBottom(porps) {
     );
     const aboutPage = (
         <div className='about_nav'>
-            {info?.nextmenu?.[2]?.nextmenu?.map((item,index) => {
+            {info?.nextmenu?.[2]?.nextmenu?.map((item, index) => {
 
                 return (
-                    <div key={index} onClick={()=>toPage(item?.link)} >{item?.menu}</div>
+                    <div key={index} onClick={() => toPage(item?.link)} >{item?.menu}</div>
                 )
             })}
         </div>
     );
     const marketsPage = (
         <div className='about_nav'>
-            {info?.nextmenu?.[1]?.nextmenu?.map((item,index) => {
+            {info?.nextmenu?.[1]?.nextmenu?.map((item, index) => {
 
                 return (
-                    <div key={index} onClick={()=>toPage(item?.link)} >{item?.menu}</div>
+                    <div key={index} onClick={() => toPage(item?.link)} >{item?.menu}</div>
                 )
             })}
         </div>
     );
     const careerPage = (
         <div className='about_nav'>
-            {info?.nextmenu?.[3]?.nextmenu?.map((item,index) => {
+            {info?.nextmenu?.[3]?.nextmenu?.map((item, index) => {
 
                 return (
-                    <div key={index} onClick={()=>toPage(item?.link)} >{item?.menu}</div>
+                    <div key={index} onClick={() => toPage(item?.link)} >{item?.menu}</div>
                 )
             })}
         </div>
