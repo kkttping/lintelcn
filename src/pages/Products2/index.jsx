@@ -120,7 +120,7 @@ export default function Products2() {
                                     <div key={index} className='item'>
                                         <Row justify={'center'}>
                                             <Col>
-                                                <div className='img'></div>
+                                                <div className='img' ></div>
                                             </Col>
                                             <Col>
                                                 <div className='info_item'>
