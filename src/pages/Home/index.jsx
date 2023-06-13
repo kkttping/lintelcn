@@ -148,6 +148,7 @@ export default function Home() {
     const next = (data) => {
         if (data instanceof Array) {
             setshowList(data);
+           
         } else {
             toPage(data);
             setshowmask(false);

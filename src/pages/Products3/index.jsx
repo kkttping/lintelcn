@@ -129,30 +129,19 @@ export default function Products3() {
             fields: ['*'],
             filter: { "Pluggable_Transceiver_id": res.data?.id + '' }
         });
-        console.log(res);
         setInfoImg(res2.data);
         getInfo2(res.data.specification)
         setInfo(res.data)
     }
     const getInfo2 = async (ids) => {
-        let arr=[]
+        let arr = []
         for (let i = 0; i < ids.length; i++) {
             let res = await Http.to.items("product_specifications/" + ids[i]).readByQuery({
                 sort: ['id'],
             });
             // res.data.key=i;
             arr.push(res.data);
-            arr.push(res.data);
-            arr.push(res.data);
-            arr.push(res.data);
-            arr.push(res.data);
-            arr.push(res.data);
-            arr.push(res.data);
-            arr.push(res.data);
-            arr.push(res.data);
-            arr.push(res.data);
-            arr.push(res.data);
-            arr.push(res.data);
+
 
         }
 
@@ -167,43 +156,38 @@ export default function Products3() {
     return (
         <div className='products3'>
             <NavLink title1={'Products'} link1={() => { toPage('products') }} title2={navInfo[getParams?.id2]} link2={() => { toPage('products2/' + getParams?.id2) }} title3={info?.name} />
+            {infoImg.length !== 0 &&
+                (
+                    <div className='top_bg'>
+                        <div className='bg'>
 
-            <div className='top_bg'>
-                <div className='bg'>
+                            <Carousel ref={carRfe} style={{ height: '100%' }} dots={false}  >
 
-                    <Carousel ref={carRfe} style={{ height: '100%' }} dots={false}  >
-                        {info?.image && (
-                            <div >
-                                <img src={ConstValue.url + "assets/" + info?.image} alt="" />
-                            </div>
-                        )}
-                        {infoImg.map((item, index) => {
-                            return (
-                                <div key={index}>
-                                    <img src={ConstValue.url + "assets/" + item.directus_files_id} alt="" />
-                                </div>
-                            )
+                                {infoImg.map((item, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <img src={ConstValue.url + "assets/" + item.directus_files_id} alt="" />
+                                        </div>
+                                    )
 
-                        })}
+                                })}
 
-                    </Carousel >
-                </div >
-                <div className="select">
-                    {info?.image && (
-                        <div key={0} className={"item " + ((activtyKey === 0) ? 'activtyitem' : '')} onClick={() => selectChange(0)}>
-                            <img src={ConstValue.url + "assets/" + info?.image} alt="" />
+                            </Carousel >
+                        </div >
+                        <div className="select">
+
+                            {infoImg.map((item, index) => {
+                                return (
+                                    <div key={index} className={"item " + ((activtyKey === (index )) ? 'activtyitem' : '')} onClick={() => selectChange((index))}>
+                                        <img src={ConstValue.url + "assets/" + item?.directus_files_id} alt="" />
+                                    </div>
+                                )
+                            })}
                         </div>
+                    </div>
+                )
+            }
 
-                    )}
-                    {infoImg.map((item, index) => {
-                        return (
-                            <div key={index + 1} className={"item " + ((activtyKey === (index + 1)) ? 'activtyitem' : '')} onClick={() => selectChange((index + 1))}>
-                                <img src={ConstValue.url + "assets/" + item?.directus_files_id} alt="" />
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
             <div className='content'>
                 <Row justify={'center'}>
                     <Col xs={24} sm={24} xl={8}>
@@ -234,7 +218,7 @@ export default function Products3() {
                             columns={columns}
                             dataSource={info2}
                             scroll={{ x: 1200 }}
-                            pagination={{ position: [ 'bottomCenter'],pageSize:10,hideOnSinglePage:true}}
+                            pagination={{ position: ['bottomCenter'], pageSize: 10, hideOnSinglePage: true }}
                         />
                     </div>
                 </div>

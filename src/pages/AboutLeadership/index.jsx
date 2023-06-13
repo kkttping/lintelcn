@@ -56,7 +56,6 @@ export default function AboutLeadership() {
             sort: ['sort'],
         });
         setLeadershipListType(res.data);
-        console.log(res);
     }
     const CardItem = (text1,id) => {
         let temp = 0;

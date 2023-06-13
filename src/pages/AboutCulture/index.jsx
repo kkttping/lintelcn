@@ -26,7 +26,6 @@ export default function AboutCulture() {
             sort: ['id'],
         });
         setCultureList(res.data)
-        console.log(res.data);
     }
     return (
         <div className='about_culture'>

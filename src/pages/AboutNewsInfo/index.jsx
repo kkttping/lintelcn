@@ -33,7 +33,6 @@ export default function AboutNewsInfo() {
                     getParams?.type
             }
         });
-        console.log(res.data);
         let res2 = await Http.to.items("New_Content").readByQuery({
             sort: ['id'],
             fields: [' *,item.*'],
@@ -44,7 +43,6 @@ export default function AboutNewsInfo() {
             fields: ['*,item.*'],
             filter: { 'collection': 'Text', }
         }); 
-        console.log(res3);
 
         res.data.Content.forEach((item) => {
             res2?.data?.forEach((item2) => {

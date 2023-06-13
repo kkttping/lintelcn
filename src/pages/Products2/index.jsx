@@ -70,7 +70,6 @@ export default function Products2() {
             filter: { 'Advanced_category': getParams?.id, category: curr }
         });
         setInfo3(res.data)
-        console.log(res.data)
     }
     const menuonClick = (index) => {
         setcurr(index.key);

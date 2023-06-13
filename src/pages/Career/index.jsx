@@ -28,7 +28,6 @@ export default function Career() {
             sort: ['id'],
         });
         setInfo(res.data)
-        console.log(res);
     }
     return (
         <div className='career'>

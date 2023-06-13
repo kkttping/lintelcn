@@ -2,7 +2,6 @@ import React from 'react'
 import './index.scss'
 export default function CardPersonInfo(props) {
     const { title,name,email=[],phone } = props;
-    console.log(email);
     return (
         <div className='card_person_info'>
             <div className='content_info'>

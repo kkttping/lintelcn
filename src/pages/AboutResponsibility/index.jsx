@@ -36,7 +36,6 @@ export default function AboutResponsibility() {
         
 
         setInfo(res.data);
-        console.log(res.data);
     }
     const timeSet = (num) => {
         if (num < 10) {

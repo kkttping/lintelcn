@@ -79,13 +79,11 @@ export default function HomePage() {
             }
 
         })
-        console.log(arr2);
         setInfoList(arr2)
 
         let time = window.setInterval(() => {
             let cur = activtyKey;
             setActivtyKey((activtyKey) => (activtyKey + 1) % lastArr.length);
-            console.log(infoList.length);
         }, 6000)
         return () => {
             clearInterval(time);

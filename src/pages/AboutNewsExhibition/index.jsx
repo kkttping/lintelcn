@@ -63,7 +63,6 @@ export default function AboutNewsExhibition() {
 
         setInfo(arr);
 
-        console.log(arr)
     }
 
     return (

@@ -25,7 +25,6 @@ export default function CareerOpportunities() {
             sort: ['id'],
         });
         setInfo(res.data)
-        console.log(res);
     }
     return (
         <div className='career_opportunities'>

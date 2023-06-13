@@ -31,7 +31,6 @@ export default function Footer() {
             sort: ['id'],
         });
         setInfo(res.data);
-        console.log(res.data);
 
     }
     const getInfo = async () => {
@@ -39,7 +38,6 @@ export default function Footer() {
             sort: ['id'],
         });
         setInfo2(res.data);
-        console.log(res.data);
     }
     return (
         <div className='com_footer'>

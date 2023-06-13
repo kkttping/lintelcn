@@ -36,7 +36,6 @@ export default function AboutHome() {
             sort: ['id'],
         });
         setLeadershipList(res.data)
-        console.log(res);
     }
 
     return (

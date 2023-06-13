@@ -19,7 +19,6 @@ export default function NavBottom(porps) {
 
             return
         }
-        console.log(address, data);
         navigate('/' + address);
         window.location.reload()
 

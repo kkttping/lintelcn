@@ -51,7 +51,6 @@ export default function AboutContact() {
         } catch (e) {
             setloadFlag(false)
 
-            console.log(e);
             messageApi.open({
                 key: 'updatable',
                 type: 'error',
@@ -61,7 +60,6 @@ export default function AboutContact() {
 
     };
     const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
     };
     const mapRef = useRef()
     const formRef = useRef()
@@ -119,7 +117,6 @@ export default function AboutContact() {
         let res = await Http.to.items("Marketing_").readByQuery({
         });
         setLinkList(res.data)
-        console.log(res.data);
     }
     return (
         <div className='about_contact'>
