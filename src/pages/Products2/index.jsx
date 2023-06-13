@@ -121,7 +121,7 @@ export default function Products2() {
                                     <div key={index} className='item'>
                                         <Row justify={'center'}>
                                             <Col>
-                                                <div className='img'></div>
+                                                <div className='img' style={{backgroundImage:`url(${ConstValue.url + "assets/"+item?.image})`}}></div>
                                             </Col>
                                             <Col>
                                                 <div className='info_item'>
