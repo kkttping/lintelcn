@@ -134,16 +134,30 @@ export default function Products3() {
         getInfo2(res.data.specification)
         setInfo(res.data)
     }
-    const getInfo2 = async (id) => {
-        let res = await Http.to.items("product_specifications/" + id).readByQuery({
-            sort: ['id'],
-        });
+    const getInfo2 = async (ids) => {
+        let arr=[]
+        for (let i = 0; i < ids.length; i++) {
+            let res = await Http.to.items("product_specifications/" + ids[i]).readByQuery({
+                sort: ['id'],
+            });
+            // res.data.key=i;
+            arr.push(res.data);
+            arr.push(res.data);
+            arr.push(res.data);
+            arr.push(res.data);
+            arr.push(res.data);
+            arr.push(res.data);
+            arr.push(res.data);
+            arr.push(res.data);
+            arr.push(res.data);
+            arr.push(res.data);
+            arr.push(res.data);
+            arr.push(res.data);
 
-        setInfo2([{
-            key: 1,
-            ...res.data
-        }])
-        console.log(res.data);
+        }
+
+
+        setInfo2(arr)
     }
     const navInfo = {
         '1': 'Pluggable Transceiver',
@@ -156,13 +170,13 @@ export default function Products3() {
 
             <div className='top_bg'>
                 <div className='bg'>
-                    
+
                     <Carousel ref={carRfe} style={{ height: '100%' }} dots={false}  >
-                    {info?.image && (
-                        <div >
-                            <img src={ConstValue.url + "assets/" + info?.image} alt="" />
-                        </div>
-                    )}
+                        {info?.image && (
+                            <div >
+                                <img src={ConstValue.url + "assets/" + info?.image} alt="" />
+                            </div>
+                        )}
                         {infoImg.map((item, index) => {
                             return (
                                 <div key={index}>
@@ -179,11 +193,11 @@ export default function Products3() {
                         <div key={0} className={"item " + ((activtyKey === 0) ? 'activtyitem' : '')} onClick={() => selectChange(0)}>
                             <img src={ConstValue.url + "assets/" + info?.image} alt="" />
                         </div>
-                        
+
                     )}
                     {infoImg.map((item, index) => {
                         return (
-                            <div key={index+1} className={"item " + ((activtyKey === (index+1)) ? 'activtyitem' : '')} onClick={() => selectChange((index+1))}>
+                            <div key={index + 1} className={"item " + ((activtyKey === (index + 1)) ? 'activtyitem' : '')} onClick={() => selectChange((index + 1))}>
                                 <img src={ConstValue.url + "assets/" + item?.directus_files_id} alt="" />
                             </div>
                         )
@@ -220,7 +234,7 @@ export default function Products3() {
                             columns={columns}
                             dataSource={info2}
                             scroll={{ x: 1200 }}
-                            pagination={false}
+                            pagination={{ position: [ 'bottomCenter'],pageSize:10,hideOnSinglePage:true}}
                         />
                     </div>
                 </div>

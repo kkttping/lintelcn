@@ -6,12 +6,15 @@ import { useEffect } from 'react';
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";
 import {
-  LoadingOutlined,VideoCameraAddOutlined
+  LoadingOutlined, VideoCameraAddOutlined
 
 } from '@ant-design/icons';
+import { useNavigate } from "react-router-dom";
+
 export default function Search() {
   const [searchValue, setSearchValue] = useState('');
   const [searchV, setSearchV] = useState('');
+  const navigate = useNavigate()
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,9 +23,9 @@ export default function Search() {
   useEffect(() => {
   }, [])
   const getInfo = async () => {
-    if(searchValue===''){
+    if (searchValue === '') {
       setinfo([])
-      return 
+      return
     }
     setIsLoading(true)
     setSearchV(searchValue);
@@ -34,6 +37,9 @@ export default function Search() {
 
     setinfo(res.data)
   }
+  const toPage = (address, id1, id2) => {
+    navigate('/' + address + '/' + id1 + '/' + id2);
+  }
   return (
     <div className='search'>
       <div className='top'>
@@ -43,7 +49,7 @@ export default function Search() {
       <div className='content'>
         <div className='title'>Search result:</div>
         <div>
-        {(isLoading) ? <div className='loding_search'> <LoadingOutlined/> </div> :''}
+          {(isLoading) ? <div className='loding_search'> <LoadingOutlined /> </div> : ''}
 
           {
             info.map((item, index) => {
@@ -52,9 +58,9 @@ export default function Search() {
                   <Col>
                     <img src={ConstValue.url + "assets/" + item?.image} alt="" /></Col>
                   <Col>
-                    <div className='info_box'><div className='info_title' dangerouslySetInnerHTML={{__html:item?.name?.replace( RegExp(searchV,"g"), `<i class="color_c">${searchV}</i>`)}}></div>
-                      <div className='info_text' dangerouslySetInnerHTML={{__html:item?.description?.replace( RegExp(searchV,"g"), `<b class="color_c">${searchV}</b>`)}}></div></div>
-                    <span onClick={() => { }}>READ MORE</span>
+                    <div className='info_box'><div className='info_title' dangerouslySetInnerHTML={{ __html: item?.name?.replace(RegExp(searchV, "g"), `<i class="color_c">${searchV}</i>`) }}></div>
+                      <div className='info_text' dangerouslySetInnerHTML={{ __html: item?.description?.replace(RegExp(searchV, "g"), `<b class="color_c">${searchV}</b>`) }}></div></div>
+                    <span onClick={() => {  toPage('products3',  item?.category,item?.Advanced_category) }}>READ MORE</span>
 
                   </Col>
                 </Row>
