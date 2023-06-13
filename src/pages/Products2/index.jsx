@@ -45,9 +45,10 @@ export default function Products2() {
         });
         setInfo2(res.data);
         if (getParams?.itemId) {
-            res.data.some((item)=>{
+            res.data.some((item,index)=>{
                 if(item.name===getParams?.itemId){
                     setcurr(item?.id + '');
+                    setcurr2(index)
                     return true
                 }
             })
