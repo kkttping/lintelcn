@@ -20,8 +20,8 @@
 
         .title_info {
             margin-bottom: 33px;
-
-            width: 720px;
+            padding: 20px;
+            max-width: 720px;
             opacity: 0.8;
             color: rgb(0, 0, 0);
             font-size: 20px;
@@ -33,8 +33,8 @@
 
         .info2 {
             margin-bottom: 52px;
-
-            width: 720px;
+            padding: 20px;
+            max-width: 720px;
             opacity: 0.8;
             color: rgb(85, 85, 85);
             font-family: Barlow;
@@ -56,7 +56,9 @@
         }
 
         .img2 {
-            width: 720px;
+            padding: 20px;
+            width:85%;
+            max-width: 720px;
             flex-direction: column;
             display: flex;
             align-items: start;

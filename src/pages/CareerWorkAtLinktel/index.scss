@@ -6,21 +6,22 @@
         align-items: center;
         flex-direction: column;
         .img {
-            height: 387.48px;
+            height: 380px;
             display: flex;
             justify-content: center;
             margin: 0 20px;
-
+            width: 30vw;
             img {
                 height: 100%;
-                object-fit: contain;
+                object-fit: cover;
             }
         }
 
         .title {
             margin-top: 79px;
             margin-bottom: 65px;
-            width: 720px;
+            padding:20px;
+            max-width: 720px;
             opacity: 0.8;
             color: rgb(0, 0, 0);
             font-size: 20px;
@@ -33,8 +34,8 @@
         .info {
            margin-top: 65px;
            margin-bottom: 20px;
-
-            width: 720px;
+            padding:20px;
+            max-width: 720px;
 
             opacity: 0.8;
             color: rgb(85, 85, 85);
@@ -47,7 +48,8 @@
 
         .info2 {
             padding: 22px 0;
-            width: 720px;
+            padding:20px;
+            max-width: 720px;
             border-top: 1px solid rgb(0, 0, 0,0.1);
             border-bottom: 1px solid rgb(0, 0, 0,0.1);
             opacity: 0.8;
@@ -70,9 +72,8 @@
         }
 
         .info3 {
-            padding: 22px 0;
-
-            width: 720px;
+            padding: 20px;
+            max-width: 720px;
             border-top: 1px solid rgb(0, 0, 0,0.1);
             border-bottom: 1px solid rgb(0, 0, 0,0.1);
             opacity: 0.8;
