@@ -71,7 +71,24 @@
         width: 840px;
         max-width: 80vw;
         margin: 0 auto;
-
+        .ant-pagination{
+            display: flex;
+            justify-content: center;
+            .ant-pagination-next,.ant-pagination-prev,.ant-select{
+                display: none;
+            }
+            
+            .ant-pagination-item-active{
+                border-color: transparent;
+                background-color: transparent;
+                a{
+                    color: #1677ff !important;
+                }
+            }
+            .ant-pagination-item a{
+                color: #00000076;
+            }
+        }
         .color_c {
             color: rgb(0, 61, 166);
         }
