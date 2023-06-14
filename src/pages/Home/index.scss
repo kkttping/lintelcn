@@ -65,7 +65,7 @@
         flex-direction: column;
         justify-content: space-around;
         transition: all 0.5s;
-        margin-top: 20px;
+        margin-top: 15px;
       }
 
       &>div {
@@ -110,7 +110,7 @@
     .tag {
       position: absolute;
       background-image: url("../../static/img/nav_tag.png");
-      height: 54px;
+      height: 40px;
       left: 29px;
       background-repeat: no-repeat;
       width: 120px;
