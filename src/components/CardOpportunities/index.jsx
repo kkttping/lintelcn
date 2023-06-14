@@ -66,12 +66,7 @@ export default function CardOpportunities(props) {
     return (
         <div className='card_opportunities'>
             {contextHolder}
-            <div className='upload_svg'>
-                <Upload {...propsD} >
-                    <div className='name' >Apply</div>
-                </Upload>
 
-            </div>
             <span className='read_more' onClick={() => { setIsModalOpen(true) }}>READ MORE</span>
             <div>
                 <div className="title_tag">Position</div>
