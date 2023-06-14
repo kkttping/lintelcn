@@ -15,7 +15,7 @@ export default function Home() {
 
     const [showmask, setshowmask] = useState(false);
     const [showList, setshowList] = useState([]);
-    const [pFlag, setpFlag] = useState(0);
+    const [pFlag, setpFlag] = useState(-1);
     const [info, setInfo] = useState([])
 
     const [currentIndex, setCurrentIndex] = useState(-1);
@@ -116,8 +116,10 @@ export default function Home() {
         setCurrent(index.key)
     }
     const toPage = (address) => {
-        setshowmask(false)
+        setshowmask(false);
         navigate('/' + address);
+        window.location.reload()
+
     }
     useEffect(() => {
         if (window.location.hash === '#/home') {
@@ -167,7 +169,7 @@ export default function Home() {
                     setCurrent('home')
                 }
             }}>
-                <div className="tag">
+                <div className="tag" onClick={()=>{toPage('home')}}>
                 </div>
                 <div className="menu">
                     <Menu current={[current]} onClick={menuonClick} mode="horizontal"  >
@@ -193,7 +195,7 @@ export default function Home() {
                         return (
                             <div key={index} className={ 'title_nav' } onClick={()=>setpFlag(index)} >
                                 {item.menu}
-                                <div className='nav_box' style={pFlag !== index ? {height:0} : {height:'200px'}}>
+                                <div className='nav_box' style={pFlag !== index ? {height:0} : {height:item.nextmenu.length*30+'px'}}>
                                     {item.nextmenu.map((item2, index2) => {
                                         return (
                                             <div key={index2} className='info_nav' onClick={()=>{toPage(item2.link)}}>
