@@ -96,7 +96,7 @@ export default function HomePage() {
             fields: ['*'],
 
 
-            filter: { 'Homepage': 'true',status:"published" }
+            filter: { 'Homepage': 'true', status: "published" }
         });
         let res2 = await Http.to.items("New_Content").readByQuery({
             sort: ['id'],
@@ -176,45 +176,49 @@ export default function HomePage() {
 
             </div>
             <div className='content'>
-
-                <div className='event'>
-                    <Parallax
-                        animation={{ x: 0 }}
-                        style={{ transform: 'translateX(-200px)', margin: '0px auto' }}
-                        className="code-box-shape"
-                    >
-                        <div className='title_h1'>
-                            Events
-                        </div>
-                        <Row justify={"center"}>
-                            <Col sm={24} xl={10} >
-                                <div className='infomation'>
-                                    <div className='title'>
-                                        {newInfo?.Title}
-                                    </div>
-                                    <div className='info' dangerouslySetInnerHTML={{ __html: newInfo?.Exhibition?.replace(/\n/g, "<br/>") }}>
-                                    </div>
-                                    <span onClick={() => { toPage('newsInfo/' + newInfo?.id + '/' + newInfo?.type) }}>READ MORE</span>
+                {
+                    newInfo?.Title && (
+                        <div className='event'>
+                            <Parallax
+                                animation={{ x: 0 }}
+                                style={{ transform: 'translateX(-200px)', margin: '0px auto' }}
+                                className="code-box-shape"
+                            >
+                                <div className='title_h1'>
+                                    Events
                                 </div>
-                            </Col>
-                            <Col sm={24} xl={14} >
-                                <div className='img_info'>
+                                <Row justify={"center"}>
+                                    <Col sm={24} xl={10} >
+                                        <div className='infomation'>
+                                            <div className='title'>
+                                                {newInfo?.Title}
+                                            </div>
+                                            <div className='info' dangerouslySetInnerHTML={{ __html: newInfo?.Exhibition?.replace(/\n/g, "<br/>") }}>
+                                            </div>
+                                            <span onClick={() => { toPage('newsInfo/' + newInfo?.id + '/' + newInfo?.type) }}>READ MORE</span>
+                                        </div>
+                                    </Col>
+                                    <Col sm={24} xl={14} >
+                                        <div className='img_info'>
 
-                                    {newImg && <div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>
+                                            {newImg && <div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>
 
-                                        <div className='time'>
-                                            <span >{(new Date(newInfo?.date_created)).getFullYear()}<br /></span>
-                                            <span>{timeSet((new Date(newInfo?.date_created)).getMonth())}-{timeSet((new Date(newInfo?.date_created)).getDay())}</span>
+                                                <div className='time'>
+                                                    <span >{(new Date(newInfo?.date_created)).getFullYear()}<br /></span>
+                                                    <span>{timeSet((new Date(newInfo?.date_created)).getMonth())}-{timeSet((new Date(newInfo?.date_created)).getDay())}</span>
+                                                </div>
+
+                                            </div>}
                                         </div>
 
-                                    </div>}
-                                </div>
+                                    </Col>
+                                </Row>
+                            </Parallax>
 
-                            </Col>
-                        </Row>
-                    </Parallax>
+                        </div>
+                    )
+                }
 
-                </div>
                 <div className='leading' style={{ backgroundImage: `url(${img_bg2})` }}>
                     A Solution and Service Provider <br /> of High Speed Optical I/O Connectivity
                 </div>
