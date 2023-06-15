@@ -67,7 +67,7 @@ export default function Products2() {
 
         let res = await Http.to.items("Pluggable_Transceiver").readByQuery({
             fields: ['*'],
-            filter: { 'Advanced_category': getParams?.id, category: curr }
+            filter: { 'Advanced_category': getParams?.id, category: curr,status:"published" }
         });
         setInfo3(res.data)
     }

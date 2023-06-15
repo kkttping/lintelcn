@@ -29,7 +29,7 @@ export default function AboutNewsExhibition() {
             filter: {
                 type
                     :
-                    "Exhibition"
+                    "Exhibition",status:"published"
             }
         });
         let res2 = await Http.to.items("New_Content").readByQuery({

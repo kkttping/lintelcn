@@ -34,6 +34,7 @@ export default function Search() {
     setSearchV(searchValue);
     let res = await Http.to.items('Pluggable_Transceiver').readByQuery({
       sort: ['id'],
+      filter:{status:"published"},
       search: searchValue
     });
     let res2 = await Http.to.items('product_specifications').readByQuery({
@@ -42,7 +43,7 @@ export default function Search() {
     });
     let fildata = []
     res2.data.forEach(element => {
-      fildata.push({ "_and": [{ "specification": { "id": { "_eq": element.id + '' } } }] })
+      fildata.push({ "_and": [{ "specification": { "id": { "_eq": element.id + '' } } },{status:"published"}] })
     });
     
     let res3 = await Http.to.items('Pluggable_Transceiver').readByQuery({

@@ -96,7 +96,7 @@ export default function HomePage() {
             fields: ['*'],
 
 
-            filter: { 'Homepage': 'true' }
+            filter: { 'Homepage': 'true',status:"published" }
         });
         let res2 = await Http.to.items("New_Content").readByQuery({
             sort: ['id'],

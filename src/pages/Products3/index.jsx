@@ -124,6 +124,7 @@ export default function Products3() {
     const getInfo = async () => {
         let res = await Http.to.items("Pluggable_Transceiver/" + getParams?.id).readByQuery({
             sort: ['id'],
+            filter: { status: "published" }
         });
         let res2 = await Http.to.items("Pluggable_Transceiver_files_1").readByQuery({
             fields: ['*'],
@@ -133,20 +134,26 @@ export default function Products3() {
         getInfo2(res.data.specification)
         setInfo(res.data)
     }
+
     const getInfo2 = async (ids) => {
+        let res3 = await Http.to.items("product_specifications" ).readByQuery({
+            sort: ['id'],
+            filter:{'_or':ids.map(item=>{return {'id':item}})}
+        });
+        console.log(res3);
         let arr = []
-        for (let i = 0; i < ids.length; i++) {
-            let res = await Http.to.items("product_specifications/" + ids[i]).readByQuery({
-                sort: ['id'],
-            });
-            // res.data.key=i;
-            arr.push(res.data);
+        // for (let i = 0; i < ids.length; i++) {
+        //     let res = await Http.to.items("product_specifications/" + ids[i]).readByQuery({
+        //         sort: ['id'],
+        //     });
+        //     // res.data.key=i;
+        //     arr.push(res.data);
 
 
-        }
+        // }
 
 
-        setInfo2(arr)
+        setInfo2(res3.data)
     }
     const navInfo = {
         '1': 'Pluggable Transceiver',
@@ -201,42 +208,46 @@ export default function Products3() {
                     </Col>
                     <Col xs={24} sm={24} xl={8}>
                         {
-                            info?.features&&<div className='right'>
-                            <div className='item'>
-                                <div className='title'>
-                                    Features
+                            info?.features && <div className='right'>
+                                <div className='item'>
+                                    <div className='title'>
+                                        Features
+                                    </div>
+                                    <div className='item_content' dangerouslySetInnerHTML={{ __html: info?.features }}></div>
                                 </div>
-                                <div className='item_content' dangerouslySetInnerHTML={{ __html: info?.features }}></div>
-                            </div>
 
-                        </div>
+                            </div>
                         }
-                        
+
                         {
-                            info?.application&& <div className='right' style={{marginTop:'24px'}}>
-                            <div className='item'>
-                                <div className='title'>
-                                    Application
+                            info?.application && <div className='right' style={{ marginTop: '24px' }}>
+                                <div className='item'>
+                                    <div className='title'>
+                                        Application
+                                    </div>
+                                    <div className='item_content' dangerouslySetInnerHTML={{ __html: info?.application }}></div>
                                 </div>
-                                <div className='item_content' dangerouslySetInnerHTML={{ __html: info?.application }}></div>
-                            </div>
 
-                        </div>
+                            </div>
                         }
-                       
+
                     </Col>
                 </Row>
-                <div className='table'>
-                    <div className='table_content'>
-                        <div className="title">SPECIFICATIONS</div>
-                        <Table
-                            columns={columns}
-                            dataSource={info2}
-                            scroll={{ x: 1200 }}
-                            pagination={{ position: ['bottomCenter'], pageSize: 10, hideOnSinglePage: true }}
-                        />
-                    </div>
-                </div>
+                {info2.length !== 0 &&
+                    (
+                        <div className='table'>
+                            <div className='table_content'>
+                                <div className="title">SPECIFICATIONS</div>
+                                <Table
+                                    columns={columns}
+                                    dataSource={info2}
+                                    scroll={{ x: 1200 }}
+                                    pagination={{ position: ['bottomCenter'], pageSize: 10, hideOnSinglePage: true }}
+                                />
+                            </div>
+                        </div>
+                    )}
+
             </div>
         </div>
     )

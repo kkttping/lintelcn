@@ -27,7 +27,7 @@ export default function AboutNewsEvents() {
             filter: {
                 type
                     :
-                    "Event"
+                    "Event",status:"published"
             }
         });
 

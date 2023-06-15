@@ -30,7 +30,7 @@ export default function AboutNewsInfo() {
             filter: {
                 type
                     :
-                    getParams?.type
+                    getParams?.type,status:"published"
             }
         });
         let res2 = await Http.to.items("New_Content").readByQuery({

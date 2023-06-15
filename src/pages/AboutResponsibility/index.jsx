@@ -29,7 +29,7 @@ export default function AboutResponsibility() {
             filter: {
                 type
                     :
-                    "Responsibility"
+                    "Responsibility",status:"published"
             }
         });
 
