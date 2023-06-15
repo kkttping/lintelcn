@@ -34,6 +34,13 @@ export default function AboutHome() {
     const getInfo = async () => {
         let res = await Http.to.items("Leadership").readByQuery({
             sort: ['id'],
+            filter: {
+                Recommend
+                    :
+                    true, status
+                    :
+                    "published"
+            }
         });
         setLeadershipList(res.data)
     }
@@ -58,7 +65,7 @@ export default function AboutHome() {
                     <Row justify={"center"}>
                         <Col sm={24} xl={12} >
                             <div className='human_img'>
-                                {leadershipList.length!==0&&<img src={ConstValue.url + "assets/" + leadershipList[imgSelect]?.Img} alt="" />}
+                                {leadershipList.length !== 0 && <img src={ConstValue.url + "assets/" + leadershipList[imgSelect]?.Img} alt="" />}
                                 <div className='name'>
                                     <img src={imgText} alt="" />
                                 </div>
@@ -79,11 +86,11 @@ export default function AboutHome() {
                                         return (
                                             <div key={index} className={imgSelect === index ? 'select_img activty' : 'select_img'} onClick={() => setImgSelect(index)}><img src={ConstValue.url + "assets/" + item?.Thumbnail
 
-                                        } alt="" /></div>
+                                            } alt="" /></div>
 
                                         )
                                     })}
-                                    
+
                                     <div className='img' onClick={() => { toPage('leadership', 'about') }}><img src={imgitem4} alt="" /></div>
                                 </div>
                             </div>
@@ -93,22 +100,27 @@ export default function AboutHome() {
 
                 </div>
                 <Row justify={"center"}>
-                    <Col sm={12} xl={6} >
-                        <div className='card_item'>
-                            <CardProducts link={() => { }} img={imgitem6} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Investors'} titleIn={'Investors'} info={['12312313虚拟文字']} ></CardProducts>
-                        </div>
+                    <Col  xs={24} sm={24} xl={12} >
+                        <Row>
+                            <Col xs={24}  lg={12} xl={12} >
+                                <div className='card_item'>
+                                    <CardProducts link={() => { }} img={imgitem6} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Investors'} titleIn={'Investors'} info={['12312313虚拟文字']} ></CardProducts>
+                                </div>
+                            </Col>
+                            <Col xs={24} lg={12} xl={12} >
+                                <div className='card_item'>
+                                    <div className='news'>
+                                        <div className='news_title'>News</div>
+                                        <div className='time'>03-04,2023</div>
+                                        <div className='news_info'>Linktel and MultiLane <br /> Showcase a 2xFR4 OSFP<br /> Transceiver Demo with Live<br /> 800G BERT Traffic at OFC 2022</div>
+                                        <span onClick={() => { toPage('exhibition', 'about') }}>MORE</span>
+                                    </div>
+                                </div>
+                            </Col>
+                        </Row>
                     </Col>
-                    <Col sm={12} xl={6} >
-                        <div className='card_item'>
-                            <div className='news'>
-                                <div className='news_title'>News</div>
-                                <div className='time'>03-04,2023</div>
-                                <div className='news_info'>Linktel and MultiLane <br /> Showcase a 2xFR4 OSFP<br /> Transceiver Demo with Live<br /> 800G BERT Traffic at OFC 2022</div>
-                                <span onClick={() => { toPage('exhibition', 'about') }}>MORE</span>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col sm={24} xl={12} >
+
+                    <Col  sm={24} xl={12} >
                         <div className='card_item'>
                             <CardProducts link={() => { toPage('quality', 'about') }} img={imgitem7} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Quality'} titleIn={'Quality'} info={['12312313虚拟文字']}></CardProducts>
                         </div>
