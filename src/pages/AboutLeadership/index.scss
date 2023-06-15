@@ -64,38 +64,19 @@
                         .position,
                         .name,
                         .info {
-                            color: #ffffffe3;
-                        }
-
-                        span:last-child {
-                            font-size: 14px;
-                            position: relative;
-                            cursor: pointer;
-                            padding-bottom: 8px;
                             color: #fff;
-
-                            &::after {
-                                content: '';
-                                position: absolute;
-                                bottom: 0px;
-                                left: 0;
-                                width: 96px;
-                                height: 2px;
-                                background-color: #ffffff;
-                            }
-
-                            &::before {
-                                content: '';
-                                position: absolute;
-                                left: 90px;
-                                bottom: 12px;
-                                width: 7px;
-                                height: 7px;
-                                border-right: 2px solid #ffffff;
-                                border-bottom: 2px solid #ffffff;
-                                transform: rotate(-45deg);
-                            }
                         }
+                        .readmore {
+                            color: #fff;
+                            border-bottom: 2px solid #fff;
+                            span{
+                            border-right: 2px solid #fff;
+                            border-bottom: 2px solid #fff;
+                            
+                        }
+                        }
+                        
+
                     }
 
                     .position {
@@ -137,40 +118,14 @@
                         font-weight: 400;
                         font-size: 14px;
                         line-height: 20px;
+                        height: 40px;
                         /* or 143% */
 
 
                         color: #8E8E8E;
                     }
 
-                    span:last-child {
-                        font-size: 14px;
-                        position: relative;
-                        cursor: pointer;
-                        padding-bottom: 8px;
-
-                        &::after {
-                            content: '';
-                            position: absolute;
-                            bottom: 0px;
-                            left: 0;
-                            width: 96px;
-                            height: 2px;
-                            background-color: #000000;
-                        }
-
-                        &::before {
-                            content: '';
-                            position: absolute;
-                            left: 90px;
-                            bottom: 12px;
-                            width: 7px;
-                            height: 7px;
-                            border-right: 2px solid #000000;
-                            border-bottom: 2px solid #000000;
-                            transform: rotate(-45deg);
-                        }
-                    }
+                    
                 }
 
                 .img {

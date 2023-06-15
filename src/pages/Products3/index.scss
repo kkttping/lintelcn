@@ -92,10 +92,41 @@
 
     .content {
         margin-top: 60px;
+        .leftborder{
+            border-left: 1px solid #dedede;
+            margin-bottom: 32px;
+            padding-left: 32px;
+             @media (min-width: 900px){
+               max-width: 400px
+            }
+        }
+        .ant-row{
+            max-width: 1200px;
+            position: relative;
+            margin:0 auto;
+             @media (max-width: 900px){
+               flex-direction: column;
+               padding: 32px;
+            }
+            .ant-col{ 
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+             @media (min-width: 900px){
+                flex: 1;
+                max-width: 45%;
+            }
+            @media (min-width: 1200px){
+                flex: 1;
+                max-width: 45%;
+            }
+            
+            }
+           
+        }
 
         .left {
             max-width: 450px;
-            margin: 0 auto;
             margin-bottom: 20px;
 
             .title {
@@ -120,7 +151,6 @@
 
         .right {
             max-width: 450px;
-            margin: 0 auto;
 
             .title {
                 font-weight: 700;

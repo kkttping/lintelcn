@@ -195,7 +195,9 @@ export default function HomePage() {
                                             </div>
                                             <div className='info' dangerouslySetInnerHTML={{ __html: newInfo?.Exhibition?.replace(/\n/g, "<br/>") }}>
                                             </div>
-                                            <span onClick={() => { toPage('newsInfo/' + newInfo?.id + '/' + newInfo?.type) }}>READ MORE</span>
+                                            
+                                            <span className='readmore' onClick={() => { toPage('newsInfo/' + newInfo?.id + '/' + newInfo?.type) }}>READ MORE <span></span></span>
+                                            
                                         </div>
                                     </Col>
                                     <Col sm={24} xl={14} >
