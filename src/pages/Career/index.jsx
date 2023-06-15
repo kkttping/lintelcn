@@ -50,10 +50,7 @@ export default function Career() {
                         <div className='title_name'>Job opportunities</div>
 
                     </Col>
-                    <Col  >
-                        <div className='title_name'></div>
-
-                    </Col>
+                   
                 </Row>
                 <Row justify={"center"}>
                     {info.map((item, index) => {

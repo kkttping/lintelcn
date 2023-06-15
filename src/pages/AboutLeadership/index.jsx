@@ -71,7 +71,7 @@ export default function AboutLeadership() {
         return (
             <div className='leader_item'>
                 <div className='title'>{text1}</div>
-                <div>
+                
                     <Row justify={"center"}>
                         {leadershipList.map((item, index) => {
                             if (item.testj === id) {
@@ -95,7 +95,7 @@ export default function AboutLeadership() {
                         })}
 
                     </Row>
-                </div>
+               
             </div>
         )
     }

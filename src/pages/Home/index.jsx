@@ -195,7 +195,7 @@ export default function Home() {
                         return (
                             <div key={index} className={ 'title_nav' } onClick={()=>setpFlag(index)} >
                                 {item.menu}
-                                <div className='nav_box' style={pFlag !== index ? {height:0} : {height:item.nextmenu.length*30+'px'}}>
+                                <div className='nav_box' style={pFlag !== index ? {height:0} : {height:item.nextmenu.length*33+'px'}}>
                                     {item.nextmenu.map((item2, index2) => {
                                         return (
                                             <div key={index2} className='info_nav' onClick={()=>{toPage(item2.link)}}>
