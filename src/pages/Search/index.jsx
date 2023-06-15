@@ -44,12 +44,16 @@ export default function Search() {
     res2.data.forEach(element => {
       fildata.push({ "_and": [{ "specification": { "id": { "_eq": element.id + '' } } }] })
     });
+    
     let res3 = await Http.to.items('Pluggable_Transceiver').readByQuery({
       sort: ['id'],
       filter: { "_or": fildata }
     });
 
     let arr = [...res?.data, ...res3?.data];
+    if(fildata.length===0){
+      arr=res?.data;
+    }
     let temp = {}
     arr.forEach(item => {
       temp[item.id] = item

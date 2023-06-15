@@ -125,7 +125,7 @@ export default function Products2() {
                                             <Col>
                                                 <div className='info_item'>
                                                     <span>{item?.name}</span>
-                                                    <span>{item?.description}</span>
+                                                    <span dangerouslySetInnerHTML={{ __html: item?.description }}></span>
                                                     <span onClick={() => toProducts3(item?.id)}>READ MORE</span>
 
                                                 </div>

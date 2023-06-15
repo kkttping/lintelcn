@@ -178,7 +178,7 @@ export default function Products3() {
 
                             {infoImg.map((item, index) => {
                                 return (
-                                    <div key={index} className={"item " + ((activtyKey === (index )) ? 'activtyitem' : '')} onClick={() => selectChange((index))}>
+                                    <div key={index} className={"item " + ((activtyKey === (index)) ? 'activtyitem' : '')} onClick={() => selectChange((index))}>
                                         <img src={ConstValue.url + "assets/" + item?.directus_files_id} alt="" />
                                     </div>
                                 )
@@ -193,14 +193,15 @@ export default function Products3() {
                     <Col xs={24} sm={24} xl={8}>
                         <div className='left'>
                             <div className='title'>{info?.name}</div>
-                            <div className='item_content'>{info?.description}</div>
+                            <div className='item_content' dangerouslySetInnerHTML={{ __html: info?.description }}></div>
                         </div>
                     </Col>
                     <Col xs={0} sm={0} xl={1}>
                         <div className='content_center'></div>
                     </Col>
                     <Col xs={24} sm={24} xl={8}>
-                        <div className='right'>
+                        {
+                            info?.features&&<div className='right'>
                             <div className='item'>
                                 <div className='title'>
                                     Features
@@ -209,6 +210,20 @@ export default function Products3() {
                             </div>
 
                         </div>
+                        }
+                        
+                        {
+                            info?.application&& <div className='right' style={{marginTop:'24px'}}>
+                            <div className='item'>
+                                <div className='title'>
+                                    Application
+                                </div>
+                                <div className='item_content' dangerouslySetInnerHTML={{ __html: info?.application }}></div>
+                            </div>
+
+                        </div>
+                        }
+                       
                     </Col>
                 </Row>
                 <div className='table'>
