@@ -4,14 +4,14 @@ import imgBg from '@/static/img/ah_bg2.jpg'
 import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
 import CardPersonInfo from '@/components/CardPersonInfo'
-import { Button, message, Form, Input,Spin } from 'antd';
+import { Button, message, Form, Input, Spin } from 'antd';
 // import BMap  from 'BMap';
 import Http from "@/utils/http";
 import ConstValue from "@/utils/value";
 import { useNavigate } from "react-router-dom";
 
 import './index.scss'
-const googleMap = window.google && window.google.maps;
+let googleMap = window.google && window.google.maps;
 export default function AboutContact() {
     const [mapList, setMapList] = useState([]);
     const [linkList, setLinkList] = useState([]);
@@ -71,15 +71,21 @@ export default function AboutContact() {
         // map.setCurrentCity(""); // 设置地图显示的城市 此项是必须设置的
         // map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
         // console.log(map);
+        let script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDVTk78W-PvhqUC08l6MBqUHTjJXSGcP4g&libraries=places&language=en-US';
+        document.getElementById('root').appendChild(script);
+        script.onload = () => {
+             googleMap = window.google && window.google.maps;
+            if (googleMap == undefined) return
+            let mapProp = {
+                center: new googleMap.LatLng(0, 0),
+                zoom: 14,
+                mapTypeId: googleMap.MapTypeId.ROADMAP,
+            };
+            mapRef.current = new googleMap.Map(document.getElementById("mapCurrent"), mapProp);
+        }
 
-
-        if (googleMap == undefined) return
-        let mapProp = {
-            center: new googleMap.LatLng(0, 0),
-            zoom: 14,
-            mapTypeId: googleMap.MapTypeId.ROADMAP,
-        };
-        mapRef.current = new googleMap.Map(document.getElementById("mapCurrent"), mapProp);
 
     }, [])
     useEffect(() => {
@@ -120,6 +126,7 @@ export default function AboutContact() {
     }
     return (
         <div className='about_contact'>
+            {/* <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVTk78W-PvhqUC08l6MBqUHTjJXSGcP4g&libraries=places&language=en-US"></script> */}
             {contextHolder}
             <TopInfo imgBg={imgBg} title={'Contact'} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
             <NavLink title1={'About'} link1={() => { toPage('about') }} title2={'Contact'} />
@@ -217,7 +224,7 @@ export default function AboutContact() {
 
                             >
                                 <Button type="primary" htmlType="submit">
-                                    {loadFlag?<Spin></Spin>: 'Submit'}
+                                    {loadFlag ? <Spin></Spin> : 'Submit'}
                                 </Button>
                             </Form.Item>
                         </Form>
