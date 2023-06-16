@@ -20,6 +20,7 @@ import './index.scss'
 export default function AboutHome() {
     const [imgSelect, setImgSelect] = useState(0);
     const [leadershipList, setLeadershipList] = useState([]);
+    const [news, setnews] = useState('');
 
     const navigate = useNavigate()
 
@@ -42,9 +43,26 @@ export default function AboutHome() {
                     "published"
             }
         });
+        let res2 = await Http.to.items('New').readByQuery({
+            sort: ['id'],
+            filter: {
+                type
+                    :
+                    "Event", status: "published"
+            }
+        });
+        setnews(res2.data?.[res2.data.length - 1])
         setLeadershipList(res.data)
     }
-
+    const toPage2 = (address, info) => {
+        navigate('/' + address + '/' + info);
+    }
+    const timeSet = (num) => {
+        if (num < 10) {
+            return '0' + num;
+        }
+        return num
+    }
     return (
         <div className='about_home'>
             <TopInfo imgBg={imgBg} title={'About'} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
@@ -99,33 +117,41 @@ export default function AboutHome() {
 
 
                 </div>
-                <Row justify={"center"}>
-                    <Col  xs={24} sm={24} xl={12} >
-                        <Row>
-                            <Col xs={24}  lg={12} xl={12} >
-                                <div className='card_item'>
-                                    <CardProducts link={() => { }} img={imgitem6} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Investors'} titleIn={'Investors'} info={['12312313虚拟文字']} ></CardProducts>
-                                </div>
-                            </Col>
-                            <Col xs={24} lg={12} xl={12} >
-                                <div className='card_item'>
-                                    <div className='news'>
-                                        <div className='news_title'>News</div>
-                                        <div className='time'>03-04,2023</div>
-                                        <div className='news_info'>Linktel and MultiLane <br /> Showcase a 2xFR4 OSFP<br /> Transceiver Demo with Live<br /> 800G BERT Traffic at OFC 2022</div>
-                                        <span onClick={() => { toPage('exhibition', 'about') }}>MORE</span>
+                <div style={{width:'100vw'}}>
+                    <Row justify={"center"}>
+                        <Col sm={24} xl={12} >
+                            <Row>
+                                <Col xs={24} lg={12} xl={12} >
+                                    <div className='card_item' style={{width:'100vw'}}>
+                                        <CardProducts link={() => { }} img={imgitem6} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Investors'} titleIn={'Investors'} info={['12312313虚拟文字']} ></CardProducts>
                                     </div>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Col>
+                                </Col>
+                                <Col xs={24} lg={12} xl={12} >
+                                    <div className='card_item' style={{width:'100vw'}}>
+                                        {news && (
+                                            <div className='news' >
+                                                <div className='news_title'>News</div>
+                                                <div className='time'>{[`${timeSet((new Date(news?.date_created)).getMonth())}-${timeSet((new Date(news?.date_created)).getDay())}`, ',', (new Date(news?.date_created)).getFullYear()]}</div>
+                                                <div className='news_info'>{news
+                                                    .Title
+                                                }</div>
+                                                <span onClick={() => toPage2('newsInfo', news.id + '/' + news.type)}>MORE</span>
+                                            </div>
+                                        )}
 
-                    <Col  sm={24} xl={12} >
-                        <div className='card_item'>
-                            <CardProducts link={() => { toPage('quality', 'about') }} img={imgitem7} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Quality'} titleIn={'Quality'} info={['12312313虚拟文字']}></CardProducts>
-                        </div>
-                    </Col>
-                </Row>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </Col>
+
+                        <Col sm={24} xl={12} >
+                            <div className='card_item'>
+                                <CardProducts link={() => { toPage('quality', 'about') }} img={imgitem7} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Quality'} titleIn={'Quality'} info={['12312313虚拟文字']}></CardProducts>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
+
                 <div className='earth'>
                     <Row justify={"center"}>
                         <Col sm={24} xl={12} >
