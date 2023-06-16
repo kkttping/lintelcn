@@ -111,9 +111,11 @@ export default function AboutHome() {
                                 <div className='card_item'>
                                     <div className='news'>
                                         <div className='news_title'>News</div>
+                                        <div>
                                         <div className='time'>03-04,2023</div>
                                         <div className='news_info'>Linktel and MultiLane <br /> Showcase a 2xFR4 OSFP<br /> Transceiver Demo with Live<br /> 800G BERT Traffic at OFC 2022</div>
-                                        <span onClick={() => { toPage('exhibition', 'about') }}>MORE</span>
+                                        <span className='readmore' onClick={() => { toPage('exhibition', 'about') }}>READ MORE<span></span></span>
+                                        </div>
                                     </div>
                                 </div>
                             </Col>
@@ -136,7 +138,7 @@ export default function AboutHome() {
                                 <div className='responsibility_info'>
                                     Linktel and MultiLane Showcase a 2xFR4 OSFP Transceiver Demo with Live 800G BERT Traffic at OFC 2022
                                 </div>
-                                <span onClick={() => { toPage('responsibility', 'about') }}>MORE</span>
+                                <span className='readmore' onClick={() => { toPage('responsibility', 'about') }}>MORE<span> </span></span>
 
                             </div>
                         </Col>
@@ -150,7 +152,7 @@ export default function AboutHome() {
                                     Linktel USA<br />
                                     Linktel Malaysia
                                 </div>
-                                <span onClick={() => { toPage('contact', 'about') }}>MORE</span>
+                                <span className='readmore' onClick={() => { toPage('contact', 'about') }}>MORE<span></span></span>
                             </div>
                         </Col>
                     </Row>

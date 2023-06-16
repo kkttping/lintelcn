@@ -26,10 +26,13 @@
 
         .infoma{
             padding: 20px;
-            max-width: 720px;
+            max-width: 800px;
+            @media (max-width: 640px){
+            font-size: 1.4rem;
+        } 
             p{
             font-weight: 400;
-
+            margin: 1rem auto;
             }
         }
         .infomation {
@@ -73,12 +76,12 @@
             
         }
         .items {
-            height: 700px;
+            height: 1000px;
             width: 100%;
             overflow-y: auto;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            justify-content: flex-start;
+            flex-direction: column;
              @media (max-width: 1000px){
           overflow-y: visible;
           height:auto;
