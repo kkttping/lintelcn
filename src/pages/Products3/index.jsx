@@ -203,10 +203,7 @@ export default function Products3() {
                             <div className='item_content' dangerouslySetInnerHTML={{ __html: info?.description }}></div>
                         </div>
                     </Col>
-                    <Col xs={0} sm={0} xl={1}>
-                        <div className='content_center'></div>
-                    </Col>
-                    <Col xs={24} sm={24} xl={8}>
+                    <Col xs={24} sm={24} xl={8}  className='leftborder'>
                         {
                             info?.features && <div className='right'>
                                 <div className='item'>
@@ -220,7 +217,7 @@ export default function Products3() {
                         }
 
                         {
-                            info?.application && <div className='right' style={{ marginTop: '24px' }}>
+                            info?.application && <div className='right' style={{ marginTop: '24px', marginBottom: '24px'}}>
                                 <div className='item'>
                                     <div className='title'>
                                         Application

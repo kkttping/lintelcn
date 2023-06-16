@@ -7,12 +7,11 @@ export default function CardProducts(props) {
       <div className='img'>
         <img src={img} alt="" style={{objectFit:styleSelf?.objectfit??'contain'}} />
       </div>
-      <div className='name'><span >{titleout}</span></div>
-      <div className='bg_lin'></div>
-      <div className='bg_hover'>
-        <span>{titleIn}</span>
+      <div className='bg_hover'>      
+      <div className='name'>{titleout}</div>
+      <div className='bg_lin'></div>    
         {info?.map(item=><span   dangerouslySetInnerHTML={{ __html:item}} key={item}></span>)}
-        <span onClick={link}>READ MORE</span>
+        <span className='readmore' onClick={link}>READ MORE<span></span></span>
       </div>
     </div>
   )

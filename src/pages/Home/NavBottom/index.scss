@@ -29,7 +29,7 @@
                 cursor: pointer;
                 font-size: 14px;
                 color: rgb(142, 142, 142);
-                margin: 10px 0;
+                margin: 3px 0;
             }
 
             P:hover {
@@ -45,15 +45,16 @@
     .about_nav {
         display: flex;
         justify-content: center;
-        gap:32px;
+        gap:0;
 
         div {
             cursor: pointer;            
-            height: 72px;
-            line-height: 72px;
+            height: 48px;
+            line-height: 48px;
             text-align: center;
             font-size: 14px;
             font-weight: 700;
+            padding: 12px 20px;
         }
 
         div:hover {

@@ -11,10 +11,11 @@ width: 100%;
       padding-left: 38px;
       padding-top: 1px;
       box-sizing: border-box;
+      display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
       .news_title {
-        margin-top: 54px;
-        margin-bottom: 150px;
         font-weight: 700;
         font-size: 32px;
       }
@@ -396,5 +397,17 @@ width: 100%;
       align-items: flex-end;
     }
   }
-
+}
+.bg_hover{
+  .name{
+    color: #fff !important;
+    margin-bottom: 12px;
+  }
+}
+.readmore {
+  border-bottom: 1px solid #fff;
+span{
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;  
+}
 }

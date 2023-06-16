@@ -92,12 +92,12 @@ export default function Products2() {
                 <div className="infomation">
                     Linktel’s family of 800G transceivers accelerate data connectivity for data center Interconnection and Metro Networks. Our complete product line includes OSFP 2xFR4，OSFP 2xLR4，QSFP-DD DR8，QSFP-DD DR8+，QSFP-DD DR8++ series for applications up to 800 Gb/s. Each transceiver solution leverages Linktel's optoelectronic Integration technology for the transmission of data while reducing the size and power dissipation of traditional high speed design.
                 </div> */}
-                <div className='select'>
+                <div className='select' id='select'>
 
                     <Menu  selectedKeys={[curr]} mode="horizontal" >
                         {info2.map((item, index) => {
                             return (<Menu.Item key={item.id} >
-                                <span onClick={() => {setcurr(item.id+'');setcurr2(index)}}>{item.name}</span>
+                                <span onClick={() => {setcurr(item.id+'');setcurr2(index);document.getElementById('select').scrollIntoView(); }}>{item.name}</span>
                             </Menu.Item>)
                         })}
                     </Menu>
@@ -126,7 +126,7 @@ export default function Products2() {
                                                 <div className='info_item'>
                                                     <span>{item?.name}</span>
                                                     <span dangerouslySetInnerHTML={{ __html: item?.description }}></span>
-                                                    <span onClick={() => toProducts3(item?.id)}>READ MORE</span>
+                                                    <span className='readmore' onClick={() => toProducts3(item?.id)}>READ MORE<span></span></span>
 
                                                 </div>
                                             </Col>

@@ -85,7 +85,7 @@ export default function AboutLeadership() {
                                                 <div className='position'>{item?.Position}</div>
                                                 <div className='name'>{item?.Name}</div>
                                                 <div className='info'>{item?.Introduce}</div>
-                                                <span onClick={() => { setisModalOpen(true); setData(item) }}>READ MORE</span>
+                                                <span className='readmore' onClick={() => { setisModalOpen(true); setData(item) }}>READ MORE <span></span></span>
                                             </div>
                                         </div>
                                     </Col>

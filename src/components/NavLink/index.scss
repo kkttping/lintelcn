@@ -1,7 +1,11 @@
 .nav_link{
     .link{
         cursor: pointer;
-
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
     }
     .nav {
         width: 100%;

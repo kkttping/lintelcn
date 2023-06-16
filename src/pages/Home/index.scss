@@ -21,6 +21,8 @@
     border-bottom: 1px solid #ccc;
     flex-direction: row;
     justify-content: flex-end;
+    position: absolute;
+    width: 100%;
     @media screen and (max-width: 640px) {
       background-color: #000;
       min-height: 60px;
@@ -110,7 +112,7 @@
     .tag {
       position: absolute;
       background-image: url("../../static/img/nav_tag.png");
-      height: 40px;
+      height: 48px;
       left: 29px;
       background-repeat: no-repeat;
       background-size: contain;
@@ -169,19 +171,19 @@
 
     .seach_icon_box {
       position: absolute;
-      right: 37.96px;
+      right: 32px;
       top: 25px;
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 20px;
-      height: 20px;
+      width: 28px;
+      height: 28px;
       opacity: 1;
-      border-radius: 18px;
+      border-radius: 28px;
       padding: 5px;
       background: transparent;
       transition: all 0.5s;
-      top: 20px;
+      top: 16px;
       &:hover {
         background: rgba(42, 130, 228, 1);
 
@@ -238,12 +240,12 @@
       background-repeat: no-repeat;
       background-size: contain;
       width: 120px;
-      height: 40px;
+      height: 48px;
       left: 29px;
       z-index: 1000;
       background-repeat: no-repeat;
        @media screen and (max-width: 640px){
-           height: 40px;
+           height: 48px;
        }
     }
   }
