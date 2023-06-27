@@ -35,7 +35,7 @@ export default function CareerMessage() {
 
                 {/* <div className="title">General Manager's Message</div>
                 <div className='title_info'>Focusing on technologies and products, Linktel Technologies has become one of the fastest developing companies in the field of Optical Components through years of dedication and hard work. Our rapid growth benefits from the ever-changing markets driven by the mobile internet and cloud computing, and thanks to the trust from our global customers, to the commitment of our staff and also to the great supports of our partners.</div>
-                <div className='img'><img src={imgitem} alt="" /></div>
+                <div className='img'><img crossOrigin="anonymous" src={imgitem} alt="" /></div>
                 <div className="info2">
                     As an incredibly unique company, almost all of employees at Linktel Technologies are very young, and the entire team is full of vitality and enthusiasm. We will cheer together for our success, and help each other when encountering a setback. Sharing the common value of “Be Earnest Do Best”, we work together and win together.
 
@@ -45,7 +45,7 @@ export default function CareerMessage() {
                 </div>
                 <div className='img2'>
                     General<br /> Manager
-                    <img src={imgitem2} alt="" />
+                    <img crossOrigin="anonymous" src={imgitem2} alt="" />
                     Linktel Technologies Co., Ltd
                 </div> */}
 

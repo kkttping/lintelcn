@@ -81,9 +81,9 @@ export default function AboutHome() {
                     <Row justify={"center"}>
                         <Col sm={24} xl={12} >
                             <div className='human_img'>
-                                {leadershipList.length !== 0 && <img src={ConstValue.url + "assets/" + leadershipList[imgSelect]?.Img} alt="" />}
+                                {leadershipList.length !== 0 && <img crossOrigin="anonymous" src={ConstValue.url + "assets/" + leadershipList[imgSelect]?.Img} alt="" />}
                                 <div className='name namefff'>
-                                    <img src={imgText} alt="" />
+                                    <img crossOrigin="anonymous" src={imgText} alt="" />
                                 </div>
                             </div>
                         </Col>
@@ -100,7 +100,7 @@ export default function AboutHome() {
                                 <div className="select_img">
                                     {leadershipList.map((item, index) => {
                                         return (
-                                            <div key={index} className={imgSelect === index ? 'select_img activty' : 'select_img'} onClick={() => setImgSelect(index)}><img src={ConstValue.url + "assets/" + item?.Thumbnail
+                                            <div key={index} className={imgSelect === index ? 'select_img activty' : 'select_img'} onClick={() => setImgSelect(index)}><img crossOrigin="anonymous" src={ConstValue.url + "assets/" + item?.Thumbnail
 
                                             } alt="" /></div>
 

@@ -5,7 +5,7 @@ export default function CardCulture(props) {
   return (
     <div className='com_card_culture' style={{ color: styleSelf?.color ?? '#000' }}>
       <div className='img'>
-        <img src={img} alt="" />
+        <img crossOrigin="anonymous" src={img} alt="" />
       </div>
       <div className='infomation'>
         <div className='name'><span >{title}</span></div>

@@ -5,7 +5,7 @@ export default function CardProducts(props) {
   return (
     <div className='com_card_products' style={{ color: styleSelf?.color ?? '#000' }}>
       <div className='img'>
-        <img src={img} alt="" style={{objectFit:styleSelf?.objectfit??'contain'}} />
+        <img crossOrigin="anonymous" src={img} alt="" style={{objectFit:styleSelf?.objectfit??'contain'}} />
       </div>
       <div className='bg_hover'>      
       <div className='name'>{titleout}</div>
