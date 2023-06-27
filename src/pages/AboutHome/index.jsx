@@ -5,10 +5,8 @@ import { Menu, Row, Col } from 'antd'
 import imgitem1 from '@/static/img/ah_item1.jpg'
 import imgitem2 from '@/static/img/ah_item2.jpg'
 import imgitem3 from '@/static/img/ah_item3.jpg'
-import imgitem4 from '@/static/img/ah_item4.jpg'
 import imgitem6 from '@/static/img/ah_item6.jpg'
 import imgitem7 from '@/static/img/ah_item7.jpg'
-
 import imgText from '@/static/img/ah_text1.jpg'
 import imgPerson from '@/static/img/ah_person1.jpg'
 
@@ -67,7 +65,7 @@ export default function AboutHome() {
         <div className='about_home'>
             <TopInfo imgBg={imgBg} title={'About'} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
             <div className='content'>
-                <Row justify={"center"}>
+                <Row justify={"center"} className='card_two'>
                     <Col sm={24} xl={12} >
                         <div className='card_item'>
                             <CardProducts link={() => { toPage('company', 'about') }} img={imgitem1} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Company '} titleIn={'Company '} info={['12312313虚拟文字']} ></CardProducts>
@@ -84,7 +82,7 @@ export default function AboutHome() {
                         <Col sm={24} xl={12} >
                             <div className='human_img'>
                                 {leadershipList.length !== 0 && <img src={ConstValue.url + "assets/" + leadershipList[imgSelect]?.Img} alt="" />}
-                                <div className='name'>
+                                <div className='name namefff'>
                                     <img src={imgText} alt="" />
                                 </div>
                             </div>
@@ -96,7 +94,7 @@ export default function AboutHome() {
                                     <div className='leadership_name'><div className='person_svg'></div>{leadershipList[imgSelect]?.Name}</div>
                                     <div className='leadership_work'>{leadershipList[imgSelect]?.Position}</div>
                                     <div className='leadership_info' dangerouslySetInnerHTML={{ __html: leadershipList[imgSelect]?.Introduce?.replace(/\n/g, "<br/>") }}></div>
-                                    <span onClick={() => { toPage('leadership', leadershipList[imgSelect]?.id) }}>READ MORE</span>
+                                    <span className='readmore' onClick={() => { toPage('leadership', leadershipList[imgSelect]?.id) }}>READ MORE<span></span></span>
 
                                 </div>
                                 <div className="select_img">
@@ -109,7 +107,7 @@ export default function AboutHome() {
                                         )
                                     })}
 
-                                    <div className='img' onClick={() => { toPage('leadership', 'about') }}><img src={imgitem4} alt="" /></div>
+                                    <div className='img' onClick={() => { toPage('leadership', 'about') }}></div>
                                 </div>
                             </div>
                         </Col>
@@ -119,7 +117,7 @@ export default function AboutHome() {
                 </div>
                 <div style={{width:'100vw'}}>
                     <Row justify={"center"}>
-                        <Col sm={24} xl={12} >
+                        <Col sm={24} xl={12}  >
                             <Row>
                                 <Col xs={24} lg={12} xl={12} >
                                     <div className='card_item' style={{width:'100vw'}}>
@@ -127,7 +125,7 @@ export default function AboutHome() {
                                     </div>
                                 </Col>
                                 <Col xs={24} lg={12} xl={12} >
-                                    <div className='card_item' style={{width:'100vw'}}>
+                                    <div className='card_item card_newsnew' >
                                         {news && (
                                             <div className='news' >
                                                 <div className='news_title'>News</div>
@@ -135,7 +133,7 @@ export default function AboutHome() {
                                                 <div className='news_info'>{news
                                                     .Title
                                                 }</div>
-                                                <span onClick={() => toPage2('newsInfo', news.id + '/' + news.type)}>MORE</span>
+                                                <span className='readmore' onClick={() => toPage2('newsInfo', news.id + '/' + news.type)}>READ MORE<span></span></span>
                                             </div>
                                         )}
 
@@ -153,7 +151,7 @@ export default function AboutHome() {
                 </div>
 
                 <div className='earth'>
-                    <Row justify={"center"}>
+                    <Row justify={"center"} className='card_two'>
                         <Col sm={24} xl={12} >
                             <div className='card_item_bottom'>
                                 <div className='responsibility_title'>
@@ -161,8 +159,9 @@ export default function AboutHome() {
                                 </div>
                                 <div className='responsibility_info'>
                                     Linktel and MultiLane Showcase a 2xFR4 OSFP Transceiver Demo with Live 800G BERT Traffic at OFC 2022
+                                <span className='readmore' onClick={() => { toPage('responsibility', 'about') }}>READ MORE<span> </span></span>
                                 </div>
-                                <span className='readmore' onClick={() => { toPage('responsibility', 'about') }}>MORE<span> </span></span>
+                                
 
                             </div>
                         </Col>
@@ -174,9 +173,10 @@ export default function AboutHome() {
                                 <div className='contact_info'>
                                     Headquarters<br />
                                     Linktel USA<br />
-                                    Linktel Malaysia
+                                    Linktel Malaysia<br />
+                                 <span className='readmore' onClick={() => { toPage('contact', 'about') }}>READ MORE<span></span></span>
                                 </div>
-                                <span className='readmore' onClick={() => { toPage('contact', 'about') }}>MORE<span></span></span>
+                                
                             </div>
                         </Col>
                     </Row>

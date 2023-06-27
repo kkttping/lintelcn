@@ -20,7 +20,7 @@
         background: rgb(0, 61, 166);
         color: rgb(255, 255, 255);
         font-family: Barlow;
-        font-size: 100px;
+        font-size: 5rem;
         font-weight: 700;
         line-height: 72px;
         letter-spacing: 0px;
@@ -71,6 +71,14 @@
         width: 840px;
         max-width: 80vw;
         margin: 0 auto;
+        .info_right{
+            display: flex;
+            align-items: flex-end;
+            @media (max-width: 800px) {
+            align-items: flex-start;
+            flex-direction: column;
+          }
+        }
         .ant-pagination{
             display: flex;
             justify-content: center;
@@ -117,6 +125,7 @@
         }
 
         img {
+            margin-top: 24px;
             width: 197.4px;
             height: 120px;
             object-fit: contain;
@@ -124,7 +133,7 @@
 
         .info_box {
             margin: 20px auto;
-            width: 640px;
+            max-width: 450px;
             position: relative;
         }
 
@@ -141,7 +150,7 @@
         }
 
         .info_text {
-            width: 480px;
+            max-width: 480px;
             font-family: Barlow;
             font-size: 14px;
             font-weight: 400;
@@ -149,42 +158,29 @@
             letter-spacing: 0px;
             text-align: left;
             color: rgb(142, 142, 142);
-
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
         }
 
         .ant-col {
-            span {
-                font-size: 14px;
-                position: absolute;
-                cursor: pointer;
+            .readmorediv {
                 bottom: 5px;
-                right: 5px;
-                padding-bottom: 8px;
-                display: inline-block;
-                width: 150px;
-                &::after {
-                    content: '';
-                    position: absolute;
-                    bottom: 0px;
-                    left: 0;
-                    width: 96px;
-                    height: 2px;
-                    background-color: #000000;
+                cursor: pointer;
+                position: relative;
+                margin-left: 24px;
+                width:130px;
+                @media (max-width:640px){
+                    margin-left: 0;
                 }
-
-                &::before {
-                    content: '';
-                    position: absolute;
-                    left: 90px;
-                    bottom: 12px;
-                    width: 7px;
-                    height: 7px;
-                    border-right: 2px solid #000000;
-                    border-bottom: 2px solid #000000;
-                    transform: rotate(-45deg);
-                }
+                
             }
         }
 
     }
+}
+.search :where(.css-ed5zg0).ant-row-center{
+    gap: 24px;
 }

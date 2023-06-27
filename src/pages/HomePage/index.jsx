@@ -55,7 +55,8 @@ export default function HomePage() {
     }, [activtyKey])
     const getInfo = async () => {
         let res = await Http.to.items("banner").readByQuery({
-            sort: ['id'],
+            sort: ['sort'],
+             filter: { status: "published" }
         });
         setInfo(res.data[0] ?? {});
         let arr = [];
@@ -72,7 +73,7 @@ export default function HomePage() {
 
         let arr2 = []
         lastArr.forEach((item) => {
-            if (item.status === 'Publick') {
+            if (item.status === 'published') {
                 arr2.unshift(item)
             } else {
                 arr2.push(item)
@@ -103,15 +104,15 @@ export default function HomePage() {
             fields: [' *,item.*'],
             filter: { 'collection': 'Img', }
         });
-        let img = '';
-        res.data?.[0]?.Content.forEach((item) => {
-            res2?.data?.forEach((item2) => {
-                if (item === item2.id
-                ) {
-                    img = item2?.item?.Img
-                }
-            })
-        })
+        let newImg = res.data[0].Img;  // 先提取New集合img
+  let img;
+  if (!newImg) { // 如果newImg不存在
+    res.data[0].Content.forEach(item => {
+      img = res2.data.find(item2 => item2.id === item)?.item?.Img 
+    })
+  } else {
+    img = newImg;  // 否则,img赋值为newImg
+  }
         setnewImg(img);
         setNewInfo(res.data?.[0]);
     }
@@ -185,10 +186,10 @@ export default function HomePage() {
                                 className="code-box-shape"
                             >
                                 <div className='title_h1'>
-                                    Events
+                                    Exhibition
                                 </div>
-                                <Row justify={"center"}>
-                                    <Col sm={24} xl={10} >
+                                <Row justify={"center"}  className='newstable'>
+                                    <Col sm={24} xl={10} className='newstableleft' >
                                         <div className='infomation'>
                                             <div className='title'>
                                                 {newInfo?.Title}
@@ -200,7 +201,7 @@ export default function HomePage() {
                                             
                                         </div>
                                     </Col>
-                                    <Col sm={24} xl={14} >
+                                    <Col sm={24} xl={14}  className='newstableright'>
                                         <div className='img_info'>
 
                                             {newImg && <div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>

@@ -1,5 +1,9 @@
 .card_opportunities {
-
+    .readmore{
+    &:hover{
+         color: #fff;
+    }       
+        }
     height: 100%;
     background: linear-gradient(180.00deg, rgba(239, 239, 239, 1.00), rgba(236, 241, 249, 0.00) 100%);
     padding: 26px 37px;
@@ -60,29 +64,13 @@
         font-size: 14px;
         position: absolute;
         cursor: pointer;
-        bottom: 40px;
-        right: 48px;
-
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 96px;
-            height: 1px;
-            background-color: #000000;
-        }
-
-        &::before {
-            content: '';
-            position: absolute;
-            left: 90px;
-            bottom: 5px;
-            width: 7px;
-            height: 7px;
-            border-right: 2px solid #000000;
-            border-bottom: 2px solid #000000;
-            transform: rotate(-45deg);
+        right:24px;
+        bottom: 30px;
+        @media (max-width:450px){
+            position: relative;
+            right:0;
+            bottom:0;
+            margin-top: 10px;
         }
     }
 
@@ -130,9 +118,13 @@
         line-height: 1.3;
         letter-spacing: 0px;
         text-align: left;
-        width: 38rem;
+        width: 34rem;
         height:8rem;
         margin-bottom: 1.5rem;
+        @media screen and (max-width: 1280px){
+           width: 28rem;  
+        }
+        
     }
 
     .infomation {
@@ -310,6 +302,11 @@
     }
 }
 .ant-modal-body{   
+    .careeropentable{
+        &>div{
+            width: 100%;
+        }
+    }
     .upload_svg{
             display: flex; 
             .namelink{
@@ -330,7 +327,7 @@
     overflow: hidden;
     transition:all 0.5s;
     .svg{
-        content: "";
+    content: "";
     margin-left: 20px;
     width: 20px;
     height: 21px;
@@ -339,7 +336,7 @@
     }
      &:hover{
         background-color: rgb(0, 61, 166);
-        color: rgb(255, 255, 255);
+        color: #fff;       
         .svg{
         filter: drop-shadow(16px 16px 20px red) invert(75%);
         }
