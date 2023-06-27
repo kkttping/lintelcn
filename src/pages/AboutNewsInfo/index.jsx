@@ -94,7 +94,7 @@ export default function AboutNewsInfo() {
                 {info?.text1}
             </div>
             <div className='img'>
-                <img crossOrigin="anonymous" src={ConstValue.url + "assets/" + info?.img} alt="" />
+                <img   src={ConstValue.url + "assets/" + info?.img} alt="" />
             </div>
             {/* <div className='info'>
                 Linktel’s family of 800G transceivers accelerate data connectivity for data center Interconnection and Metro Networks. Our complete product line includes OSFP 2xFR4，OSFP 2xLR4，QSFP-DD DR8，QSFP-DD DR8+，QSFP-DD DR8++ series for applications up to 800 Gb/s. Each transceiver solution leverages Linktel's optoelectronic Integration technology for the transmission of data while reducing the size and power dissipation of traditional high speed design.

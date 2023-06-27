@@ -173,7 +173,7 @@ export default function Products3() {
                                 {infoImg.map((item, index) => {
                                     return (
                                         <div key={index}>
-                                            <img crossOrigin="anonymous" src={ConstValue.url + "assets/" + item.directus_files_id} alt="" />
+                                            <img   src={ConstValue.url + "assets/" + item.directus_files_id} alt="" />
                                         </div>
                                     )
 
@@ -186,7 +186,7 @@ export default function Products3() {
                             {infoImg.map((item, index) => {
                                 return (
                                     <div key={index} className={"item " + ((activtyKey === (index)) ? 'activtyitem' : '')} onClick={() => selectChange((index))}>
-                                        <img crossOrigin="anonymous" src={ConstValue.url + "assets/" + item?.directus_files_id} alt="" />
+                                        <img   src={ConstValue.url + "assets/" + item?.directus_files_id} alt="" />
                                     </div>
                                 )
                             })}

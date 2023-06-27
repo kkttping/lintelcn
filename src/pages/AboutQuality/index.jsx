@@ -36,13 +36,13 @@ export default function AboutQuality() {
             <AboutNav />
             <div className='content'>
                 <div className='img_top'>
-                    <img crossOrigin="anonymous" src={imgItem1} alt="" />
+                    <img   src={imgItem1} alt="" />
                 </div>
                 <div className='imgList'>
                     <Row justify={'center'}>
                         {quality.map((item, index) => {
                             return (
-                                <Col key={index}><div className='img_box'><img crossOrigin="anonymous" src={ConstValue.url + "assets/" + item?.img} alt="" /></div></Col>
+                                <Col key={index}><div className='img_box'><img   src={ConstValue.url + "assets/" + item?.img} alt="" /></div></Col>
                             )
                         })}
                     </Row>

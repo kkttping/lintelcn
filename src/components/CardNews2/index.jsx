@@ -35,7 +35,7 @@ export default function CardNews2(props) {
                </div> 
                 <Col className='newsright'>
                     <div className='img'>
-                        <img crossOrigin="anonymous" src={img} alt="" />
+                        <img   src={img} alt="" />
                     </div>
                 </Col>
             </Row>

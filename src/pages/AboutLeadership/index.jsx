@@ -79,7 +79,7 @@ export default function AboutLeadership() {
                                     <Col key={index}>
                                         <div className='item'>
                                             <div className='img'>
-                                                <img crossOrigin="anonymous" src={ConstValue.url + "assets/" + item?.Img} alt="" />
+                                                <img   src={ConstValue.url + "assets/" + item?.Img} alt="" />
                                             </div>
                                             <div className='infomation2'>
                                                 <div className='position'>{item?.Position}</div>
@@ -120,7 +120,7 @@ export default function AboutLeadership() {
                     <div className='top'></div>
                     <div className='modal_content'>
                         <div className='img'>
-                            <img crossOrigin="anonymous" src={ConstValue.url + "assets/" + data?.Img} alt="" />
+                            <img   src={ConstValue.url + "assets/" + data?.Img} alt="" />
                         </div>
                         <div className='infomation2'>
                             <div className='modal_name'>{data?.Name}</div>

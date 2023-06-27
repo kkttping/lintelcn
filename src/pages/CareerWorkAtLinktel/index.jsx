@@ -40,15 +40,15 @@ export default function CareerWorkAtLinktel() {
 
                 <Row justify={'center'}>
                     <Col>
-                        <div className='img'><img crossOrigin="anonymous" src={imgitem} alt="" /></div>
+                        <div className='img'><img   src={imgitem} alt="" /></div>
 
                     </Col>
                     <Col>
-                        <div className='img'><img crossOrigin="anonymous" src={imgitem2} alt="" /></div>
+                        <div className='img'><img   src={imgitem2} alt="" /></div>
 
                     </Col>
                     <Col>
-                        <div className='img'><img crossOrigin="anonymous" src={imgitem} alt="" /></div>
+                        <div className='img'><img   src={imgitem} alt="" /></div>
 
                     </Col>
                 </Row>

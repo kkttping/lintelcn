@@ -55,13 +55,13 @@ export default function AboutLeadership() {
                 <Row justify={"center"}>
                     <Col sm={24} xl={12} >
                         <div className='human_img'>
-                            {/* <img crossOrigin="anonymous" src={imgitem3} alt="" /> */}
+                            {/* <img   src={imgitem3} alt="" /> */}
                             <div className='bg'>
                                 <Carousel ref={carRfe} style={{ height: '100%' }} dots={false}  >
                                     {leadershipList.map((item, index) => {
                                         return (
                                             <div key={index}>
-                                                <img crossOrigin="anonymous" src={ConstValue.url + "assets/" + item?.Img} alt="" />
+                                                <img   src={ConstValue.url + "assets/" + item?.Img} alt="" />
                                             </div>
                                         )
                                     })}
@@ -72,10 +72,10 @@ export default function AboutLeadership() {
                             {leadershipList[imgSelect]?.Position}
                                 <div className='select_control'>
                                     <div className={'left'} onClick={mius} style={{ opacity: imgSelect === 0 ? 0.3 : 1 }} >
-                                        <img crossOrigin="anonymous" src={rightDir} alt="" />
+                                        <img   src={rightDir} alt="" />
                                     </div>
                                     <div className='right' onClick={add} style={{ opacity: imgSelect === leadershipList.length-1 ? 0.3 : 1 }}>
-                                        <img crossOrigin="anonymous" src={rightDir} alt="" />
+                                        <img   src={rightDir} alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@ export default function AboutLeadership() {
                 <div className="select">
                     {leadershipList.map((item, index) => {
                         return (
-                            <div key={index} className={imgSelect === index ? 'select_img activty' : 'select_img'} onClick={() => { setImgSelect(index); selectChange(index) }}><img crossOrigin="anonymous" src={ConstValue.url + "assets/" + item?.Thumbnail} alt="" /><span>{item?.Name}</span></div>
+                            <div key={index} className={imgSelect === index ? 'select_img activty' : 'select_img'} onClick={() => { setImgSelect(index); selectChange(index) }}><img   src={ConstValue.url + "assets/" + item?.Thumbnail} alt="" /><span>{item?.Name}</span></div>
 
                         )
                     })}
