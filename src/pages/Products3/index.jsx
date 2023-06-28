@@ -15,6 +15,7 @@ import { get, post } from '@/requests'
 export default function Products3() {
     const [activtyKey, setActivtyKey] = useState(0);
     const [flag, setflag] = useState({});
+    const [flag2, setflag2] = useState({});
 
     const carRfe = useRef();
     const getParams = useParams();
@@ -101,15 +102,15 @@ export default function Products3() {
             key: 'operation',
             fixed: 'right',
             width: 59,
-            render: (e,t,index) => { return (e.part_no &&(!flag[index])&& <div className='download'><a onClick={(item) => { download(e,'data',index) }} ><CloudDownloadOutlined /></a> </div>) }
+            render: (e, t, index) => { return (e.part_no && (!flag[index]) && (!flag2[index])?(<div className='download'><a onClick={(item) => { download(e, 'data', index) }} ><CloudDownloadOutlined /></a> </div>):<div className='svg_load'></div>) }
         },
     ];
-    async function download(e = {}, fileName = 'data',index) {
+    async function download(e = {}, fileName = 'data', index) {
         let url = '';
         let res = await get(`files?limit=25&fields[]=id&fields[]=modified_on&fields[]=type&fields[]=title&fields[]=type&fields[]=filesize&sort[]=-uploaded_on&page=1&filter=%7B%22_and%22:[%7B%22_and%22:[%7B%22filename_download%22:%7B%22_contains%22:"${e.part_no}"%7D%7D]%7D,%7B%22_and%22:[%7B%22type%22:%7B%22_nnull%22:true%7D%7D,%7B%22folder%22:%7B%22_eq%22:%22579b7761-8fcb-455f-96c7-8112e22d8aab%22%7D%7D]%7D]%7D&meta[]=filter_count&meta[]=total_count`)
         if (!(res?.data?.[0]?.id)) {
-            let obj={...flag};
-            obj[index]=true
+            let obj = { ...flag };
+            obj[index] = true
             setflag(obj);
 
             messageApi.open({
@@ -123,16 +124,46 @@ export default function Products3() {
             return
         };
         res?.data.forEach(item => {
-            url = './assets/' + item?.id;
-            const a = document.createElement('a');
-            a.style.display = 'none';
-            a.setAttribute('target', '_blank');
+            let url = './assets/' + item?.id;
+            // const a = document.createElement('a');
+            // a.style.display = 'none';
+            // a.setAttribute('target', '_blank');
 
-            fileName && a.setAttribute('download', fileName);
-            a.href = url;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            // fileName && a.setAttribute('download', '');
+            // a.href = url;
+            // document.body.appendChild(a);
+            // a.click();
+            // console.dir(a);
+            // document.body.removeChild(a);
+            let obj = { ...flag2 };
+            obj[index] = true
+            setflag2(obj);
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true); // 也可用POST方式
+            xhr.responseType = "blob";
+            xhr.onload = function () {
+                if (this.status === 200) {
+                    var blob = this.response;
+                    if (navigator.msSaveBlob == null) {
+                        var a = document.createElement('a');
+                        var headerName = xhr.getResponseHeader("Content-disposition");
+                        var fileName = decodeURIComponent(headerName).substring(20);
+                        a.download = fileName;
+                        a.href = URL.createObjectURL(blob);
+                        document.body.appendChild(a);
+                        a.click();
+                        URL.revokeObjectURL(a.href);
+                        document.body.removeChild(a);
+                    } else {
+                        navigator.msSaveBlob(blob, fileName);
+                    }
+                }
+                let obj = { ...flag2 };
+                obj[index] = false
+                setflag2(obj);
+            };
+            xhr.send()
+
         })
 
     }
@@ -154,8 +185,13 @@ export default function Products3() {
             fields: ['*'],
             filter: { "Pluggable_Transceiver_id": res.data?.id + '' }
         });
+        let res3 = await Http.to.items("Pluggable_Transceiver_product_specifications").readByQuery({
+            fields: ['*'],
+            filter: { "Pluggable_Transceiver_id": getParams?.id }
+        });
         setInfoImg(res2.data);
-        getInfo2(res.data.specification)
+        console.log(res3?.data);
+        getInfo2(res3?.data?.map(item => item?.product_specifications_id))
         setInfo(res.data)
     }
 
@@ -164,7 +200,6 @@ export default function Products3() {
             sort: ['id'],
             filter: { '_or': ids.map(item => { return { 'id': item } }) }
         });
-        console.log(res3);
         let arr = []
         // for (let i = 0; i < ids.length; i++) {
         //     let res = await Http.to.items("product_specifications/" + ids[i]).readByQuery({
