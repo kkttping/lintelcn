@@ -102,7 +102,7 @@ export default function Products3() {
             key: 'operation',
             fixed: 'right',
             width: 59,
-            render: (e, t, index) => { return (e.part_no && (!flag[index]) && (!flag2[index])?(<div className='download'><a onClick={(item) => { download(e, 'data', index) }} ><CloudDownloadOutlined /></a> </div>):<div className='svg_load'></div>) }
+            render: (e, t, index) => { return (e.part_no && (!flag[index]) && ((!flag2[index])?(<div className='download'><a onClick={(item) => { download(e, 'data', index) }} ><CloudDownloadOutlined /></a> </div>):<div className='svg_load'></div>)) }
         },
     ];
     async function download(e = {}, fileName = 'data', index) {
