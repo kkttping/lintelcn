@@ -4,7 +4,6 @@ import imgBg from '@/static/img/al_bg1.jpg'
 import NavLink from '@/components/NavLink'
 import AboutNav from '@/components/AboutNav'
 import { Modal, Row, Col } from 'antd'
-import imgitem3 from '@/static/img/ah_item3.jpg'
 import imgPerson from '@/static/img/al_item1.jpg'
 import rightDir from '@/static/svg/right_dir2.svg'
 import Http from "@/utils/http";
@@ -47,7 +46,8 @@ export default function AboutLeadership() {
 
     const getInfo = async () => {
         let res = await Http.to.items("Leadership").readByQuery({
-            sort: ['id'],
+            sort: ['sort'],
+            filter: { 'status': 'published', }
         });
         setLeadershipList(res.data)
     }
@@ -79,7 +79,7 @@ export default function AboutLeadership() {
                                     <Col key={index}>
                                         <div className='item'>
                                             <div className='img'>
-                                                <img   src={ConstValue.url + "assets/" + item?.Img} alt="" />
+                                                <img src={ConstValue.url + "assets/" + item?.Img} alt="" />
                                             </div>
                                             <div className='infomation2'>
                                                 <div className='position'>{item?.Position}</div>
@@ -104,7 +104,7 @@ export default function AboutLeadership() {
     }
     return (
         <div className='about_leadership'>
-            <TopInfo imgBg={imgBg} title={'Leadership'} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
+            <TopInfo imgBg={imgBg} title={'Leadership'} styleSelf={{ bgColor: '#000' }} info1={'LINK TO THE UNKNOWN'} info2={' '} />
             <NavLink title1={'About'} link1={() => { toPage('about') }} title2={'Leadership'} />
             <AboutNav />
             <div className='content'>
@@ -120,7 +120,7 @@ export default function AboutLeadership() {
                     <div className='top'></div>
                     <div className='modal_content'>
                         <div className='img'>
-                            <img   src={ConstValue.url + "assets/" + data?.Img} alt="" />
+                            <img src={ConstValue.url + "assets/" + data?.Img} alt="" />
                         </div>
                         <div className='infomation2'>
                             <div className='modal_name'>{data?.Name}</div>

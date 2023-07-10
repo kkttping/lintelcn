@@ -4,7 +4,6 @@ import TopInfo from '@/components/TopInfo'
 import { Menu, Row, Col } from 'antd'
 import imgitem1 from '@/static/img/ah_item1.jpg'
 import imgitem2 from '@/static/img/ah_item2.jpg'
-import imgitem3 from '@/static/img/ah_item3.jpg'
 import imgitem6 from '@/static/img/ah_item6.jpg'
 import imgitem7 from '@/static/img/ah_item7.jpg'
 import imgText from '@/static/img/ah_text1.jpg'
@@ -32,7 +31,7 @@ export default function AboutHome() {
 
     const getInfo = async () => {
         let res = await Http.to.items("Leadership").readByQuery({
-            sort: ['id'],
+            sort: ['sort'],
             filter: {
                 Recommend
                     :
@@ -42,7 +41,7 @@ export default function AboutHome() {
             }
         });
         let res2 = await Http.to.items('New').readByQuery({
-            sort: ['id'],
+            sort: ['-sort', 'date_updated'],
             filter: {
                 type
                     :
@@ -63,17 +62,17 @@ export default function AboutHome() {
     }
     return (
         <div className='about_home'>
-            <TopInfo imgBg={imgBg} title={'About'} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
+            <TopInfo imgBg={imgBg} title={'About'} info1={'LINK TO THE UNKNOWN'} info2={' '} />
             <div className='content'>
                 <Row justify={"center"} className='card_two'>
                     <Col sm={24} xl={12} >
                         <div className='card_item'>
-                            <CardProducts link={() => { toPage('company', 'about') }} img={imgitem1} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Company '} titleIn={'Company '} info={['12312313虚拟文字']} ></CardProducts>
+                            <CardProducts link={() => { toPage('company', 'about') }} img={imgitem1} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Company '} titleIn={'Company '} info={['Linktel Technologies was founded in 2011, and through 11 years of rapid development, the company has become one of the mainstream optical component and transceiver suppliers in the world.']} ></CardProducts>
                         </div>
                     </Col>
                     <Col sm={24} xl={12} >
                         <div className='card_item'>
-                            <CardProducts link={() => { toPage('culture', 'about') }} img={imgitem2} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Culture '} titleIn={'Culture '} info={['12312313虚拟文字']}></CardProducts>
+                            <CardProducts link={() => { toPage('culture', 'about') }} img={imgitem2} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Culture '} titleIn={'Culture '} info={['Become a world leading provider of integrated optical I/O Connectivity Solution and Service']}></CardProducts>
                         </div>
                     </Col>
                 </Row>
@@ -81,9 +80,9 @@ export default function AboutHome() {
                     <Row justify={"center"}>
                         <Col sm={24} xl={12} >
                             <div className='human_img'>
-                                {leadershipList.length !== 0 && <img   src={ConstValue.url + "assets/" + leadershipList[imgSelect]?.Img} alt="" />}
+                                {leadershipList.length !== 0 && <img src={ConstValue.url + "assets/" + leadershipList[imgSelect]?.Img} alt="" />}
                                 <div className='name namefff'>
-                                    <img   src={imgText} alt="" />
+                                    <img src={imgText} alt="" />
                                 </div>
                             </div>
                         </Col>
@@ -94,20 +93,27 @@ export default function AboutHome() {
                                     <div className='leadership_name'><div className='person_svg'></div>{leadershipList[imgSelect]?.Name}</div>
                                     <div className='leadership_work'>{leadershipList[imgSelect]?.Position}</div>
                                     <div className='leadership_info' dangerouslySetInnerHTML={{ __html: leadershipList[imgSelect]?.Introduce?.replace(/\n/g, "<br/>") }}></div>
-                                    <span className='readmore' onClick={() => { toPage('leadership', leadershipList[imgSelect]?.id) }}>READ MORE<span></span></span>
+                                    <span className='readmore' onClick={() => { toPage('leadership', leadershipList[imgSelect]?.id); window.scrollTo(0, 0); }}>READ MORE<span></span></span>
 
                                 </div>
                                 <div className="select_img">
                                     {leadershipList.map((item, index) => {
                                         return (
-                                            <div key={index} className={imgSelect === index ? 'select_img activty' : 'select_img'} onClick={() => setImgSelect(index)}><img   src={ConstValue.url + "assets/" + item?.Thumbnail
-
-                                            } alt="" /></div>
+                                            <div 
+  key={index} 
+  className={imgSelect === index ? 'select_img activty' : 'select_img'}
+  onClick={() => {
+    setImgSelect(index);
+   
+  }} 
+>
+  <img src={ConstValue.url + "assets/" + item?.Thumbnail} alt="" />
+</div>
 
                                         )
                                     })}
 
-                                    <div className='img' onClick={() => { toPage('leadership', 'about') }}></div>
+                                    <div className='img' onClick={() => { toPage('leadership', 'about') ; window.scrollTo(0, 0); }}></div>
                                 </div>
                             </div>
                         </Col>
@@ -120,8 +126,15 @@ export default function AboutHome() {
                         <Col sm={24} xl={12}  >
                             <Row>
                                 <Col xs={24} lg={12} xl={12} >
-                                    <div className='card_item' style={{width:'100vw'}}>
-                                        <CardProducts link={() => { }} img={imgitem6} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Investors'} titleIn={'Investors'} info={['12312313虚拟文字']} ></CardProducts>
+                                    <div className='card_item' style={{width:'25vw'}}>
+                                        <CardProducts 
+  link={() => window.open('https://quote.eastmoney.com/SZ301205.html')} 
+  img={imgitem6} 
+  styleSelf={{ color: '#fff', objectfit: 'cover' }} 
+  titleout={'Investors'} 
+  titleIn={'Investors'} 
+  info={[' Linktel went IPO at Shenzhen Stock Exchange Market on Sep 13, 2022, and will open a new chapter to go for the future growth. ']} >
+      </CardProducts>
                                     </div>
                                 </Col>
                                 <Col xs={24} lg={12} xl={12} >
@@ -133,7 +146,20 @@ export default function AboutHome() {
                                                 <div className='news_info'>{news
                                                     .Title
                                                 }</div>
-                                                <span className='readmore' onClick={() => toPage2('newsInfo', news.id + '/' + news.type)}>READ MORE<span></span></span>
+                                               <span 
+  className='readmore' 
+  onClick={() => {
+    if (news.outlink) {
+      const link = news.outlink.startsWith('http') ? news.outlink : `/#/${news.outlink}`;
+      window.open(link);
+    } else {
+      toPage2('newsInfo', news.id + '/' + news.type); 
+    }
+    window.scrollTo(0, 0);
+  }}
+>
+  READ MORE <span></span>
+</span>
                                             </div>
                                         )}
 
@@ -144,7 +170,7 @@ export default function AboutHome() {
 
                         <Col sm={24} xl={12} >
                             <div className='card_item'>
-                                <CardProducts link={() => { toPage('quality', 'about') }} img={imgitem7} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Quality'} titleIn={'Quality'} info={['12312313虚拟文字']}></CardProducts>
+                                <CardProducts link={() => { toPage('quality', 'about'); window.scrollTo(0, 0); }} img={imgitem7} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={'Quality'} titleIn={'Quality'} info={['Linktel, ISO9001 and ISO14001 certified, has well-established quality control system and MES production execution system in place to ensure product quality stable, consistent and reliable. ']}></CardProducts>
                             </div>
                         </Col>
                     </Row>
@@ -158,8 +184,8 @@ export default function AboutHome() {
                                     Responsibility
                                 </div>
                                 <div className='responsibility_info'>
-                                    Linktel and MultiLane Showcase a 2xFR4 OSFP Transceiver Demo with Live 800G BERT Traffic at OFC 2022
-                                <span className='readmore' onClick={() => { toPage('responsibility', 'about') }}>READ MORE<span> </span></span>
+                                    We focus on the sustainable development of society and ecology, striving to become a global enterprise with social responsibility
+                                <span className='readmore' onClick={() => { toPage('responsibility', 'about') ; window.scrollTo(0, 0);}}>READ MORE<span> </span></span>
                                 </div>
                                 
 
@@ -171,10 +197,11 @@ export default function AboutHome() {
                                     Contact
                                 </div>
                                 <div className='contact_info'>
-                                    Headquarters<br />
-                                    Linktel USA<br />
+                                     Linktel USA<br />
                                     Linktel Malaysia<br />
-                                 <span className='readmore' onClick={() => { toPage('contact', 'about') }}>READ MORE<span></span></span>
+                                    Linktel China<br />
+                                   
+                                 <span className='readmore' onClick={() => { toPage('contact', 'about'); window.scrollTo(0, 0); }}>READ MORE<span></span></span>
                                 </div>
                                 
                             </div>

@@ -1,5 +1,9 @@
 .products3 {
     width: 100%;
+    margin-top: 73px;
+    @media(max-width:640px){
+        margin-top: 60px;
+    }
 
     .download {
         display: flex;
@@ -147,6 +151,7 @@
             max-width: 1200px;
             position: relative;
             margin: 0 auto;
+            justify-content: space-between;
 
             @media (max-width: 900px) {
                 flex-direction: column;

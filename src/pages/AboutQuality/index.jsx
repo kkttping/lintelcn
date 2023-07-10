@@ -25,24 +25,28 @@ export default function AboutQuality() {
 
     const getInfo = async () => {
         let res = await Http.to.items("Certificate").readByQuery({
-            sort: ['id'],
+            sort: ['sort'],
+            filter: { 'status': 'published', }
         });
         setQuality(res.data)
     }
     return (
         <div className='about_quality'>
-            <TopInfo imgBg={imgBg} title={'Quality'} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
+            <TopInfo imgBg={imgBg} title={'Quality'} styleSelf={{ bgColor: '#000' }} info1={'LINK TO THE UNKNOWN'} info2={' '} />
             <NavLink title1={'About'} link1={()=>{toPage('about')}} title2={'Quality'}/>
             <AboutNav />
             <div className='content'>
+             <div className='quality_top'>   <p1>
+           We believe that quality is an indispensable part in an enterprise's operations. At Linktel, quality is essential to our customers, our shareholders, our company, and our future.
+        </p1> </div>
                 <div className='img_top'>
-                    <img   src={imgItem1} alt="" />
+                    <img src={imgItem1} alt="" />
                 </div>
                 <div className='imgList'>
                     <Row justify={'center'}>
                         {quality.map((item, index) => {
                             return (
-                                <Col key={index}><div className='img_box'><img   src={ConstValue.url + "assets/" + item?.img} alt="" /></div></Col>
+                                <Col key={index}><div className='img_box'><img src={ConstValue.url + "assets/" + item?.img} alt="" /></div></Col>
                             )
                         })}
                     </Row>

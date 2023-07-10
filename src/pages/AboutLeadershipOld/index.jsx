@@ -48,20 +48,20 @@ export default function AboutLeadership() {
 
     return (
         <div className='about_leadership'>
-            <TopInfo imgBg={imgBg} title={'Leadership'} styleSelf={{ bgColor: '#000' }} info1={'A Solution and Service Provider'} info2={'of High Speed Optical I/O Connectivity'} />
+            <TopInfo imgBg={imgBg} title={'Leadership'} styleSelf={{ bgColor: '#000' }} info1={'LINK TO THE UNKNOWN'} info2={' '} />
             <NavLink title1={'About'} link1={()=>{toPage('about')}} title2={'Leadership'}/>
             <AboutNav />
             <div className='content'>
                 <Row justify={"center"}>
                     <Col sm={24} xl={12} >
                         <div className='human_img'>
-                            {/* <img   src={imgitem3} alt="" /> */}
+                            {/* <img src={imgitem3} alt="" /> */}
                             <div className='bg'>
                                 <Carousel ref={carRfe} style={{ height: '100%' }} dots={false}  >
                                     {leadershipList.map((item, index) => {
                                         return (
                                             <div key={index}>
-                                                <img   src={ConstValue.url + "assets/" + item?.Img} alt="" />
+                                                <img src={ConstValue.url + "assets/" + item?.Img} alt="" />
                                             </div>
                                         )
                                     })}
@@ -72,10 +72,10 @@ export default function AboutLeadership() {
                             {leadershipList[imgSelect]?.Position}
                                 <div className='select_control'>
                                     <div className={'left'} onClick={mius} style={{ opacity: imgSelect === 0 ? 0.3 : 1 }} >
-                                        <img   src={rightDir} alt="" />
+                                        <img src={rightDir} alt="" />
                                     </div>
                                     <div className='right' onClick={add} style={{ opacity: imgSelect === leadershipList.length-1 ? 0.3 : 1 }}>
-                                        <img   src={rightDir} alt="" />
+                                        <img src={rightDir} alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@ export default function AboutLeadership() {
                 <div className="select">
                     {leadershipList.map((item, index) => {
                         return (
-                            <div key={index} className={imgSelect === index ? 'select_img activty' : 'select_img'} onClick={() => { setImgSelect(index); selectChange(index) }}><img   src={ConstValue.url + "assets/" + item?.Thumbnail} alt="" /><span>{item?.Name}</span></div>
+                            <div key={index} className={imgSelect === index ? 'select_img activty' : 'select_img'} onClick={() => { setImgSelect(index); selectChange(index) }}><img src={ConstValue.url + "assets/" + item?.Thumbnail} alt="" /><span>{item?.Name}</span></div>
 
                         )
                     })}

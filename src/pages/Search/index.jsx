@@ -78,7 +78,7 @@ export default function Search() {
   return (
     <div className='search'>
       <div className='top'>
-        <div className='title'>search</div>
+        <div className='title'>Search</div>
         <div className='search_box'><Input value={searchValue} onChange={(e) => { setSearchValue(e.target.value) }} placeholder={"Please enter keyword search"} /> <div className='button' onClick={() => getInfo()}><div className='svg'></div></div></div>
       </div>
       <div className='content'>
@@ -94,7 +94,7 @@ export default function Search() {
               return (
                 <Row key={index} justify={'center'}>
                   <Col>
-                    <img   src={ConstValue.url + "assets/" + item?.image} alt="" /></Col>
+                    <img src={ConstValue.url + "assets/" + item?.image} alt="" /></Col>
                   <Col className='info_right' >
                     <div className='info_box'><div className='info_title' dangerouslySetInnerHTML={{ __html: item?.name?.replace(RegExp(searchV, "g"), `<i class="color_c">${searchV}</i>`) }}></div>
                       <div className='info_text' dangerouslySetInnerHTML={{ __html: item?.description?.replace(RegExp(searchV, "g"), `<b class="color_c">${searchV}</b>`) }}></div></div>
