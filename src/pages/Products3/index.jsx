@@ -200,6 +200,10 @@ export default function Products3() {
     }
 
     const getInfo2 = async (ids) => {
+        if(ids.length===0){
+            setInfo2([])
+            return;
+        }
         let res3 = await Http.to.items("product_specifications").readByQuery({
             sort: ['id'],
             filter: { '_or': ids.map(item => { return { 'id': item } }) }
