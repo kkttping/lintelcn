@@ -28,7 +28,7 @@ export default function CareerMessage() {
     <div className="career_message">
       <TopInfo
         imgBg={imgBg}
-        title={"message"}
+        title={"Words from CEO"}
         info1={"LINK TO THE UNKNOWN"}
         info2={" "}
       />

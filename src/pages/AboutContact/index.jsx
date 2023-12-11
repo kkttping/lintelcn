@@ -11,7 +11,7 @@ import ConstValue from "@/utils/value";
 import { useNavigate } from "react-router-dom";
 
 import './index.scss'
-let googleMap = window.google && window.google.maps;
+let microsoftMap = window.Microsoft
 export default function AboutContact() {
     const [mapList, setMapList] = useState([]);
     const [linkList, setLinkList] = useState([]);
@@ -71,30 +71,64 @@ export default function AboutContact() {
         // map.setCurrentCity(""); // 设置地图显示的城市 此项是必须设置的
         // map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
         // console.log(map);
+        // let script = document.createElement('script');
+        // script.type = 'text/javascript';
+        // script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDVTk78W-PvhqUC08l6MBqUHTjJXSGcP4g&libraries=places&language=en-US';
+        // document.getElementById('root').appendChild(script);
+        // script.onload = () => {
+        //     googleMap = window.google && window.google.maps;
+        //     if (googleMap == undefined) return
+        //     let mapProp = {
+        //         center: new googleMap.LatLng(0, 0),
+        //         zoom: 14,
+        //         mapTypeId: googleMap.MapTypeId.ROADMAP,
+        //     };
+        //     mapRef.current = new googleMap.Map(document.getElementById("mapCurrent"), mapProp);
+        // }
         let script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDVTk78W-PvhqUC08l6MBqUHTjJXSGcP4g&libraries=places&language=en-US';
+        script.src = 'http://www.bing.com/api/maps/mapcontrol?key=Alq8m5uHndfHyzsWSTgXv1EAX9xc8wQACj9kS0r_5-xWnUdWAZjQ7q4SSEwCAgEo';
         document.getElementById('root').appendChild(script);
         script.onload = () => {
-            googleMap = window.google && window.google.maps;
-            if (googleMap == undefined) return
-            let mapProp = {
-                center: new googleMap.LatLng(0, 0),
-                zoom: 14,
-                mapTypeId: googleMap.MapTypeId.ROADMAP,
-            };
-            mapRef.current = new googleMap.Map(document.getElementById("mapCurrent"), mapProp);
+            let time = setInterval(() => {
+                try {
+                    loadMapScenario()
+                    clearInterval(time);
+                } catch (err) {
+
+                }
+            }, 1000)
+
+
+
         }
 
 
-    }, [])
+    }, [mapList])
+    function loadMapScenario(lat = mapList[selectMap]?.Positioning?.coordinates[1], lng = mapList[selectMap]?.Positioning?.coordinates[0]) {
+        let map = new window.Microsoft.Maps.Map(document.getElementById('mapCurrent'), {
+            center: new window.Microsoft.Maps.Location(lat, lng),zoom:15
+        });
+        map.entities.clear();
+        var pushpin = new window.Microsoft.Maps.Pushpin(map.getCenter(), null);
+        map.entities.push(pushpin);
+
+    }
     useEffect(() => {
         getMapInfo();
         getInfo();
     }, []);
+
     useEffect(() => {
         if (mapList.length === 0) return
-        mapRef.current?.setCenter(new googleMap.LatLng(mapList[selectMap]?.Positioning?.coordinates[1], mapList[selectMap]?.Positioning?.coordinates[0]))
+        // mapRef.current?.setCenter(new microsoftMap.LatLng(mapList[selectMap]?.Positioning?.coordinates[1], mapList[selectMap]?.Positioning?.coordinates[0]))
+        try{
+            loadMapScenario(mapList[selectMap]?.Positioning?.coordinates[1], mapList[selectMap]?.Positioning?.coordinates[0])
+
+        }catch(err){
+
+        }
+
     }, [selectMap])
     const getMapInfo = async () => {
         let res = await Http.to.items("office").readByQuery({
@@ -102,21 +136,21 @@ export default function AboutContact() {
             filter: { 'status': 'published', }
         });
         setMapList(res.data)
-        res.data.forEach((item, index) => {
-            if (index === 0) {
-                mapRef.current?.setCenter(new googleMap.LatLng(item?.Positioning?.coordinates[1], item?.Positioning?.coordinates[0]))
-            }
-            if (googleMap === undefined) return
-            new googleMap.Marker({
-                position: {
-                    lat: item?.Positioning?.coordinates[1]
-                    , lng: item?.Positioning?.coordinates[0]
-                },
-                map: mapRef.current,
-                title: ''
+        // res.data.forEach((item, index) => {
+        //     if (index === 0) {
+        //         mapRef.current?.setCenter(new microsoftMap.LatLng(item?.Positioning?.coordinates[1], item?.Positioning?.coordinates[0]))
+        //     }
+        //     if (microsoftMap === undefined) return
+        //     new microsoftMap.Marker({
+        //         position: {
+        //             lat: item?.Positioning?.coordinates[1]
+        //             , lng: item?.Positioning?.coordinates[0]
+        //         },
+        //         map: mapRef.current,
+        //         title: ''
 
-            });
-        })
+        //     });
+        // })
     }
 
 
