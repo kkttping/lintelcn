@@ -39,6 +39,22 @@ export default function CardOpportunities(props) {
             }
         },
         showUploadList: false, maxCount: 1,
+        onChange(info) {
+
+            // 添加文件数据处理
+            if(info.file.response) {
+        
+              // 保存文件数据
+              setupdata(info.file.response.data); 
+        
+              messageApi.open({
+                key: 'updatable',
+                type: 'loading',
+                content: 'Loading...',
+              });
+            }
+          }
+        
     };
     const uploadData = async (data2, data3) => {
         let res = await Http.to.items("biographical_notes").createOne({
@@ -102,50 +118,40 @@ export default function CardOpportunities(props) {
 
             <div className='infomation'>
                 <div className='item'>
-                    <div className='type'>country</div>
+                    <div className='type'>Country</div>
                     <div className='info'>{data?.country}</div>
                 </div>
                 <div className='item'>
-                    <div className='type'>Place</div>
+                    <div className='type'>City</div>
                     <div className='info'>{data?.Place}</div>
                 </div>
-                <div className='item'>
-                    <div className='type'>Hiring</div>
-                    <div className='info'>{data?.Hiring}</div>
-                </div>
+           
             </div>
             <span className='readmore' onClick={() => { setIsModalOpen(true) }}>READ MORE <span></span></span>
             <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={[]} width={720}>
                 <div className='content'>
                     <div>
-                        <div className="title">Hardware development engineer</div>
+                        <div className="title">{data?.position}</div>
                     </div>
 
                     <div className='infomation'>
                         <div className='item'>
-                            <div className='type'>country</div>
+                            <div className='type'>Country</div>
                             <div className='info'>{data?.country}</div>
                         </div>
                         <div className='item'>
-                            <div className='type'>Place</div>
+                            <div className='type'>City</div>
                             <div className='info'>{data?.Place}</div>
                         </div>
-                        <div className='item'>
-                            <div className='type'>Hiring</div>
-                            <div className='info'>{data?.Hiring}</div>
-                        </div>
+                        
                     </div>
-                    <div className='info2' >
-                        <div className='info2_title'>Requirements</div>
-                        <div className='info2_text'>
-                            {data?.Requirements}
-                        </div>
-                        <div className='info2_title'>Responsibility</div>
-                        <div className='info2_text'>
-                            {data?.Responsibility}
-                        </div>
+                    <div className='info2'>
+  <div className='info2_title'>Requirements</div>
+  <div className='info2_text' dangerouslySetInnerHTML={{ __html: data?.Requirements }}></div>
+  <div className='info2_title'>Responsibility</div>
+  <div className='info2_text' dangerouslySetInnerHTML={{ __html: data?.Responsibility }}></div>
+</div>
 
-                    </div>
                     <div className='info3'>
                         <div className='info3_title'>Online delivery:</div>
                         <div className='form'>
@@ -209,22 +215,24 @@ export default function CardOpportunities(props) {
                                         <Form.Item
 
                                         >
-                                            <div className='upload_box_item'>
+                                            
+                                            <Upload {...propsD} >
+                                                <div className='upload_box_item'>
 
 
-                                                <Upload {...propsD} >
+                                               
                                                     <div className='upload_svg' onClick={() => setShowModal(true)}>
                                                         <div className='up_box'><span>{updata?.filename_download || 'Add file'}</span><FolderOpenOutlined style={{ fontSize: '20px' }} />  </div>
                                                     </div>
-                                                </Upload>
+                                            
 
-                                            </div>
+                                            </div>    </Upload>
                                         </Form.Item>
                                     </Col>
                                     <Col >
                                         <Form.Item
                                         >
-                                            <Button type="primary" htmlType="submit">
+                                            <Button type="primary" htmlType="submit" className='opp_apply' >
                                                 <div className='name'>Apply <div className='svg'></div></div>
                                             </Button>
                                         </Form.Item>

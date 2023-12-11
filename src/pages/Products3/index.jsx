@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons';
 import ConstValue from "@/utils/value";
 import { useNavigate } from "react-router-dom";
-import { get, post } from '@/requests'
+import { get, post } from '@/requests';
 
 export default function Products3() {
     const [activtyKey, setActivtyKey] = useState(0);
@@ -41,59 +41,65 @@ export default function Products3() {
             width: 79,
         },
         {
-            title: 'Form Factor',
-            dataIndex: 'form_factor',
-            key: '2',
-            width: 79,
+            title: 'Power',
+            dataIndex: 'Power',
+            key: '3',
+            width: 64,
+        },
+        {
+            title: 'Channel',
+            dataIndex: 'Channel',
+            key: '4',
+            width: 64,
         },
         {
             title: 'Data Rate',
             dataIndex: 'data_rate',
-            key: '3',
-            width: 79,
+            key: '5',
+            width: 70,
         },
         {
             title: 'Reach',
             dataIndex: 'reach',
-            key: '4',
-            width: 79,
+            key: '6',
+            width: 70,
         },
         {
             title: 'Wavelength',
             dataIndex: 'wavelength',
-            key: '5',
+            key: '7',
             width: 79,
         },
         {
             title: 'Transmitter',
             dataIndex: 'transmitter',
-            key: '6',
+            key: '8',
             width: 79,
         },
         {
             title: 'Receiver',
             dataIndex: 'receiver',
-            key: '7',
+            key: '9',
             width: 79,
         },
         {
             title: 'Interface',
             dataIndex: 'interface',
-            key: '8',
+            key: '10',
             width: 79,
 
         },
         {
             title: 'Temperature',
             dataIndex: 'temperature',
-            key: '9',
+            key: '11',
             width: 79,
 
         },
         {
             title: 'Application',
             dataIndex: 'application',
-            key: '10',
+            key: '12',
             width: 79,
 
         },
@@ -101,7 +107,7 @@ export default function Products3() {
             title: 'download',
             key: 'operation',
             fixed: 'right',
-            width: 59,
+            width: 64,
             render: (e, t, index) => { return (e.part_no && (!flag[index]) ? ((!flag2[index])?(<div className='download'><a onClick={(item) => { download(e, 'data', index) }} ><CloudDownloadOutlined /></a> </div>):<div className='svg_load'></div>):<div className='download'><Button  disabled type="link"><CloudDownloadOutlined style={{fontSize:'20px'}}/></Button></div> ) }
         },
     ];
@@ -149,19 +155,37 @@ export default function Products3() {
             xhr.onload = function () {
                 if (this.status === 200) {
                     var blob = this.response;
-                    if (navigator.msSaveBlob == null) {
-                        var a = document.createElement('a');
-                        var fileName = item.title
-                        a.download = fileName;
-                        a.href = URL.createObjectURL(blob);
-                        document.body.appendChild(a);
-                        a.click();
-                        URL.revokeObjectURL(a.href);
-                        document.body.removeChild(a);
+                    var fileName = String(item.title) + '.pdf';
+                  
+                    // 添加下载查询参数
+                    var downloadUrl = URL + '?download';
+                  
+                    if (navigator.msSaveBlob) {
+                      // IE 浏览器
+                      navigator.msSaveBlob(blob, fileName);
                     } else {
-                        navigator.msSaveBlob(blob, fileName);
+                      // 其他浏览器
+                      var link = document.createElement('a');
+                      link.href = URL.createObjectURL(blob);
+                  
+                      // 设置下载文件名
+                      link.download = fileName;
+                  
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                  
+                      URL.revokeObjectURL(link.href);
                     }
-                }
+                  } else {
+                    // 处理页面加载失败的情况
+                    alert("页面加载失败，请检查网络连接");
+                  }
+                  
+                  function getFileExtension(filename) {
+                    return filename.split('.').pop();
+                  }
+                  
                 let obj = { ...flag2 };
                 obj[index] = false
                 setflag2(obj);
@@ -200,7 +224,7 @@ export default function Products3() {
     }
 
     const getInfo2 = async (ids) => {
-        if(ids.length===0){
+         if(ids.length===0){
             setInfo2([])
             return;
         }
@@ -222,15 +246,35 @@ export default function Products3() {
 
         setInfo2(res3.data)
     }
+    // 创建一个新的数据源，用于存储清理后的数据
+    const cleanedDataSource = info2.map((data) => ({ ...data }));
+    
+    // 遍历每一列，除了最后一列
+    for (let i = columns.length - 2; i >= 0; i--) {
+      const column = columns[i];
+      const dataIndex = column.dataIndex;
+    
+      // 检查该列的所有数据是否都为空
+      const allEmpty = cleanedDataSource.every((data) => !data[dataIndex]);
+    
+      // 如果某列的所有数据都为空，将该列从列定义(columns)中删除
+      if (allEmpty) {
+        columns.splice(i, 1);
+    
+        // 同时，将数据源(cleanedDataSource)中对应列的数据也删除
+        cleanedDataSource.forEach((data) => delete data[dataIndex]);
+      }
+    }    
+      
     const navInfo = {
         '1': 'Pluggable Transceiver',
         '2': 'Optical Engine',
         '3': 'NPO/CPO ELSFP & OE Connectivity'
-    }
+    }      
     return (
         <div className='products3'>
             {contextHolder}
-            <NavLink title1={'Products'} link1={() => { toPage('products') }} title2={navInfo[getParams?.id2]} link2={() => { toPage('products2/' + getParams?.id2) }} title3={info?.name} />
+            <NavLink title1={'Products'} link1={() => { toPage('products') }} title2={navInfo[getParams?.id2]} link2={() => { toPage('products/' + getParams?.id2) }} title3={info?.name} />
             {infoImg.length !== 0 &&
                 (
                     <div className='top_bg'>
@@ -303,9 +347,10 @@ export default function Products3() {
                         <div className='table'>
                             <div className='table_content'>
                                 <div className="title">SPECIFICATIONS</div>
-                                <Table
+                                <Table 
+                                    id="myTable" 
                                     columns={columns}
-                                    dataSource={info2}
+                                    dataSource={cleanedDataSource}
                                     scroll={{ x: 1200 }}
                                     pagination={{ position: ['bottomCenter'], pageSize: 10, hideOnSinglePage: true }}
                                 />
@@ -315,5 +360,5 @@ export default function Products3() {
 
             </div>
         </div>
-    )
+    );
 }

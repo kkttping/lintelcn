@@ -9,8 +9,6 @@
 }
     
     .info {
-
-        min-height: 314px;
         width: 100%;
         background-image: linear-gradient(270.00deg, rgba(160, 182, 222, 0.00), rgba(160, 182, 222, 0.2) 49.792%, rgba(160, 182, 222, 0.00) 100%);
         border-bottom: 1px solid;
@@ -166,7 +164,7 @@
                      //最多展示两行
                         display: -webkit-box;
                         -webkit-box-orient: vertical;
-                        -webkit-line-clamp: 3;
+                        -webkit-line-clamp: 2;
                          @media screen and (max-width: 640px) {
                         margin-bottom: 1rem;
             }
@@ -229,7 +227,7 @@
         padding: 20px;
         } 
          @media (max-width: 750px){
-         max-width: 90%; 
+         max-width: 100%; 
         } 
       } 
       >div:last-child {

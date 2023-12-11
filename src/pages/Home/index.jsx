@@ -7,6 +7,7 @@ import NavBottom from '@/pages/Home/NavBottom'
 import Http from "@/utils/http";
 import x from '@/static/svg/x.svg'
 import more from '@/static/svg/more.svg'
+import ConstValue from "@/utils/value";
 
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
     const [showList, setshowList] = useState([]);
     const [pFlag, setpFlag] = useState(-1);
     const [info, setInfo] = useState([])
+    const [infoImg, setInfoImg] = useState({})
 
     const [currentIndex, setCurrentIndex] = useState(-1);
     const navigate = useNavigate()
@@ -31,21 +33,21 @@ export default function Home() {
             next: [
                 {
                     name: 'Pluggable Transceiver',
-                    next: 'products2/1'
+                    next: 'products/1'
                 },
                 {
                     name: 'Optical Engine',
-                    next: 'products2/2'
+                    next: 'products/2'
                 },
                 {
                     name: 'Optical Engine',
-                    next: 'products2/3'
+                    next: 'products/3'
                 }
             ]
         },
         {
             name: 'Application',
-            next: 'markets2'
+            next: 'application'
         },
         {
             name: 'About',
@@ -133,7 +135,8 @@ export default function Home() {
     useEffect(() => {
         getInfo("menu");
         setshowList(navList)
-        getNextM()
+        getNextM();
+        getBaceInfo();
     }, []);
 
     const getInfo = async (url) => {
@@ -146,7 +149,13 @@ export default function Home() {
             sort: ['id'],
         });
         setInfo(res.data);
-        console.log(res.data);
+    }
+    const getBaceInfo = async () => {
+        let res = await Http.to.items('Basic_information').readByQuery({
+            sort: ['id'],
+        });
+        setInfoImg(res.data);
+        console.log(res.data,111111111);
     }
     const next = (data) => {
         if (data instanceof Array) {
@@ -165,16 +174,17 @@ export default function Home() {
     return (
         <div className='page_home'>
 
-            <div className={current === 'home' ? "nav_home blak" : "nav_home"} onMouseEnter={() => { if (current === 'home') { setCurrent(''); setFlag(1); } }} onMouseLeave={() => {
+            <div className={current === 'home' ? "nav_home blak" : "nav_home" }  onMouseEnter={() => { if (current === 'home') { setCurrent(''); setFlag(1); } }} onMouseLeave={() => {
                 if (flag === 1) {
                     setCurrent('home')
                 }
             }}>
-                <div className="tag" onClick={() => { toPage('home') }}>
+                <div className="tag" style={{ backgroundImage: `url(${ConstValue.url + "assets/" + (current === 'home' ? infoImg?.logo : infoImg?.logocolor)})` }} onClick={() => { toPage('home') }}>
                 </div>
                 <div className="menu">
                     <Menu current={[current]} onClick={menuonClick} mode="horizontal"  >
                         {([{ menu: 'Home', link: 'home' }, ...(info?.nextmenu??[])]).map((item, index) => {
+                            if(item?.status==='hide')return
                             return <Menu.Item key={item.link}>
                                 <div onMouseOver={() => { setCurrentIndex(index) }}><span >{item.menu}</span></div>
                             </Menu.Item>
@@ -194,6 +204,7 @@ export default function Home() {
                         <div className="menu">
                             <Menu current={[current]} onClick={menuonClick} mode="horizontal"  >
                                 {([{ menu: 'Home', link: 'home' }, ...(info?.nextmenu??[])]).map((item, index) => {
+                                    if(item?.status==='hide')return
                                     return <Menu.Item key={item.link}>
                                         <div onMouseOver={() => { setCurrentIndex(index) }}><span >{item.menu}</span></div>
                                     </Menu.Item>
@@ -209,6 +220,7 @@ export default function Home() {
                         return <div key={index} onClick={() => next(item.next)}>{item.name}</div>
                     })} */}
                     {info?.nextmenu?.map((item, index) => {
+                        if(item?.status==='hide')return
                         return (
                             <div key={index} className={'title_nav'} onClick={() => setpFlag(index)} >
                                 {item.menu}

@@ -76,31 +76,33 @@ export default function AboutNewsInfo() {
             <NavLink title1={'About'} link1={() => { toPage2('about') }} title2={getParams?.type} link2={() => { if (getParams?.type !== 'Event') { toPage2(getParams?.type?.toLocaleLowerCase()) } else { toPage2('events') } }} title3={info?.Title} />
             <div className='title'>
                 <div className='title_box'>
-                    {info?.date_created && <div className='time'>
+                    {info?.date_created && info?.type !== 'Responsibility' && (<div className='time'>
 
-                        <span>{timeSet((new Date(info?.date_created)).getMonth())}-{timeSet((new Date(info?.date_created)).getDay())}<br /></span>
-                        <span >{(new Date(info?.date_created)).getFullYear()}</span>
+                        <span>{timeSet((new Date(info?.date_updated)).getMonth()+1)}-{timeSet((new Date(info?.date_updated)).getDate())}<br /></span>
+                        <span >{(new Date(info?.date_updated)).getFullYear()}</span>
 
-                    </div>}
+                    </div>)}
 
                     <div className='title_info'>{info?.Title}</div>
 
-                    <div className='title_ps' dangerouslySetInnerHTML={{ __html: info?.Exhibition?.replace(/\n/g, "<br/>") }}>
+                    <div className='title_ps' dangerouslySetInnerHTML={{ __html: info?.Exhibition?.replace(/\n/g, "") }}>
 
                     </div>
                 </div>
 
             </div>
-            <div
+            {info?.contactfull && (
+ 
+<div
                 className='contactfull'
                 dangerouslySetInnerHTML={{ __html: (info?.contactfull) }}
             />
-            <div className='info' dangerouslySetInnerHTML={{ __html: info?.text1 }} />
-            <div className='img'>
+)}
+           {info?.text1 && (  <div className='info' dangerouslySetInnerHTML={{ __html: info?.text1 }} />)}
+          {info?.img && (   <div className='img'>
                 <img src={ConstValue.url + "assets/" + info?.img} alt="" />
-            </div>
+            </div>)}
         </div>
-
 
     )
 }

@@ -29,6 +29,7 @@ export default function () {
 
 	useEffect(() => {
 		getInfo();
+
 	}, []);
 
 	const getInfo = async () => {
@@ -48,12 +49,12 @@ export default function () {
 
 					<Route path='/*' element={<Home />}>
 						<Route path='products' element={<Products />}></Route>
-						<Route path='products2/:id/:itemId?' element={<Products2 />}></Route>
+						<Route path='products/:id/:itemId?' element={<Products2 />}></Route>
 
-						<Route path='products3/:id/:id2' element={<Products3 />}></Route>
+						<Route path='products/:id/:id2/:itemId?/:name' element={<Products3 />}></Route>
 						<Route path='markets' element={<Markets />}></Route>
-						<Route path='markets2' element={<Markets2 />}></Route>
-						<Route path='markets3/:id' element={<Markets3 />}></Route>
+						<Route path='application' element={<Markets2 />}></Route>
+						<Route path='application/:id' element={<Markets3 />}></Route>
 						<Route path='about' element={<AboutHome />}></Route>
 						<Route path='company' element={<AboutCompany />}></Route>
 						<Route path='culture' element={<AboutCulture />}></Route>

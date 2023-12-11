@@ -24,7 +24,7 @@ export default function ApplicationInfo() {
 
     return (
         <div className='application_info'>
-            <NavLink title1={'Application'} link1={() => { toPage2('markets2') }}  title2={info?.Title} />
+            <NavLink title1={'Application'} link1={() => { toPage2('application') }}  title2={info?.Title} />
             <div className='title'>
                 <div className='title_box'>
                     

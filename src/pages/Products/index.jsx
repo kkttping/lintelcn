@@ -14,7 +14,7 @@ export default function Products() {
 	const navigate = useNavigate()
 
 	const toProducts2 = (id) => {
-		navigate('/products2/'+id)
+		navigate('/products/'+id)
 	}
 	const [info, setInfo] = useState([]);
 

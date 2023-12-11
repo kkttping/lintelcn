@@ -20,9 +20,16 @@ export default function Products2() {
 
     const [currid, setcurrid] = useState('');
 
-    const toProducts3 = (id) => {
-        navigate('/products3/' + id + '/' + getParams?.id);
-    }
+    const removeSpacesAndReplaceSlashes = (str) => {
+        const removedSpaces = str.replace(/\s+/g, '');
+        const replacedSlashes = removedSpaces.replace(/\//g, ',');
+        return replacedSlashes;
+      };
+      
+      const toProducts3 = (id, name) => {
+        const cleanedName = removeSpacesAndReplaceSlashes(name);
+        navigate('/products/' + id + '/' + getParams?.id + '/' + getParams?.itemId + '/' + cleanedName);
+      };
     const toPage = (address, routerName) => {
         navigate('/' + address);
     }
@@ -44,7 +51,7 @@ export default function Products2() {
     const getInfo2 = async () => {
         let res = await Http.to.items("product_category").readByQuery({
             fields: ['*'],
-            filter:{superior:getParams?.id+""}
+            filter:{superior:getParams?.id+"",status:"published"}
         });
         setInfo2(res.data);
         if (getParams?.itemId) {
@@ -87,7 +94,9 @@ export default function Products2() {
             <NavLink title1={'Products'} link1={() => { toPage('products') }} title2={navInfo[getParams?.id]} />
 
             <div className="info">
-                <div className='infoma' dangerouslySetInnerHTML={{ __html: info?.text }}></div>
+            {info?.text && (
+  <div className='infoma' dangerouslySetInnerHTML={{ __html: info.text }}></div>
+)}
                 {/* <div className='title'>
                     Linktel’s family of 800G transceivers accelerate data connectivity for data center Interconnection and Metro Networks. Our complete product line includes OSFP 2xFR4，OSFP 2xLR4，QSFP-DD DR8，QSFP-DD DR8+
                 </div>
@@ -99,7 +108,7 @@ export default function Products2() {
                     <Menu  selectedKeys={[curr]} mode="horizontal" >
                         {info2.map((item, index) => {
                             return (<Menu.Item key={item.id} >
-                                <span onClick={() => {setcurr(item.id+'');setcurr2(index);document.getElementById('select').scrollIntoView();navigate('/products2/'+getParams?.id+'/'+item.name) }}>{item.name}</span>
+                                <span onClick={() => {setcurr(item.id+'');setcurr2(index);document.getElementById('select').scrollIntoView();navigate('/products/'+getParams?.id+'/'+item.name) }}>{item.name}</span>
                             </Menu.Item>)
                         })}
                     </Menu>
@@ -129,7 +138,7 @@ export default function Products2() {
                                                     <span>{item?.name}</span>
                                                     <span dangerouslySetInnerHTML={{ __html: item?.description }}></span>
                                                     <span className='readmore' onClick={() => {
-                                                        toProducts3(item?.id); // retain the original action
+                                                        toProducts3(item?.id,item?.name);   // retain the original action
                                                         document.querySelector('#top').scrollIntoView(); // scroll to #top
                                                     }}>READ MORE<span></span></span>
 

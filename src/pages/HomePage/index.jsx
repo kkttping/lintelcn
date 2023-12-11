@@ -23,15 +23,13 @@ import { Carousel, Row, Col, Table } from 'antd'
 export default function HomePage() {
     const [activtyKey, setActivtyKey] = useState(0);
     const [info, setInfo] = useState({});
+    const [infoBase, setInfoBase] = useState({});
 
     const [infoList, setInfoList] = useState([]);
 
-    const [newInfo, setNewInfo] = useState({});
+    const [newInfo, setNewInfo] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const [pFlag, setpFlag] = useState(0);
-
-
-    const [newImg, setnewImg] = useState('');
-
 
     const navigate = useNavigate()
 
@@ -40,8 +38,19 @@ export default function HomePage() {
         getInfo();
         getNews();
         selectChange(0);
-
+        getInfoBase()
     }, []);
+    useEffect(() => {
+        if (newInfo.length >= 2) {
+            const interval = setInterval(() => {
+                rotateCols();
+            }, 5000);
+
+            return () => {
+                clearInterval(interval);
+            };
+        }
+    }, [newInfo]);
 
     const toPage = (address) => {
         navigate('/' + address);
@@ -90,32 +99,30 @@ export default function HomePage() {
             clearInterval(time);
         }
     }
+    const getInfoBase = async () => {
+        let res = await Http.to.items('homepage').readByQuery({
+          sort: ['id'],
+        });
+        setInfoBase(res.data);
+      }
     const getNews = async () => {
-        let res = await Http.to.items("New").readByQuery({
-            sort: ['-sort'],
+        try {
+            // 异步请求获取数据并更新 newInfo 状态
+            const res = await Http.to.items('New').readByQuery({
+                sort: ['-sort'],
+                fields: ['*'],
+                filter: { Homepage: 'true', status: 'published', type: 'Exhibition' }
+            });
 
-            fields: ['*'],
-
-
-            filter: { 'Homepage': 'true', status: "published", type: "Exhibition" }
-        });
-        let res2 = await Http.to.items("New_Content").readByQuery({
-            sort: ['id'],
-            fields: [' *,item.*'],
-            filter: { 'collection': 'Img', }
-        });
-        let newImg = res.data[0].Img;  // 先提取New集合img
-        let img;
-        if (!newImg) { // 如果newImg不存在
-            res.data[0].Content.forEach(item => {
-                img = res2.data.find(item2 => item2.id === item)?.item?.Img
-            })
-        } else {
-            img = newImg;  // 否则,img赋值为newImg
+            setNewInfo(res.data);
+        } catch (error) {
+            console.error('Error fetching news:', error);
         }
-        setnewImg(img);
-        setNewInfo(res.data?.[0]);
-    }
+    };
+
+    const rotateCols = () => {
+        setCurrentIndex(prevIndex => (prevIndex + 1) % newInfo.length);
+    };
     const timeSet = (num) => {
         if (num < 10) {
             return '0' + num;
@@ -131,13 +138,12 @@ export default function HomePage() {
                             infoList.map((item, index) => {
                                 return (
                                     <div key={index} className='img_box' >
-                                        {(item?.video !== null) ?
-                                            (activtyKey === index && item?.video && <video className='img_bg'
-                                                loop autoPlay={true} muted src={ConstValue.url + "assets/" + item?.video}>
-                                            </video>)
-                                            : (activtyKey === index && item?.img && <div className='img_bg' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + item?.img})` }}>
-                                                {item?.icon && <div className='text1' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + item?.icon})` }}></div>}
-                                            </div>)}
+                                        {(item?.img) && <div className='img_bg' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + item?.img})` }}>
+                                            {item?.icon && <div className='text1' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + item?.icon})` }}></div>}
+                                        </div>}
+                                        {(item?.video) && <video className='img_bg img_video'
+                                            loop autoPlay={true} muted src={ConstValue.url + "assets/" + item?.video}>
+                                        </video>}
 
                                         <div className='botom_mask2'>
                                             {
@@ -178,7 +184,7 @@ export default function HomePage() {
             </div>
             <div className='content'>
                 {
-                    newInfo?.Title && (
+                    newInfo.length !== 0 && (
                         <div className='event'>
                             <Parallax
                                 animation={{ x: 0 }}
@@ -188,56 +194,60 @@ export default function HomePage() {
                                 <div className='title_h1'>
                                     Exhibition
                                 </div>
-                                <Row justify={"center"} className='newstable'>
-                                    <Col sm={24} xl={10} className='newstableleft' >
-                                        <div className='infomation'>
-                                            <div className='title'>
-                                                {newInfo?.Title}
-                                            </div>
-                                            <div className='info' dangerouslySetInnerHTML={{ __html: newInfo?.Exhibition?.replace(/\n/g, "<br/>") }}>
-                                            </div>
+                                <div className='slider'>
+                                    {newInfo.map((item, index) => (
+                                        <Col key={index} className={index === currentIndex ? 'active' : 'hidden'}>
+                                            <Row justify={"center"} className='newstable'>
+                                                <Col sm={24} xl={10} className='newstableleft' >
+                                                    <div className='infomation'>
+                                                        <div className='title'>
+                                                            {item?.Title}
+                                                        </div>
+                                                        <div className='info' dangerouslySetInnerHTML={{ __html: item?.Exhibition?.replace(/\n/g, "") }}>
+                                                        </div>
 
-                                            <span
-                                                className='readmore'
-                                                onClick={() => {
-                                                    if (newInfo?.outlink) {
-                                                        const link = newInfo?.outlink.startsWith('http') ? newInfo?.outlink : `/#/${newInfo?.outlink}`;
-                                                        window.open(link);
-                                                    } else {
-                                                        toPage('newsInfo/' + newInfo?.id + '/' + newInfo?.type)
-                                                    }
-                                                    window.scrollTo(0, 0);
-                                                }}
-                                            >
-                                                READ MORE <span></span>
-                                            </span>
+                                                        <span
+                                                            className='readmore'
+                                                            onClick={() => {
+                                                                if (item?.outlink) {
+                                                                    const link = item?.outlink.startsWith('http') ? item?.outlink : `/#/${item?.outlink}`;
+                                                                    window.open(link);
+                                                                } else {
+                                                                    toPage('newsInfo/' + item?.id + '/' + item?.type)
+                                                                }
+                                                                window.scrollTo(0, 0);
+                                                            }}
+                                                        >
+                                                            READ MORE <span></span>
+                                                        </span>
 
-                                        </div>
-                                    </Col>
-                                    <Col sm={24} xl={14} className='newstableright'>
-                                        <div className='img_info'>
+                                                    </div>
+                                                </Col>
+                                                <Col sm={24} xl={14} className='newstableright'>
+                                                    <div className='img_info'>
 
-                                            {newImg && <div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + newImg})` }}>
+                                                        <div className='img_pri' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + item?.Img})` }}>
 
-                                                <div className='time'>
-                                                    <span >{(new Date(newInfo?.date_created)).getFullYear()}<br /></span>
-                                                    <span>{timeSet((new Date(newInfo?.date_created)).getMonth())}-{timeSet((new Date(newInfo?.date_created)).getDay())}</span>
-                                                </div>
+                                                            <div className='time'>
+                                                                <span>{(new Date(item?.date_updated)).getFullYear()}<br /></span>
+                                                                <span>{timeSet((new Date(item?.date_updated)).getMonth() + 1)}-{timeSet((new Date(item?.date_updated)).getDate())}</span>
+                                                            </div>
 
-                                            </div>}
-                                        </div>
+                                                        </div>
+                                                    </div>
 
-                                    </Col>
-                                </Row>
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                    ))}</div>
+
                             </Parallax>
 
                         </div>
                     )
                 }
 
-                <div className='leading' style={{ backgroundImage: `url(${img_bg2})` }}>
-                    A Solution and Service Provider <br /> of High Speed Optical I/O Connectivity
-                </div>
+                <div className='leading' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + infoBase?.firstimg})` }} dangerouslySetInnerHTML={{ __html: (infoBase?.firsttit) }}></div>
                 <div className='products_item' style={{ backgroundImage: `url(${img_bg3})` }}>
                     <div className='title_h1'>
                         Products
@@ -251,10 +261,10 @@ export default function HomePage() {
                         <Col sm={24} xl={24} xxl={12} >
                             <div className='infomation'>
                                 <div className={pFlag === 0 ? 'title' : 'titleb'} onClick={() => setpFlag(0)}>
-                                    Pluggable Transceiver <div className='svg_right' style={{ backgroundImage: `url(${svg1})` }}></div>
+                                    Pluggable Transceiver
                                 </div>
                                 <div className={'info '} style={pFlag === 0 ? { height: '100px' } : {}}>
-                                    <a style={{ color: '#6e6e6e' }} href="/#/products2/1" onClick={() => {
+                                    <a style={{ color: '#6e6e6e' }} href="/#/products/1" onClick={() => {
                                         document.querySelector('#top').scrollIntoView({
                                             block: 'center'
                                         })
@@ -262,20 +272,20 @@ export default function HomePage() {
 
                                 </div>
                                 <div className={pFlag === 1 ? 'title' : 'titleb'} onClick={() => setpFlag(1)}>
-                                    Optical Engine<div className='svg_right' style={{ backgroundImage: `url(${svg1})` }}></div>
+                                    Optical Engine
                                 </div>
                                 <div className={'info '} style={pFlag === 1 ? { height: '100px' } : {}} >
-                                    <a style={{ color: '#6e6e6e' }} href="/#/products2/2" onClick={() => {
+                                    <a style={{ color: '#6e6e6e' }} href="/#/products/2" onClick={() => {
                                         document.querySelector('#top').scrollIntoView({
                                             block: 'center'
                                         })
-                                    }}>n-house Design &amp; Manufacture 100G/λ and 200G/λ Optical Engines with Cutting Edge OE Packaging Capabilities            </a>
+                                    }}>In-house Design &amp; Manufacture 100G/λ and 200G/λ Optical Engines with Cutting Edge OE Packaging Capabilities            </a>
                                 </div>
                                 <div className={pFlag === 2 ? 'title' : 'titleb'} onClick={() => setpFlag(2)}>
-                                    NPO/CPO ELSFP & OE Connectivity<div className='svg_right' style={{ backgroundImage: `url(${svg1})` }}></div>
+                                    NPO/CPO ELSFP & OE Connectivity
                                 </div>
                                 <div className={'info '} style={pFlag === 2 ? { height: '100px' } : {}} >
-                                    <a style={{ color: '#6e6e6e' }} href="/#/products2/3" onClick={() => {
+                                    <a style={{ color: '#6e6e6e' }} href="/#/products/3" onClick={() => {
                                         document.querySelector('#top').scrollIntoView({
                                             block: 'center'
                                         })
@@ -298,7 +308,7 @@ export default function HomePage() {
                     </div>
                     <Row justify={'center'}>
                         <Col>
-                            <Row justify={'center'}>
+                            <Row justify={'center'} className='homelogoul' >
                                 <Col>
                                     <div className='link_img' style={{ backgroundImage: `url(${img_item2})` }}></div>
                                 </Col>
@@ -306,10 +316,6 @@ export default function HomePage() {
                                     <div className='link_img' style={{ backgroundImage: `url(${img_item3})` }}></div>
 
                                 </Col>
-                            </Row>
-                        </Col>
-                        <Col>
-                            <Row justify={'center'}>
                                 <Col>
                                     <div className='link_img' style={{ backgroundImage: `url(${img_item4})` }}></div>
 
@@ -320,6 +326,7 @@ export default function HomePage() {
                                 </Col>
                             </Row>
                         </Col>
+
                     </Row>
                 </div>
             </div>

@@ -27,14 +27,11 @@ export default function Market3() {
     }
     return (
         <div className='market3'>
-            <NavLink  title1={'Application'} link1={()=>{toPage('markets2')}}  title2={info?.title}/>
+            <NavLink  title1={'Application'} link1={()=>{toPage('application')}}  title2={info?.title}/>
             <div className='title'>
                 {info?.title}
             </div>
             <div className='info' dangerouslySetInnerHTML={{__html:info?.content}}></div>
-            <div className='img'>
-                <img src={ConstValue.url + "assets/" + info?.img} alt="" />
-            </div>
         </div>
     )
 }

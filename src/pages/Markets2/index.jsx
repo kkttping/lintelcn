@@ -18,7 +18,7 @@ export default function Markets2() {
     const [info, setInfo] = useState([]);
 
     const toM3Link = (id) => {
-        navigate('/markets3/' + id)
+        navigate('/application/' + id)
     }
     useEffect(() => {
         getInfo()

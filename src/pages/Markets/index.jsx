@@ -27,7 +27,7 @@ export default function Markets() {
                     </Col>
                     <Col sm={24} xl={12} >
                         <div className='card_item'>
-                            <CardProducts link={()=>{toPage('markets2','markets')}} img={imgitem2} styleSelf={{ color: '#fff',objectfit:'cover' }} titleout={'Application'} titleIn={'Application'} info={['We can support our customers with ODM service,via our expertise and experiences on optical design, hybrid OE package, RF simulation, Thermal simulation and high speed circuit design. We also can work as an OEM partner with global manufacture footprints. ']}></CardProducts>
+                            <CardProducts link={()=>{toPage('application','markets')}} img={imgitem2} styleSelf={{ color: '#fff',objectfit:'cover' }} titleout={'Application'} titleIn={'Application'} info={['We can support our customers with ODM service,via our expertise and experiences on optical design, hybrid OE package, RF simulation, Thermal simulation and high speed circuit design. We also can work as an OEM partner with global manufacture footprints. ']}></CardProducts>
                         </div>
                     </Col>
                 </Row>
