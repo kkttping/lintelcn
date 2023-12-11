@@ -9,7 +9,7 @@ axios.interceptors.request.use(
     },
     err => {
         message.destroy();
-        message.error('网络请求超时', 1);
+        // message.error('网络请求超时', 1);
         return Promise.reject(err);
     }
 )
@@ -21,23 +21,23 @@ axios.interceptors.response.use(
         message.destroy();
         if (!err.response) {
             message.destroy();
-            message.error('网络连接失败，请检查网络配置和网线是否松动', 1);
+            // message.error('网络连接失败，请检查网络配置和网线是否松动', 1);
             return Promise.reject(err);
         }
         if(err.response.status===504){
-            message.error('网络连接失败，请重新登录',1);
+            // message.error('网络连接失败，请重新登录',1);
 
         }else if(err.response.status===401){
             clearTimeout(timer);
             timer=setTimeout(()=>{
-                message.warning('登录信息失效',1);
+                // message.warning('登录信息失效',1);
             },100);
         }else if(err.response.status===404){
-            message.warning('Request does not exist',1);
+            // message.warning('Request does not exist',1);
         }else if(err.response.status==500){
-            message.error('网络连接失败',1);
+            // message.error('网络连接失败',1);
         }else if(err.response.status==502){
-            message.error('服务器异常',1);
+            // message.error('服务器异常',1);
         }
         return Promise.reject(err);
     }
