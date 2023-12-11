@@ -277,10 +277,10 @@ export default function HomePage() {
                                     return (
                                         <>
                                             <div className={pFlag === index ? 'title' : 'titleb'} onClick={() => setpFlag(index)}>
-                                                Pluggable Transceiver
+                                                {item?.tit}
                                             </div>
-                                            <div className={'info '} style={pFlag === 0 ? { height: '100px' } : {}}>
-                                                <a style={{ color: '#6e6e6e' }} href="/#/products/1" onClick={() => {
+                                            <div className={'info '} style={pFlag === index ? { height: '100px' } : {}}>
+                                                <a style={{ color: '#6e6e6e' }} href={"/#/"+item?.link} onClick={() => {
                                                     document.querySelector('#top').scrollIntoView({
                                                         block: 'center'
                                                     })
