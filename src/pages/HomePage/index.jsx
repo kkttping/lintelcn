@@ -101,10 +101,21 @@ export default function HomePage() {
     }
     const getInfoBase = async () => {
         let res = await Http.to.items('homepage').readByQuery({
-          sort: ['id'],
+            sort: ['id'],
         });
+
+
+        for (let i = 0; i < res.data.Membersimg.length; i++) {
+            let res2 = await Http.to.items('homepage_files_1/' + res.data.Membersimg[i]).readByQuery({
+                fields:"*,directus_files_id.*" 
+            });
+            
+
+            res.data.Membersimg[i] = res2.data
+        }
+        console.log(res.data);
         setInfoBase(res.data);
-      }
+    }
     const getNews = async () => {
         try {
             // 异步请求获取数据并更新 newInfo 状态
@@ -250,17 +261,37 @@ export default function HomePage() {
                 <div className='leading' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + infoBase?.firstimg})` }} dangerouslySetInnerHTML={{ __html: (infoBase?.firsttit) }}></div>
                 <div className='products_item' style={{ backgroundImage: `url(${img_bg3})` }}>
                     <div className='title_h1'>
-                        Products
+                        {infoBase?.secondtit}
                     </div>
+                    {infoBase?.Products?.map((item, index) => {
+                        return (
+                            <div className={pFlag === index ? 'act_img item_img' : 'item_img'} dangerouslySetInnerHTML={{ __html: (item?.img) }}></div>
+                        )
+                    })}
 
-                    <div className={pFlag === 0 ? 'act_img item_img' : 'item_img'} style={{ backgroundImage: `url(${imgitem1})` }}></div>
-                    <div className={pFlag === 1 ? 'act_img item_img' : 'item_img'} style={{ backgroundImage: `url(${imgitem2})` }}></div>
-                    <div className={pFlag === 2 ? 'act_img item_img' : 'item_img'} style={{ backgroundImage: `url(${imgitem3})` }}></div>
 
                     <Row justify={"center"}>
                         <Col sm={24} xl={24} xxl={12} >
                             <div className='infomation'>
-                                <div className={pFlag === 0 ? 'title' : 'titleb'} onClick={() => setpFlag(0)}>
+                                {infoBase?.Products?.map((item, index) => {
+                                    return (
+                                        <>
+                                            <div className={pFlag === index ? 'title' : 'titleb'} onClick={() => setpFlag(index)}>
+                                                Pluggable Transceiver
+                                            </div>
+                                            <div className={'info '} style={pFlag === 0 ? { height: '100px' } : {}}>
+                                                <a style={{ color: '#6e6e6e' }} href="/#/products/1" onClick={() => {
+                                                    document.querySelector('#top').scrollIntoView({
+                                                        block: 'center'
+                                                    })
+                                                }}>{item?.overview}</a>
+
+                                            </div>
+                                        </>
+                                    )
+                                })}
+
+                                {/* <div className={pFlag === 0 ? 'title' : 'titleb'} onClick={() => setpFlag(0)}>
                                     Pluggable Transceiver
                                 </div>
                                 <div className={'info '} style={pFlag === 0 ? { height: '100px' } : {}}>
@@ -290,7 +321,7 @@ export default function HomePage() {
                                             block: 'center'
                                         })
                                     }}>1.6T/3.2T NPO/CPO Optical Engines Optical/Electrical Hybrid Packaging Platforms</a>
-                                </div>
+                                </div> */}
                                 {/* <div className='info2'>
                                     Optical Engine<br />
                                     NPO or CPO
@@ -304,26 +335,19 @@ export default function HomePage() {
                 </div>
                 <div className='link'>
                     <div className='title_h1'>
-                        Members of
+                        {infoBase?.lasttit}
                     </div>
                     <Row justify={'center'}>
                         <Col>
                             <Row justify={'center'} className='homelogoul' >
-                                <Col>
-                                    <div className='link_img' style={{ backgroundImage: `url(${img_item2})` }}></div>
-                                </Col>
-                                <Col>
-                                    <div className='link_img' style={{ backgroundImage: `url(${img_item3})` }}></div>
+                                {infoBase?.Membersimg?.map((item, index) => {
+                                    return (
+                                        <Col>
+                                            <div className='link_img' style={{ backgroundImage: `url(${ConstValue.url + "assets/" + item?.directus_files_id?.filename_disk})` }}></div>
+                                        </Col>
+                                    )
+                                })}
 
-                                </Col>
-                                <Col>
-                                    <div className='link_img' style={{ backgroundImage: `url(${img_item4})` }}></div>
-
-                                </Col>
-                                <Col>
-                                    <div className='link_img' style={{ backgroundImage: `url(${img_item5})` }}></div>
-
-                                </Col>
                             </Row>
                         </Col>
 

@@ -525,6 +525,9 @@
         background-size: contain;
         background-position: center;
         transition: all 0.5s;
+        img{
+        width: 100%;
+        }
         @media screen and (max-width: 640px) {
           width: 120vw;
           right: 0;

@@ -17,6 +17,7 @@ export default function Career() {
   const [infoBase, setInfoBase] = useState({});
 
   const toPage = (address, routerName) => {
+    if(address==='')return
     navigate("/" + address);
   };
   useEffect(() => {
@@ -50,7 +51,7 @@ export default function Career() {
             <div className="card_item">
               <CardProducts
                 link={() => {
-                  toPage("message", "career");
+                  toPage(infoBase?.leftlink, "career");
                 }}
                 img={imgitem1}
                 styleSelf={{ color: "#fff", objectfit: "cover" }}
@@ -66,7 +67,7 @@ export default function Career() {
             <div className="card_item">
               <CardProducts
                 link={() => {
-                  toPage("workAtLinktel", "career");
+                  toPage(infoBase?.rightlink, "career");
                 }}
                 img={imgitem2}
                 styleSelf={{ color: "#fff", objectfit: "cover" }}

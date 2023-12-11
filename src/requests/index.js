@@ -33,7 +33,7 @@ axios.interceptors.response.use(
                 message.warning('登录信息失效',1);
             },100);
         }else if(err.response.status===404){
-            message.warning('请求不存在',1);
+            message.warning('Request does not exist',1);
         }else if(err.response.status==500){
             message.error('网络连接失败',1);
         }else if(err.response.status==502){

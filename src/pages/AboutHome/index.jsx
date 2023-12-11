@@ -74,12 +74,12 @@ export default function AboutHome() {
                 <Row justify={"center"} className='card_two'>
                     <Col sm={24} xl={12} >
                         <div className='card_item'>
-                            <CardProducts link={() => { toPage('company', 'about') }} img={imgitem1} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={infoBase?.comtit} titleIn={infoBase?.comtit} info={[infoBase?.comoverview]} ></CardProducts>
+                            <CardProducts link={() => { toPage(infoBase?.comlink, 'about') }} img={imgitem1} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={infoBase?.comtit} titleIn={infoBase?.comtit} info={[infoBase?.comoverview]} ></CardProducts>
                         </div>
                     </Col>
                     <Col sm={24} xl={12} >
                         <div className='card_item'>
-                            <CardProducts link={() => { toPage('culture', 'about') }} img={imgitem2} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={infoBase?.coltil} titleIn={infoBase?.coltil} info={[infoBase?.coloverview]}></CardProducts>
+                            <CardProducts link={() => { toPage(infoBase?.collink, 'about') }} img={imgitem2} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={infoBase?.coltil} titleIn={infoBase?.coltil} info={[infoBase?.coloverview]}></CardProducts>
                         </div>
                     </Col>
                 </Row>
@@ -100,7 +100,7 @@ export default function AboutHome() {
                                     <div className='leadership_name'><div className='person_svg'></div>{leadershipList[imgSelect]?.Name}</div>
                                     <div className='leadership_work'>{leadershipList[imgSelect]?.Position}</div>
                                     <div className='leadership_info' dangerouslySetInnerHTML={{ __html: leadershipList[imgSelect]?.Introduce?.replace(/\n/g, "<br/>") }}></div>
-                                    <span className='readmore' onClick={() => { toPage('leadership', leadershipList[imgSelect]?.id); window.scrollTo(0, 0); }}>READ MORE<span></span></span>
+                                    <span className='readmore' onClick={() => { toPage(infoBase?.leadlink, leadershipList[imgSelect]?.id); window.scrollTo(0, 0); }}>READ MORE<span></span></span>
 
                                 </div>
                                 <div className="select_img">
@@ -120,7 +120,7 @@ export default function AboutHome() {
                                         )
                                     })}
 
-                                    <div className='img' onClick={() => { toPage('leadership', 'about'); window.scrollTo(0, 0); }}></div>
+                                    <div className='img' onClick={() => { toPage(infoBase?.leadlink, 'about'); window.scrollTo(0, 0); }}></div>
                                 </div>
                             </div>
                         </Col>
@@ -163,7 +163,7 @@ export default function AboutHome() {
                                 </Col>
                                 <Col sm={24} xl={12} className='card_about_quality' >
                                     <div className='card_item'>
-                                        <CardProducts link={() => { toPage('quality', 'about'); window.scrollTo(0, 0); }} img={imgitem7} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={infoBase?.quatit} titleIn={infoBase?.quatit} info={[infoBase?.quaoverview]}></CardProducts>
+                                        <CardProducts link={() => { toPage(infoBase?.qualink, 'about'); window.scrollTo(0, 0); }} img={imgitem7} styleSelf={{ color: '#fff', objectfit: 'cover' }} titleout={infoBase?.quatit} titleIn={infoBase?.quatit} info={[infoBase?.quaoverview]}></CardProducts>
                                     </div>
                                 </Col>
                             </Row>
@@ -182,7 +182,7 @@ export default function AboutHome() {
                                 </div>
                                 <div className='responsibility_info'>
                                     {infoBase?.resoverview}
-                                    <span className='readmore' onClick={() => { toPage('responsibility', 'about'); window.scrollTo(0, 0); }}>READ MORE<span> </span></span>
+                                    <span className='readmore' onClick={() => { toPage(infoBase?.reslink, 'about'); window.scrollTo(0, 0); }}>READ MORE<span> </span></span>
                                 </div>
 
 
@@ -196,7 +196,7 @@ export default function AboutHome() {
                                 <div className='contact_info'>
                                     <span dangerouslySetInnerHTML={{ __html: infoBase?.conoverview }}></span>
 
-                                    <span className='readmore' onClick={() => { toPage('contact', 'about'); window.scrollTo(0, 0); }}>READ MORE<span></span></span>
+                                    <span className='readmore' onClick={() => { toPage(infoBase?.conlink, 'about'); window.scrollTo(0, 0); }}>READ MORE<span></span></span>
                                 </div>
 
                             </div>
